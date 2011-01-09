@@ -36,6 +36,14 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
+[ -f "`which keychain`" ] && keychain eric
+[ -z "$HOSTNAME" ] && HOSTNAME=`name -n`
+[ -f $HOME/.keychain/$HOSTNAME-sh ] &&
+   . $HOME/.keychain/$HOSTNAME-sh
+[ -f $HOME/.keychain/$HOSTNAME-sh-gpg ] &&
+   . $HOME/.keychain/$HOSTNAME-sh-gpg
+
+
 alias grep='grep --color=auto'
 alias ll='ls -alFh'
 alias la='ls -A'
