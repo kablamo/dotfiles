@@ -1,0 +1,39 @@
+use lib 'lib';
+use feature qw(say);
+use Term::ANSIColor;
+
+no warnings 'redefine';
+
+my @plugins = (
+    'ReadLineHistory',            # history saved across sessions
+    'Colors',                     # colorize return value and errors
+    'FancyPrompt',                # provide an irb-like prompt
+    'Refresh',                    # refresh before every eval
+    'Interrupt',                  # improve handling of ^C
+    'OutputCache',                # access previous results
+    'Nopaste',                    # paste session with #nopaste
+    'DDC',                        # format output with Data::Dumper::Concise
+    'PPI',                        # PPI dumping of Perl code
+    'MultiLine::PPI',             # allow multiple lines
+    'Completion',
+    'CompletionDriver::Keywords', # substr, while, etc
+    'CompletionDriver::LexEnv',   # current environment
+    'CompletionDriver::Globals',  # global variables
+    'CompletionDriver::INC',      # loading new modules
+    'CompletionDriver::Methods',  # class method completion
+    'CompletionDriver::Turtles',  # turtle command completion
+);
+$_REPL->load_plugin($_) for @plugins;
+$_REPL->normal_color('blue');
+$_REPL->fancy_prompt(sub {
+    my $self = shift;
+    my $p = $self->current_package;
+    color('reset') . 
+    color('bright_black') . $self->line_depth . ':' . $p . '$ ' .
+    color('reset');
+} );
+$Devel::REPL::Plugin::Packages::PKG_SAVE = 'main';
+
+END {
+ print "\n";
+}

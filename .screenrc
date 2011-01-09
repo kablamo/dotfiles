@@ -1,0 +1,43 @@
+startup_message   off
+sessionname       main
+term              screen-256color
+setenv            LC_CTYPE en_US.UTF-8
+defutf8           on
+nonblock          on
+nethack           on
+vbell             off
+maptimeout        900
+shell             bash
+escape            ``
+
+bindkey ì next
+bindkey è prev
+
+bindkey `git   screen -t git     0
+bindkey `.     screen -t .       1
+bindkey `repl  screen -t repl    5
+bindkey `db    screen -t db      6
+bindkey `model screen -t model   7
+bindkey `ctlr  screen -t ctlr    8
+bindkey `tt    screen -t tt      9
+bindkey `css   screen -t css    10
+bindkey `js    screen -t js     11
+bindkey `log   screen -t log    12
+bindkey `iijo  screen -t iijo   13
+
+# add CPU idle/sustem/user/interrupt stats
+#backtick 100 5 5 tail -1 /var/tmp/vermaden-stats-top
+#caption always '%{= wk} %= %100` %='
+
+hardstatus on
+hardstatus alwayslastline
+#hardstatus string "%w"
+#hardstatus string "%{.kW}%-w%{.W}%n %t%{-}%{=b kw}%?%+w%? %=%c %d/%m/%Y" #B&W & date&time
+#hardstatus string "%{.kW}%-w%{.W}%n %t%{-}%{=b kw}%?%+w%? %=%c %d/%m/%Y" #B&W & date&time
+#hardstatus string "%{.kW}%-w%{.W}%n %t%{-}%+w %=%C %a "
+#hardstatus string "%{=b kw} %?%-w%?%{=br kw}%n %t%{=b kw}%?%+w%? %="    #B&W
+hardstatus string "%{= kw} %?%-w%?%{=u kw}%n %t%{= kw}%?%+w%? %="    #B&W
+sorendition kw
+
+#chdir /home/eric/code/FlashCards
+screen -t . 1
