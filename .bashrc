@@ -1,17 +1,9 @@
 export TERM='xterm-256color'
-
-# If not running interactively, don't do anything
-[ -z "$PS1" ] && return
-
-# don't put duplicate lines in the history. See bash(1) for more options
-HISTCONTROL=ignoredups:ignorespace
-
-# append to the history file, don't overwrite it
-shopt -s histappend
-
-# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
+[ -z "$PS1" ] && return            # do nothing unless running interactively
+HISTCONTROL=ignoredups:ignorespace # see HISTCONTROL in bash(1)
+shopt -s histappend                # append to the history file, don't overwrite
+HISTSIZE=1000                      # see HISTSIZE in bash(1)
+HISTFILESIZE=2000                  # see HISTFILESIZE in bash(1)
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -36,6 +28,7 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
+# ssh keychain
 [ -f "`which keychain`" ] && keychain eric
 [ -z "$HOSTNAME" ] && HOSTNAME=`name -n`
 [ -f $HOME/.keychain/$HOSTNAME-sh ] &&
