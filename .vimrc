@@ -3,6 +3,7 @@ set nocompatible
 
 " set
 set copyindent
+set encoding=utf-8
 set expandtab
 set foldenable
 set foldlevelstart=1
@@ -99,6 +100,8 @@ nmap <C-c>v :call Screen_Vars()<cr>
 " scratch
 map <leader><tab> :Scratch<cr>
 
-" NERD commenter
+" NERD Commenter
 let NERDSpaceDelims=1
 
+" NERD Tree
+map <leader>ls :NERDTree<cr>
