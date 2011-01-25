@@ -37,6 +37,9 @@ fi
    . $HOME/.keychain/$HOSTNAME-sh-gpg
 
 
+wiki() {
+   dig +short txt $1.wp.dg.cx
+}
 alias grep='grep --color=auto'
 alias ll='ls -alFh'
 alias la='ls -A'
@@ -51,3 +54,4 @@ alias remove='sudo apt-get remove'
 alias autoremove='sudo apt-get autoremove'
 alias update='sudo apt-get update'
 alias upgrade='sudo apt-get full-upgrade'
+alias db='sqlite3 flashcards.db'
