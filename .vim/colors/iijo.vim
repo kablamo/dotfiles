@@ -7,7 +7,7 @@ if version > 580
  endif
 endif
 ":hi Normal 
-":hi Cursor
+:hi Cursor       cterm=reverse
 ":hi VertSplit 
 :hi Folded       cterm=none           ctermfg=white
 :hi FoldColumn   cterm=none           ctermfg=white
@@ -42,7 +42,7 @@ endif
 ":hi Todo                                     
 :hi Directory    cterm=bold           ctermfg=white 
 :hi ErrorMsg     cterm=bold           ctermfg=white
-:hi VisualNOS    cterm=bold,underline
+:hi VisualNOS    cterm=bold
 :hi WildMenu     cterm=none           ctermfg=white
 :hi DiffAdd      cterm=none           ctermbg=white
 :hi DiffChange   cterm=none           ctermbg=white
