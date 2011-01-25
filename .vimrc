@@ -7,7 +7,7 @@ set encoding=utf-8
 set expandtab
 set foldenable
 set foldlevelstart=1
-set gdefault
+set foldmethod=syntax
 set guioptions=m
 set helpheight=200
 set hidden
@@ -26,17 +26,21 @@ set textwidth=78
 set undolevels=1000
 set winminheight=0
 
-" let
-let perl_fold=1
+" mapleader
 let mapleader=";"
+
+" enable syntaxfolding
+let javaScript_fold=1
+let perl_fold=1
+let ruby_fold=1
+let sh_fold_enabled=1
+let vimsyn_folding='af'
+let xml_syntax_folding=1
 
 " other stuff
 colorscheme iijo
 filetype plugin on
-
-" use Perl style regexps
-nnoremap / /\v
-vnoremap / /\v
+au BufNewFile,BufRead *.tt setf tt2html
 
 " use tab to find matching parens
 nnoremap <tab> %
@@ -45,7 +49,6 @@ vnoremap <tab> %
 " edit vimrc
 nmap <silent> <leader>ev :e $MYVIMRC<cr>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
-
 
 " easier to escape
 inoremap jj <ESC>
@@ -76,17 +79,17 @@ imap <C-f> <C-x><C-f>
 imap <C-l> <C-x><C-l>
 
 " folding
-nnoremap <Space> za
-vnoremap <Space> za
+" nnoremap <Space> za
+" vnoremap <Space> za
 
 " foldtext
-:function! PerlFoldText()
-:  let text  = getline(v:foldstart)
-:  let sub   = ' ' . substitute(text, '\(sub \w\+\).*', '\1', 'g')
-:  let lines = v:foldend - v:foldstart
-:  let lines = ' (' . lines . ' lines) '
-:  return v:folddashes . sub . lines
-:endfunction
+function! PerlFoldText()
+  let text  = getline(v:foldstart)
+  let sub   = ' ' . substitute(text, '\(sub \w\+\).*', '\1', 'g')
+  let lines = v:foldend - v:foldstart
+  let lines = ' (' . lines . ' lines) '
+  return v:folddashes . sub . lines
+endfunction
 
 augroup perl_files
    set foldtext=PerlFoldText()
