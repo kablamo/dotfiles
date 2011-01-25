@@ -16,14 +16,15 @@ bindkey è prev
 bindkey `git   screen -t git     0
 bindkey `.     screen -t .       1
 bindkey `repl  screen -t repl    5
-bindkey `db    screen -t db      6
-bindkey `model screen -t model   7
-bindkey `ctlr  screen -t ctlr    8
-bindkey `tt    screen -t tt      9
-bindkey `css   screen -t css    10
-bindkey `js    screen -t js     11
-bindkey `log   screen -t log    12
-bindkey `iijo  screen -t iijo   13
+bindkey `t     screen -t t       6
+bindkey `db    screen -t db      7
+bindkey `model screen -t model   8
+bindkey `ctlr  screen -t ctlr    9
+bindkey `tt    screen -t tt     10
+bindkey `css   screen -t css    11
+bindkey `js    screen -t js     12
+bindkey `log   screen -t log    13
+bindkey `iijo  screen -t iijo   14
 
 # add CPU idle/sustem/user/interrupt stats
 #backtick 100 5 5 tail -1 /var/tmp/vermaden-stats-top
