@@ -25,6 +25,8 @@ set tabstop=3
 set textwidth=78
 set undolevels=1000
 set winminheight=0
+set wildmenu
+set wildmode=longest,list,full
 
 " mapleader
 let mapleader=";"
@@ -37,10 +39,11 @@ let sh_fold_enabled=1
 let vimsyn_folding='af'
 let xml_syntax_folding=1
 
-" other stuff
+" colors
 colorscheme iijo
 filetype plugin on
 au BufNewFile,BufRead *.tt setf tt2html
+au BufNewFile,BufRead *.md setf mkd
 
 " use tab to find matching parens
 nnoremap <tab> %
