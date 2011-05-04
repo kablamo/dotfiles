@@ -9,13 +9,19 @@ HISTFILESIZE=2000                  # see HISTFILESIZE in bash(1)
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
-# make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+
+# set variable identifying the chroot you work in (used in the prompt below)
+if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
+    debian_chroot=$(cat /etc/debian_chroot)
+fi
+
+PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
 xterm*|rxvt*)
-    PS1="\[\e]0;\u@\h: \w\a\]$PS1"
+    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
     ;;
 *)
     ;;
@@ -29,7 +35,7 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
 fi
 
 # ssh keychain
-[ -f "`which keychain`" ] && keychain eric
+[ -f "`which keychain`" ] && keychain id_dsa
 [ -z "$HOSTNAME" ] && HOSTNAME=`name -n`
 [ -f $HOME/.keychain/$HOSTNAME-sh ] &&
    . $HOME/.keychain/$HOSTNAME-sh
@@ -40,6 +46,8 @@ fi
 wiki() {
    dig +short txt $1.wp.dg.cx
 }
+#   sleep 10; alert
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 alias grep='grep --color=auto'
 alias ll='ls -alFh'
 alias la='ls -A'
