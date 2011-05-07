@@ -40,6 +40,7 @@ let vimsyn_folding='af'
 let xml_syntax_folding=1
 
 " colors
+syntax on  " sometimes this is not on by default
 colorscheme iijo
 filetype plugin on
 au BufNewFile,BufRead *.tt setf tt2html
