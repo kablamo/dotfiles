@@ -48,6 +48,7 @@ wiki() {
 }
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+alias hg='history | grep --color=auto'
 alias grep='grep --color=auto'
 alias ll='ls -alFh'
 alias la='ls -A'
@@ -63,4 +64,5 @@ alias autoremove='sudo apt-get autoremove'
 alias update='sudo apt-get update'
 alias upgrade='sudo apt-get full-upgrade'
 alias screen='screen -U'
+alias ack='ack --pager="less -R"'
 alias db='sqlite3 flashcards.db'
