@@ -8,7 +8,7 @@
 [alias]
    ci = commit
    cia = commit -a
-   st = status
+   st = status -s
    di = diff
    tree = log --graph --pretty=oneline --abbrev-commit
    co = checkout
