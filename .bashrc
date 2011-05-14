@@ -34,6 +34,12 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
+# local::lib
+eval $(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib)
+
+# perlbrew
+source ~/perl5/perlbrew/etc/bashrc
+
 # ssh keychain
 [ -f "`which keychain`" ] && keychain id_dsa
 [ -z "$HOSTNAME" ] && HOSTNAME=`name -n`
@@ -55,8 +61,10 @@ alias la='ls -A'
 alias l='ls -CF'
 alias ls='ls -Fh --color=never'
 alias c='clear'
-alias cpanm='sudo cpanm'
 alias cpanp='sudo cpanp'
+alias cpanm='sudo cpanm'
+alias minicpanm='sudo cpanm --mirror ~/minicpan --mirror-only'
+alias darkpan='sudo cpanm --mirror http://mycompany.foxtons.co.uk/DPAN --mirror-only'
 alias free='free -m'
 alias install='sudo apt-get install'
 alias remove='sudo apt-get remove'
