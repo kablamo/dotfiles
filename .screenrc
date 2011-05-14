@@ -26,10 +26,7 @@ bindkey `js    screen -t js     12
 bindkey `log   screen -t log    13
 bindkey `srvr  screen -t srvr   14
 
-# add CPU idle/sustem/user/interrupt stats
-#backtick 100 5 5 tail -1 /var/tmp/vermaden-stats-top
-#caption always '%{= wk} %= %100` %='
-
+caption splitonly
 hardstatus on
 hardstatus alwayslastline
 #hardstatus string "%w"
