@@ -21,7 +21,7 @@ set shiftwidth=3
 set shiftround
 set smartcase
 set smarttab
-set tabstop=3
+set tabstop=4
 set textwidth=78
 set undolevels=1000
 set winminheight=0
@@ -112,3 +112,6 @@ let NERDSpaceDelims=1
 
 " NERD Tree
 map <leader>ls :NERDTree<cr>
+
+" PERLDOC2
+let g:Perldoc_path = '/home/eric/Documents/perldoc'
