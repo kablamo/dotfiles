@@ -17,11 +17,11 @@ set iskeyword-=:
 set laststatus=2 
 set noswapfile
 set scrolloff=10
-set shiftwidth=3
+set shiftwidth=4
 set shiftround
 set smartcase
 set smarttab
-set tabstop=3
+set tabstop=4
 set textwidth=78
 set undolevels=1000
 set winminheight=0
@@ -112,3 +112,7 @@ let NERDSpaceDelims=1
 
 " NERD Tree
 map <leader>ls :NERDTree<cr>
+
+" perltidy
+autocmd BufRead,BufNewFile *.pl,*.plx,*.pm command! -range=% -nargs=* Tidy <line1>,<line2>!perltidy -q
+autocmd BufRead,BufNewFile *.pl,*.plx,*.pm noremap <leader>t :Tidy<CR>
