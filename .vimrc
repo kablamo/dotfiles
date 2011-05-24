@@ -114,5 +114,5 @@ let NERDSpaceDelims=1
 map <leader>ls :NERDTree<cr>
 
 " perltidy
-autocmd BufRead,BufNewFile *.pl,*.plx,*.pm command! -range=% -nargs=* Tidy <line1>,<line2>!perltidy -q
-autocmd BufRead,BufNewFile *.pl,*.plx,*.pm noremap <leader>t :Tidy<CR>
+autocmd BufRead,BufNewFile *.t,*.pl,*.plx,*.pm command! -range=% -nargs=* Tidy <line1>,<line2>!perltidy -q
+autocmd BufRead,BufNewFile *.t,*.pl,*.plx,*.pm noremap <leader>t :Tidy<CR>
