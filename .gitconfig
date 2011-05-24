@@ -9,7 +9,7 @@
    ci = commit
    cia = commit -a
    st = status -s
-   di = diff
+   di = diff -b
    tree = log --graph --pretty=oneline --abbrev-commit
    co = checkout
    br = branch -a
