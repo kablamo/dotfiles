@@ -42,7 +42,10 @@ fi
 [ -f $HOME/.keychain/$HOSTNAME-sh-gpg ] &&
    . $HOME/.keychain/$HOSTNAME-sh-gpg
 
+# perlbrew
+source ~/perl5/perlbrew/etc/bashrc
 
+# aliases
 wiki() {
    dig +short txt $1.wp.dg.cx
 }
