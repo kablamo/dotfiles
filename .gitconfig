@@ -17,3 +17,7 @@
 [core]
    #excludesfile = "/etc/gitexcludes"
    autocrlf = input
+[difftool]
+   prompt = 0
+[diff]
+   tool = vimdiff
