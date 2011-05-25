@@ -1,10 +1,6 @@
 [user]
     name = Eric Johnson
     email = eric.johnson@foxtons.co.uk
-[color]
-   diff = auto
-   status = auto
-   branch = auto
 [alias]
    ci = commit
    cia = commit -a
