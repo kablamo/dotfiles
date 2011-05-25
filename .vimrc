@@ -11,6 +11,7 @@ set foldmethod=syntax
 set guioptions=m
 set helpheight=200
 set hidden
+set hlsearch
 set ignorecase
 set incsearch
 set iskeyword-=:

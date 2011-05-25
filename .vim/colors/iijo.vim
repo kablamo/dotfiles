@@ -33,7 +33,7 @@ endif
 :hi Operator     cterm=none           ctermfg=252
 :hi PreProc      cterm=none           ctermfg=white 
 :hi Question     cterm=none           ctermfg=white
-:hi Search       cterm=none           ctermfg=white
+:hi Search       cterm=none           ctermfg=none ctermbg=233
 :hi Special      cterm=none           ctermfg=246
 :hi SpecialKey   cterm=none           ctermfg=white
 :hi SpellErrors  cterm=bold           ctermfg=white
