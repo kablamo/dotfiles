@@ -1,15 +1,12 @@
 [user]
     name = Eric Johnson
     email = eric.git@iijo.org
-[color]
-   diff = auto
-   status = auto
-   branch = auto
 [alias]
    ci = commit
    cia = commit -a
    st = status -s
-   di = diff
+   di = diff -b
+   dt = difftool 
    tree = log --graph --pretty=oneline --abbrev-commit
    co = checkout
    br = branch -a
@@ -17,3 +14,5 @@
 [core]
    #excludesfile = "/etc/gitexcludes"
    autocrlf = input
+[diff]
+   tool = vimdiff

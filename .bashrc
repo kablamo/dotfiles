@@ -48,7 +48,10 @@ source ~/perl5/perlbrew/etc/bashrc
 [ -f $HOME/.keychain/$HOSTNAME-sh-gpg ] &&
    . $HOME/.keychain/$HOSTNAME-sh-gpg
 
+# perlbrew
+# source ~/perl5/perlbrew/etc/bashrc
 
+# aliases
 wiki() {
    dig +short txt $1.wp.dg.cx
 }
@@ -72,6 +75,5 @@ alias autoremove='sudo apt-get autoremove'
 alias update='sudo apt-get update'
 alias upgrade='sudo apt-get full-upgrade'
 alias screen='screen -U'
-alias ack='ack --pager="less -R"'
 alias db='sqlite3 flashcards.db'
 alias tunnel='autossh -v -R 9999:localhost:9999 -N -l eric iijo.org -p 4321'
