@@ -1,5 +1,5 @@
 --color
---color-filename=white on_magenta
+--color-filename=white on_blue
 --color-match=reverse
 --color-lineno=reset
 --pager=less -R
