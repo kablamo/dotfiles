@@ -9,15 +9,16 @@ endif
 :hi Comment      cterm=bold           ctermfg=238
 :hi Constant     cterm=none           ctermfg=244
 :hi Cursor       cterm=reverse
+:hi CursorLine   cterm=none           ctermfg=white ctermbg=236
 :hi Define       cterm=none           ctermfg=white 
 :hi DiffAdd      cterm=bold           ctermfg=10 ctermbg=236
 :hi DiffChange   cterm=none           ctermfg=34 ctermbg=236
 :hi DiffDelete   cterm=none           ctermfg=236 ctermbg=236
 :hi DiffText     cterm=bold           ctermfg=10 ctermbg=236
-:hi Directory    cterm=bold           ctermfg=white 
+:hi Directory    cterm=none           ctermfg=250
 :hi Error        cterm=bold           ctermfg=white
 :hi ErrorMsg     cterm=bold           ctermfg=white
-:hi Folded       cterm=none           ctermfg=white
+:hi Folded       cterm=none           ctermfg=white ctermbg=236
 :hi FoldColumn   cterm=none           ctermfg=white
 :hi Function     cterm=bold           ctermfg=white 
 :hi Identifier   cterm=none           ctermfg=250
@@ -35,19 +36,19 @@ endif
 :hi Question     cterm=none           ctermfg=white
 :hi Search       cterm=none           ctermfg=none ctermbg=233
 :hi Special      cterm=none           ctermfg=246
-:hi SpecialKey   cterm=none           ctermfg=white
+:hi SpecialKey   cterm=none           ctermfg=green
 :hi SpellErrors  cterm=bold           ctermfg=white
-:hi StatusLine   cterm=bold,reverse
-:hi StatusLineNC cterm=reverse
+:hi StatusLine   cterm=none           ctermfg=0 ctermbg=250
+:hi StatusLineNC cterm=none           ctermfg=0 ctermbg=245
 :hi Statement    cterm=bold           ctermfg=white 
 :hi String       cterm=none           ctermfg=240
 :hi Structure    cterm=none           ctermfg=white 
-:hi Title        cterm=bold           ctermfg=white
+:hi Title        cterm=none           ctermfg=245
 :hi Todo         cterm=bold           ctermfg=white ctermbg=236
 :hi Type         cterm=none           ctermfg=253
 :hi Underlined   cterm=underline      ctermfg=white
-:hi VertSplit    cterm=bold           ctermfg=white ctermbg=white
-:hi VisualNOS    cterm=bold
+:hi VertSplit    cterm=bold           ctermfg=234 ctermbg=234
+:hi VisualNOS    cterm=none           ctermfg=green
 :hi WarningMsg   cterm=none           ctermfg=white 
 :hi Visual       cterm=reverse               
 :hi WildMenu     cterm=none           ctermfg=white
