@@ -8,6 +8,7 @@ set expandtab
 set foldenable
 set foldlevelstart=1
 set foldmethod=syntax
+set fillchars=fold:\ ,vert:\ 
 set guioptions=m
 set helpheight=200
 set hidden
@@ -26,7 +27,6 @@ set tabstop=4
 set textwidth=78
 set undolevels=1000
 set winminheight=0
-set wildmenu
 set wildmode=longest,list,full
 
 " mapleader
@@ -93,7 +93,7 @@ function! PerlFoldText()
   let sub   = ' ' . substitute(text, '\(sub \w\+\).*', '\1', 'g')
   let lines = v:foldend - v:foldstart
   let lines = ' (' . lines . ' lines) '
-  return v:folddashes . sub . lines
+  return  sub . lines
 endfunction
 
 augroup perl_files
@@ -109,10 +109,13 @@ nmap <C-c>v :call Screen_Vars()<cr>
 map <leader><tab> :Scratch<cr>
 
 " NERD Commenter
-let NERDSpaceDelims=1
+let NERDSpaceDelims=2
 
 " NERD Tree
 map <leader>ls :NERDTree<cr>
+let NERDTreeChDirMode=1
+let NERDTreeWinPos='Right'
+let NERDTreeStatusline=-1
 
 " perltidy
 autocmd BufRead,BufNewFile *.t,*.pl,*.plx,*.pm command! -range=% -nargs=* Tidy <line1>,<line2>!perltidy -q
