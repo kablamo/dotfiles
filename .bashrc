@@ -41,7 +41,7 @@ eval $(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib)
 source ~/perl5/perlbrew/etc/bashrc
 
 # ssh keychain
-[ -f "`which keychain`" ] && keychain id_dsa
+[ -f "`which keychain`" ] && keychain eric
 [ -z "$HOSTNAME" ] && HOSTNAME=`name -n`
 [ -f $HOME/.keychain/$HOSTNAME-sh ] &&
    . $HOME/.keychain/$HOSTNAME-sh

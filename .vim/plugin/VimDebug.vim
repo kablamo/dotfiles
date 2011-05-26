@@ -5,16 +5,16 @@
 
 " key bindings
 map <F12>         :DBGRstart<CR>
-map <Leader><F12> :DBGRstart   
+map <Leader><F12> :DBGRstart<SPACE>
 map <F7>          :DBGRstep<CR>
 map <F8>          :DBGRnext<CR>
 map <F9>          :DBGRcont<CR>                   " continue
 map <Leader>b     :DBGRsetBreakPoint<CR>
 map <Leader>c     :DBGRclearBreakPoint<CR>
 map <Leader>ca    :DBGRclearAllBreakPoints<CR>
-map <Leader>v/    :DBGRprint 
+map <Leader>v/    :DBGRprint<SPACE>
 map <Leader>v     :DBGRprintExpand expand("<cWORD>")<CR> " value under cursor
-map <Leader>/     :DBGRcommand 
+map <Leader>/     :DBGRcommand<SPACE>
 map <F10>         :DBGRrestart<CR>
 map <F11>         :DBGRquit<CR>
 
@@ -46,57 +46,61 @@ sign define empty       linehl=empty
 let g:DBGRconsoleHeight   = 7
 let g:DBGRlineNumbers     = 1
 let g:DBGRshowConsole     = 1
+perl $DBGRsocket1         = 0;
+perl $DBGRsocket2         = 0;
 
 " script constants
-let s:LINE_INFO       = "vimDebug:"
-let s:COMPILER_ERROR  = "compiler error"
-let s:RUNTIME_ERROR   = "runtime error"
-let s:APP_EXITED      = "application exited"
-let s:DBGR_READY      = "debugger ready"
+let s:EOR_REGEX       = '\[vimdebug.eor\]'   " End Of Record Regular Expression
+let s:EOM             = "\r\nvimdebug.eom\r\n"       " End Of Message
+let s:EOM_LEN         = len(s:EOM)
+let s:COMPILER_ERROR  = "compiler error"     " not in use yet
+let s:RUNTIME_ERROR   = "runtime error"      " not in use yet
+let s:APP_EXITED      = "application exited" " not in use yet
+let s:DBGR_READY      = "debugger ready"      
+
+let s:PORT            = 6543
+let s:HOST            = "localhost"
+let s:DONE_FILE       = ".vdd.done"
 
 " script variables
-let s:sessionId       = system("perl -e 'print int(rand(99999))'") " random num
-let s:ctlFROMvdd      = ".ctl.vddTOvim." . s:sessionId " control fifo to read  from vdd
-let s:ctlTOvdd        = ".ctl.vimTOvdd." . s:sessionId " control fifo to write to   vdd
-let s:dbgFROMvdd      = ".dbg.vddTOvim." . s:sessionId " debug out fifo to read  from vdd
-let s:dbgTOvdd        = ".dbg.vimTOvdd." . s:sessionId " debug out fifo to write to   vdd
+let s:dbgrIsRunning   = 0
 let s:incantation     = ""
 let s:lineNumber      = 0
 let s:fileName        = ""
 let s:bufNr           = 0
 let s:programDone     = 0
 let s:consoleBufNr    = -99
-
-" note that these aren't really arrays.  its a string.  different values are
-" separated by s:sep.  manipulation of the 'array' is done with an array
-" library: http://vim.sourceforge.net/script.php?script_id=171
-let s:emptySignArray  = ""                           " array
-let s:breakPointArray = ""                           " array
-let s:sep             = "-"                          " array separator
-
+let s:emptySigns      = []
+let s:breakPoints     = []
+let s:return          = 0
 
 
 " debugger functions
 function! DBGRstart(...)
-   if s:fileName != ""
+   if s:dbgrIsRunning
       echo "\rthe debugger is already running"
       return
    endif
 
-   let s:incantation = s:Incantation(a:1)
+   try
+      let s:incantation = s:Incantation(a:1)
+   catch "can't debug file type"
+      return
+   catch "vdd is missing"
+      return
+   endtry
 
    exec "silent :! " . s:incantation. ' &'
 
    " do after system() so nongui vim doesn't show a blank screen
    echo "\rstarting the debugger..."
 
-   " loop until vdd says the debugger is done loading
-   while !filewritable(s:ctlFROMvdd)
-      " this works in gvim but is misleading on the console
-      " echo "\rwaiting for debugger to start (hit <C-c> to give up)..."
-      continue
-   endwhile
-  "let l:debuggerReady = system('cat ' . s:ctlFROMvdd)
+   if !s:SocketConnect()
+      return
+   endif
+   if !s:SocketConnectAgain()
+      return
+   endif
 
    if has("autocmd")
      autocmd VimLeave * call DBGRquit()
@@ -106,6 +110,7 @@ function! DBGRstart(...)
       call DBGRopenConsole()
    endif
 
+   let s:dbgrIsRunning = 1
    redraw!
    call s:HandleCmdResult("started the debugger")
 endfunction
@@ -114,7 +119,7 @@ function! DBGRnext()
       return
    endif
    echo "\rnext..."
-   call system('echo "next" >> ' . s:ctlTOvdd) " send msg to vdd
+   call s:SocketWrite("next")
    call s:HandleCmdResult()
 endfunction
 function! DBGRstep()
@@ -122,7 +127,7 @@ function! DBGRstep()
       return
    endif
    echo "\rstep..."
-   call system('echo "step" >> ' . s:ctlTOvdd) " send msg to vdd
+   call s:SocketWrite("step")
    call s:HandleCmdResult()
 endfunction
 function! DBGRcont()
@@ -130,7 +135,7 @@ function! DBGRcont()
       return
    endif
    echo "\rcontinue..."
-   call system('echo "cont" >> ' . s:ctlTOvdd) " send msg to vdd
+   call s:SocketWrite("cont")
    call s:HandleCmdResult()
 endfunction
 function! DBGRsetBreakPoint()
@@ -138,39 +143,28 @@ function! DBGRsetBreakPoint()
       return
    endif
 
-
    let l:currFileName = bufname("%")
    let l:bufNr        = bufnr("%")
    let l:currLineNr   = line(".")
    let l:id           = s:CreateId(l:bufNr, l:currLineNr)
 
-
-   " check if a breakPoint sign is already placed
-   if MvContainsElement(s:breakPointArray, s:sep, l:id) == 1
+   if count(s:breakPoints, l:id) == 1
       redraw! | echo "\rbreakpoint already set"
       return
    endif
 
+   " tell vdd
+   call s:SocketWrite("break:" . l:currLineNr . ':' . l:currFileName)
 
-   " tell the debugger about the new break point
-   "call system('echo "break:' . l:currLineNr . ':' . l:currFileName . '" >> ' . s:ctlTOvdd)
-   silent exe "redir >> " . s:ctlTOvdd . '| echon "break:' . l:currLineNr . ':' . l:currFileName . '" | redir END'
-
-
-   let s:breakPointArray = MvAddElement(s:breakPointArray, s:sep, l:id)
+   call add(s:breakPoints, l:id)
 
    " check if a currentLine sign is already placed
    if (s:lineNumber == l:currLineNr)
       exe "sign unplace " . l:id
-
       exe "sign place " . l:id . " line=" . l:currLineNr . " name=both file=" . l:currFileName
    else
       exe "sign place " . l:id . " line=" . l:currLineNr . " name=breakPoint file=" . l:currFileName
    endif
-
-   "" block until the debugger is ready
-   "let l:debuggerReady = system('cat ' . s:ctlFROMvdd)
-   "redraw! | echo "\rbreakpoint set"
 
    call s:HandleCmdResult("breakpoint set")
 endfunction
@@ -179,36 +173,25 @@ function! DBGRclearBreakPoint()
       return
    endif
 
-
    let l:currFileName = bufname("%")
    let l:bufNr        = bufnr("%")
    let l:currLineNr   = line(".")
    let l:id           = s:CreateId(l:bufNr, l:currLineNr)
 
-
-   " check if a breakPoint sign has really been placed here
-   if MvContainsElement(s:breakPointArray, s:sep, l:id) == 0
+   if count(s:breakPoints, l:id) == 0 
       redraw! | echo "\rno breakpoint set here"
       return
    endif
 
+   " tell vdd
+   call s:SocketWrite("clear:" . l:currLineNr . ':' . l:currFileName)
 
-   " tell the debugger about the deleted break point
-   "call system('echo "clear:' . l:currLineNr . ':' . l:currFileName . '" >> ' . s:ctlTOvdd)
-   silent exe "redir >> " . s:ctlTOvdd . '| echon "clear:' . l:currLineNr . ':' . l:currFileName . '" | redir END'
-
-
-   let s:breakPointArray = MvRemoveElement(s:breakPointArray, s:sep, l:id)
+   call filter(s:breakPoints, 'v:val != l:id')
    exe "sign unplace " . l:id
 
-   " place a currentLine sign if this is the currentLine
    if(s:lineNumber == l:currLineNr)
       exe "sign place " . l:id . " line=" . l:currLineNr . " name=currentLine file=" . l:currFileName
    endif
-
-   "" block until the debugger is ready
-   "let l:debuggerReady = system('cat ' . s:ctlFROMvdd)
-   "redraw! | echo "\rbreakpoint disabled"
 
    call s:HandleCmdResult("breakpoint disabled")
 endfunction
@@ -224,15 +207,11 @@ function! DBGRclearAllBreakPoints()
    let l:currLineNr   = line(".")
    let l:id           = s:CreateId(l:bufNr, l:currLineNr)
 
-   silent exe "redir >> " . s:ctlTOvdd . '| echon "clearAll" | redir END'
+   call s:SocketWrite("clearAll")
 
    " do this in case the last current line had a break point on it
    call s:UnplaceTheLastCurrentLineSign()                " unplace the old sign
    call s:PlaceCurrentLineSign(s:lineNumber, s:fileName) " place the new sign
-
-   "" block until the debugger is ready
-   "let l:debuggerReady = system('cat ' . s:ctlFROMvdd)
-   "redraw! | echo "\rall breakpoints disabled"
 
    call s:HandleCmdResult("all breakpoints disabled")
 endfunction
@@ -241,7 +220,7 @@ function! DBGRprint(...)
       return
    endif
    if a:0 > 0
-      call system("echo 'printExpression:" . a:1 . "' >> " . s:ctlTOvdd)
+      call s:SocketWrite("printExpression:" . a:1)
       call s:HandleCmdResult()
    endif
 endfunction
@@ -251,16 +230,16 @@ function! DBGRcommand(...)
    endif
    echo ""
    if a:0 > 0
-      call system( "echo 'command:" . a:1 . "' >> " . s:ctlTOvdd )
+      call s:SocketWrite(a:1)
       call s:HandleCmdResult()
    endif
 endfunction
 function! DBGRrestart()
-   if s:fileName == ""
+   if ! s:dbgrIsRunning
       echo "\rthe debugger is not running"
       return
    endif
-   call system( 'echo "restart" >> ' . s:ctlTOvdd )
+   call s:SocketWrite("restart")
    " do after the system() call so that nongui vim doesn't show a blank screen
    echo "\rrestarting..."
    call s:UnplaceTheLastCurrentLineSign()
@@ -269,7 +248,7 @@ function! DBGRrestart()
    let s:programDone = 0
 endfunction
 function! DBGRquit()
-   if s:fileName == ""
+   if ! s:dbgrIsRunning
       echo "\rthe debugger is not running"
       return
    endif
@@ -278,10 +257,9 @@ function! DBGRquit()
    call s:UnplaceBreakPointSigns()
    call s:UnplaceEmptySigns()
    call s:UnplaceTheLastCurrentLineSign()
-   call s:SetNoLineNumbers()
-   call DBGRcloseConsole()
+   call s:SetNoNumber()
 
-   call system('echo "quit" >> ' . s:ctlTOvdd)
+   call s:SocketWrite("quit")
 
    if has("autocmd")
      autocmd! VimLeave * call DBGRquit()
@@ -292,9 +270,12 @@ function! DBGRquit()
    let s:fileName        = ""
    let s:bufNr           = 0
    let s:programDone     = 0
-   let s:sep             = "-"
 
+   let s:dbgrIsRunning = 0
    redraw! | echo "\rexited the debugger"
+
+   " must do this last
+   call DBGRcloseConsole()
 endfunction
 
 
@@ -313,21 +294,17 @@ function! s:Copacetic()
    return 1
 endfunction
 function! s:PlaceEmptySign()
-   let l:id       = s:CreateId(bufnr("%"), "1")
-   let l:fileName = bufname("%")
-   if !MvContainsElement(s:emptySignArray, s:sep, l:id) == 1
-      let s:emptySignArray = MvAddElement(s:emptySignArray, s:sep, l:id)
+   let l:id = s:CreateId(bufnr("%"), "1")
+   if count(s:emptySigns, l:id) == 0
+      let l:fileName = bufname("%")
+      call add(s:emptySigns, l:id)
       exe "sign place " . l:id . " line=1 name=empty file=" . l:fileName
    endif
 endfunction
 function! s:UnplaceEmptySigns()
-
    let l:oldBufNr = bufnr("%")
-   call MvIterCreate(s:emptySignArray, s:sep, "VimDebugIteratorE")
-
-   while MvIterHasNext("VimDebugIteratorE")
-      let l:id         = MvIterNext("VimDebugIteratorE")
-      let l:bufNr      = s:CalculateBufNrFromId(l:id)
+   for l:id in s:emptySigns
+      let l:bufNr = s:BufNrFromId(l:id)
       if bufexists(l:bufNr) != 0
          if bufnr("%") != l:bufNr
             exe "buffer " . l:bufNr
@@ -335,21 +312,13 @@ function! s:UnplaceEmptySigns()
          exe "sign unplace " . l:id
          exe "buffer " . l:oldBufNr
       endif
-   endwhile
-
-   call MvIterDestroy("VimDebugIteratorE")
-
-   let s:emptySignArray  = ""
-
+   endfor
+   let s:emptySigns = []
 endfunction
 function! s:UnplaceBreakPointSigns()
-
    let l:oldBufNr = bufnr("%")
-   call MvIterCreate(s:breakPointArray, s:sep, "VimDebugIteratorB")
-
-   while MvIterHasNext("VimDebugIteratorB")
-      let l:id         = MvIterNext("VimDebugIteratorB")
-      let l:bufNr      = s:CalculateBufNrFromId(l:id)
+   for l:id in s:breakPoints
+      let l:bufNr = s:BufNrFromId(l:id)
       if bufexists(l:bufNr) != 0
          if bufnr("%") != l:bufNr
             exe "buffer " . l:bufNr
@@ -357,19 +326,15 @@ function! s:UnplaceBreakPointSigns()
          exe "sign unplace " . l:id
          exe "buffer " . l:oldBufNr
       endif
-   endwhile
-
-   call MvIterDestroy("VimDebugIteratorB")
-
-   let s:breakPointArray = ""
-
+   endfor
+   let s:breakPoints = []
 endfunction
-function! s:SetLineNumbers()
+function! s:SetNumber()
    if g:DBGRlineNumbers == 1
       set number
    endif
 endfunction
-function! s:SetNoLineNumbers()
+function! s:SetNoNumber()
    if g:DBGRlineNumbers == 1
       set nonumber
    endif
@@ -377,10 +342,10 @@ endfunction
 function! s:CreateId(bufNr, lineNumber)
    return a:bufNr * 10000000 + a:lineNumber
 endfunction
-function! s:CalculateBufNrFromId(id)
+function! s:BufNrFromId(id)
    return a:id / 10000000
 endfunction
-function! s:CalculateLineNumberFromId(id)
+function! s:LineNrFromId(id)
    return a:id % 10000000
 endfunction
 function! s:AutoIncantation(...)
@@ -395,16 +360,17 @@ function! s:AutoIncantation(...)
    endif
 endfunction
 function! s:Incantation(...)
+   if !executable('vdd')
+      echo "\rvdd is not in your PATH.  Something went wrong with your install."
+      throw "vdd is missing"
+   endif
    let s:bufNr          = bufnr("%")
    let s:fileName       = bufname("%")
    let l:debugger       = s:DbgrName(s:fileName)
-   let l:vddIncantation = "vdd " . s:sessionId . " " . l:debugger . " "
+   let l:vddIncantation =
+    \ "vdd " . l:debugger . " " . s:AutoIncantation(l:debugger)
 
-   if a:1 == ''
-      return l:vddIncantation . s:AutoIncantation(l:debugger)
-   else
-      return l:vddIncantation . a:1
-   endif
+   return l:vddIncantation . (a:0 == 0 ? '' : (" " . join(a:000, " ")))
 endfunction 
 function! s:DbgrName(fileName)
    let l:fileExtension = fnamemodify(a:fileName, ':e')
@@ -421,94 +387,68 @@ function! s:DbgrName(fileName)
       return "Ruby"
    else
       echo "\rthere is no debugger associated with this file type"
-      return "none"
+      throw "can't debug file type"
    endif
 endfunction
 
 
 function! s:HandleCmdResult(...)
+   let l:data       = s:SocketRead()
+   if l:data == ''
+      return
+   endif
 
-   " get command results from control fifo
-   let l:cmdResult = system('cat ' . s:ctlFROMvdd)
-   " call confirm('cmdResult: ' . l:cmdResult, 'ok')
+   let l:cmdResult  = split(l:data, s:EOR_REGEX)
+   let l:status     = l:cmdResult[0]
+   let l:lineNumber = l:cmdResult[1]
+   let l:fileName   = l:cmdResult[2]
+   let l:output     = l:cmdResult[3]
 
-   if match(l:cmdResult, '^' . s:LINE_INFO . '\d\+:.*$') != -1
-      let l:cmdResult = substitute(l:cmdResult, '^' . s:LINE_INFO, "", "")
-      if a:0 <= 0 || (a:0 > 0 && match(a:1, 'breakpoint') == -1)
-         call s:CurrentLineMagic(l:cmdResult)
+   call s:ConsolePrint(l:output)
+
+   if l:status == s:DBGR_READY
+      if len(l:lineNumber) > 0
+         call s:CurrentLineMagic(l:lineNumber, l:fileName)
       endif
       if a:0 > 0
-         echo "\r" . a:1 . "                    "
+"         echo "\r" . a:1 . "                    "
       endif
 
-   elseif l:cmdResult == s:APP_EXITED
+   elseif l:status == s:APP_EXITED
       call s:HandleProgramTermination()
       redraw! | echo "\rthe application being debugged terminated"
 
-   elseif match(l:cmdResult, '^' . s:COMPILER_ERROR) != -1
-      " call confirm(substitute(l:cmdResult, '^' . s:COMPILER_ERROR, "", ""), "&Ok")
-      call s:ConsolePrint(substitute(l:cmdResult, '^' . s:COMPILER_ERROR, "", ""))
-      call DBGRquit()
-
-   elseif match(l:cmdResult, '^' . s:RUNTIME_ERROR) != -1
-      " call confirm(substitute(l:cmdResult, '^' . s:RUNTIME_ERROR, "", ""), "&Ok")
-      call s:ConsolePrint(substitute(l:cmdResult, '^' . s:RUNTIME_ERROR, "", ""))
-      call DBGRquit()
-
-   elseif l:cmdResult == s:DBGR_READY
-      if a:0 > 0
-         echo "\r" . a:1 . "                    "
-      endif
-
    else
-      " i have to do this because of a vim redraw bug which clears the
-      " messages i echo after returning.  grumble grumble.
-      if match(l:cmdResult, "\n") != -1
-         redraw!
-         " call confirm(l:cmdResult, "&Ok")
-         call s:ConsolePrint(l:cmdResult)
-      else
-         " echo l:cmdResult
-         call s:ConsolePrint(l:cmdResult)
-      endif
-
+      echo "error:001.  something bad happened.  please report this to vimdebug at iijo dot org"
    endif
 
-   " get results from debug out fifo
-   let l:dbgOut = system('cat ' . s:dbgFROMvdd)
-   call s:ConsolePrint(l:dbgOut)
 
    return
 endfunction
-" - gets lineNumber / fileName from the debugger
 " - jumps to the lineNumber in the file, fileName
 " - highlights the current line
-"
-" parameters
-"    lineInfo: a string with the format 'lineNumber:fileName'
-"
-" returns nothing
-function! s:CurrentLineMagic(lineInfo)
+" - returns nothing
+function! s:CurrentLineMagic(lineNumber, fileName)
 
-   let l:lineNumber = substitute(a:lineInfo, "\:.*$", "", "")
-   let l:fileName   = substitute(a:lineInfo, "^\\d\\+\:", "", "")
+   let l:lineNumber = a:lineNumber
+   let l:fileName   = a:fileName
    let l:fileName   = s:JumpToLine(l:lineNumber, l:fileName)
 
-   " if there haven't been any signs placed in this file yet, place one the
-   " user can't see on line 1 just to shift everything over.  otherwise, the
-   " code will shift left when the old currentline sign is unplaced and then
-   " shift right again when the new currentline sign is placed.  and thats
-   " really annoying for the user.
+   " if no signs placed in this file, place an invisible one on line 1.
+   " otherwise, the code will shift left when the old currentline sign is
+   " unplaced and then shift right again when the new currentline sign is
+   " placed.  and thats really annoying for the user.
    call s:PlaceEmptySign()
    call s:UnplaceTheLastCurrentLineSign()                " unplace the old sign
    call s:PlaceCurrentLineSign(l:lineNumber, l:fileName) " place the new sign
-   call s:SetLineNumbers()
+   call s:SetNumber()
    "z. " scroll page so that this line is in the middle
 
    " set script variables for next time
    let s:lineNumber = l:lineNumber
    let s:fileName   = l:fileName
 
+   return
 endfunction
 " the fileName may have been changed if we stepped into a library or some
 " other piece of code in an another file.  load the new file if thats
@@ -544,32 +484,23 @@ function! s:JumpToLine(lineNumber, fileName)
 endfunction
 function! s:UnplaceTheLastCurrentLineSign()
    let l:lastId = s:CreateId(s:bufNr, s:lineNumber)
-
    exe 'sign unplace ' . l:lastId
-
-   " check if there was a break point at l:lastId
-   if MvContainsElement(s:breakPointArray, s:sep, l:lastId) == 1
+   if count(s:breakPoints, l:lastId) == 1
       exe "sign place " . l:lastId . " line=" . s:lineNumber . " name=breakPoint file=" . s:fileName
    endif
-
 endfunction
 function! s:PlaceCurrentLineSign(lineNumber, fileName)
-
-   " place the new currentline sign
    let l:bufNr = bufnr(a:fileName)
+   let s:bufNr = l:bufNr
    let l:id    = s:CreateId(l:bufNr, a:lineNumber)
 
-   if MvContainsElement(s:breakPointArray, s:sep, l:id) == 1
+   if count(s:breakPoints, l:id) == 1
       exe "sign place " . l:id .
         \ " line=" . a:lineNumber . " name=both file=" . a:fileName
    else
       exe "sign place " . l:id .
         \ " line=" . a:lineNumber . " name=currentLine file=" . a:fileName
    endif
-
-   " set script variable for next time
-   let s:bufNr = l:bufNr
-
 endfunction
 function! s:HandleProgramTermination()
    call s:UnplaceTheLastCurrentLineSign()
@@ -585,7 +516,7 @@ function! DBGRopenConsole()
    let s:consoleBufNr = bufnr('%')
    exe "resize " . g:DBGRconsoleHeight
    exe "sign place 9999 line=1 name=empty buffer=" . s:consoleBufNr
-   call s:SetLineNumbers()
+   call s:SetNumber()
    set buftype=nofile
    wincmd p
 endfunction
@@ -611,4 +542,77 @@ function! s:ConsolePrint(msg)
    let @x = l:oldValue
    normal G
    wincmd p
+endfunction
+
+" socket functions
+function! s:SocketConnect()
+   perl << EOF
+      use IO::Socket;
+      foreach my $i (0..9) {
+         $DBGRsocket1 = IO::Socket::INET->new(
+            Proto    => "tcp",
+            PeerAddr => "localhost",
+            PeerPort => "6543",
+         );
+         if (defined $DBGRsocket1) {
+            VIM::DoCommand("return 1");
+            return;
+         }
+         sleep 1;
+      }
+      VIM::Msg("cannot connect to port 6543 at localhost");
+      VIM::DoCommand("return 0");
+EOF
+endfunction
+function! s:SocketRead()
+   try 
+      " yeah this is a very inefficient but non blocking loop.
+      " debugger signals completion by touching the file
+      " while the debugger thinks, the user can cancel their operation
+      while filereadable(s:DONE_FILE) != 1
+echo "waiting"
+      endwhile
+echo "delete now"
+      call delete(s:DONE_FILE)
+   catch /Vim:Interrupt/
+      echo "cancelled"
+      call s:SocketWrite2('command:stop')
+   endtry
+   
+   perl << EOF
+      my $EOM     = VIM::Eval('s:EOM');
+      my $EOM_LEN = VIM::Eval('s:EOM_LEN');
+      my $data = '';
+      $data .= <$DBGRsocket1> until substr($data, -1 * $EOM_LEN) eq $EOM;
+      $data = substr($data, 0, -1 * $EOM_LEN); # chop EOM
+      $data =~ s|'|''|g; # escape '
+      VIM::DoCommand("return '" . $data . "'");
+EOF
+endfunction
+function! s:SocketWrite(data)
+   perl print $DBGRsocket1 VIM::Eval('a:data') . "\n";
+endfunction
+" TODO: figure out how to and pass perl vars into vim functions so we don't
+" have duplicate code
+function! s:SocketConnectAgain()
+   perl << EOF
+      use IO::Socket;
+      foreach my $i (0..9) {
+         $DBGRsocket2 = IO::Socket::INET->new(
+            Proto    => "tcp",
+            PeerAddr => "localhost",
+            PeerPort => "6543",
+         );
+         if (defined $DBGRsocket2) {
+            VIM::DoCommand("return 1");
+            return;
+         }
+         sleep 1;
+      }
+      VIM::Msg("cannot connect to port 6543 at localhost");
+      VIM::DoCommand("return 0");
+EOF
+endfunction
+function! s:SocketWrite2(data)
+   perl print $DBGRsocket2 VIM::Eval('a:data') . "\n";
 endfunction
