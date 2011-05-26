@@ -6,6 +6,7 @@
    cia = commit -a
    st = status -s
    di = diff -b
+   dt = difftool 
    tree = log --graph --pretty=oneline --abbrev-commit
    co = checkout
    br = branch -a
@@ -13,7 +14,5 @@
 [core]
    #excludesfile = "/etc/gitexcludes"
    autocrlf = input
-[difftool]
-   prompt = 0
 [diff]
    tool = vimdiff
