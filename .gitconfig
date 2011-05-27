@@ -16,3 +16,5 @@
    autocrlf = input
 [diff]
    tool = vimdiff
+[difftool]
+   prompt = 0
