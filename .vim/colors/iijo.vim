@@ -18,7 +18,7 @@ endif
 :hi Directory    cterm=none           ctermfg=245
 :hi Error        cterm=bold           ctermfg=white
 :hi ErrorMsg     cterm=bold           ctermfg=white
-:hi Folded       cterm=none           ctermfg=white ctermbg=236
+:hi Folded       cterm=none           ctermfg=240 ctermbg=236
 :hi FoldColumn   cterm=none           ctermfg=240 ctermbg=234
 :hi Function     cterm=bold           ctermfg=white 
 :hi Identifier   cterm=none           ctermfg=250
@@ -44,7 +44,7 @@ endif
 :hi Statement    cterm=bold           ctermfg=white 
 :hi String       cterm=none           ctermfg=240
 :hi Structure    cterm=none           ctermfg=white 
-:hi Title        cterm=none           ctermfg=green
+:hi Title        cterm=none           ctermfg=241
 :hi Todo         cterm=bold           ctermfg=white ctermbg=236
 :hi Type         cterm=none           ctermfg=253
 :hi Underlined   cterm=underline      ctermfg=white
