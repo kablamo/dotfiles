@@ -9,7 +9,7 @@
    dt = difftool 
    tree = log --graph --pretty=oneline --abbrev-commit
    co = checkout
-   br = branch -a
+   br = branch
    mrg = merge --no-ff
 [core]
    #excludesfile = "/etc/gitexcludes"
@@ -17,4 +17,4 @@
 [diff]
    tool = vimdiff
 [difftool]
-   prompt = 0
+   prompt = 1
