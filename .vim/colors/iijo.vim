@@ -9,17 +9,17 @@ endif
 :hi Comment      cterm=bold           ctermfg=238
 :hi Constant     cterm=none           ctermfg=244
 :hi Cursor       cterm=reverse
-:hi CursorLine   cterm=none           ctermfg=white ctermbg=236
+:hi CursorLine   cterm=none           ctermfg=none ctermbg=236
 :hi Define       cterm=none           ctermfg=white 
 :hi DiffAdd      cterm=bold           ctermfg=10 ctermbg=236
 :hi DiffChange   cterm=none           ctermfg=34 ctermbg=236
 :hi DiffDelete   cterm=none           ctermfg=236 ctermbg=236
 :hi DiffText     cterm=bold           ctermfg=10 ctermbg=236
-:hi Directory    cterm=none           ctermfg=250
+:hi Directory    cterm=none           ctermfg=245
 :hi Error        cterm=bold           ctermfg=white
 :hi ErrorMsg     cterm=bold           ctermfg=white
-:hi Folded       cterm=none           ctermfg=white ctermbg=236
-:hi FoldColumn   cterm=none           ctermfg=white
+:hi Folded       cterm=none           ctermfg=240 ctermbg=236
+:hi FoldColumn   cterm=none           ctermfg=240 ctermbg=234
 :hi Function     cterm=bold           ctermfg=white 
 :hi Identifier   cterm=none           ctermfg=250
 :hi Ignore       cterm=bold           ctermfg=white 
@@ -35,6 +35,7 @@ endif
 :hi PreProc      cterm=none           ctermfg=white 
 :hi Question     cterm=none           ctermfg=white
 :hi Search       cterm=none           ctermfg=none ctermbg=233
+:hi SignColumn   cterm=none           ctermfg=none ctermbg=233
 :hi Special      cterm=none           ctermfg=246
 :hi SpecialKey   cterm=none           ctermfg=green
 :hi SpellErrors  cterm=bold           ctermfg=white
@@ -43,7 +44,7 @@ endif
 :hi Statement    cterm=bold           ctermfg=white 
 :hi String       cterm=none           ctermfg=240
 :hi Structure    cterm=none           ctermfg=white 
-:hi Title        cterm=none           ctermfg=245
+:hi Title        cterm=none           ctermfg=241
 :hi Todo         cterm=bold           ctermfg=white ctermbg=236
 :hi Type         cterm=none           ctermfg=253
 :hi Underlined   cterm=underline      ctermfg=white

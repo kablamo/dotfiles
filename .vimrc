@@ -29,6 +29,7 @@ set textwidth=78
 set undolevels=1000
 set winminheight=0
 set wildmode=longest,list,full
+set nowrap
 
 " mapleader
 let mapleader=";"

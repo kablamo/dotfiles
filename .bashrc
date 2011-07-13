@@ -133,6 +133,9 @@ perlbrew () {
 }
 
 # ssh keychain
+[ -f $HOME/.ssh/id_dsa ] &&
+[ -f "`which keychain`" ] && keychain id_dsa
+[ -f $HOME/.ssh/eric   ] &&
 [ -f "`which keychain`" ] && keychain eric
 [ -z "$HOSTNAME" ] && HOSTNAME=`name -n`
 [ -f $HOME/.keychain/$HOSTNAME-sh ] &&
@@ -140,8 +143,12 @@ perlbrew () {
 [ -f $HOME/.keychain/$HOSTNAME-sh-gpg ] &&
    . $HOME/.keychain/$HOSTNAME-sh-gpg
 
-# perlbrew
-# source ~/perl5/perlbrew/etc/bashrc
+[ -f $HOME/perl5/perlbrew/etc/bashrc ] && 
+   . $HOME/perl5/perlbrew/etc/bashrc
+[ -f /usr/share/doc/cdargs/examples/cdargs-bash.sh ] && 
+   . /usr/share/doc/cdargs/examples/cdargs-bash.sh
+[ -f $HOME/bin/cdargs-bash.sh ] && 
+   . $HOME/bin/cdargs-bash.sh
 
 # aliases
 wiki() {
