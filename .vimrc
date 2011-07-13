@@ -18,6 +18,7 @@ set incsearch
 set iskeyword-=:
 set laststatus=2 
 set noswapfile
+set nowrap
 set scrolloff=10
 set shiftwidth=4
 set shiftround
@@ -116,6 +117,9 @@ map <leader>ls :NERDTree<cr>
 let NERDTreeChDirMode=1
 let NERDTreeWinPos='Right'
 let NERDTreeStatusline=-1
+
+" NERD Tree with ack
+let g:path_to_search_app = "/usr/local/bin/ack"
 
 " PERLDOC2
 let g:Perldoc_path = '/home/eric/Documents/perldoc'
