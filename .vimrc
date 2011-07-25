@@ -16,6 +16,7 @@ set hlsearch
 set ignorecase
 set incsearch
 set iskeyword-=:
+set iskeyword+=_
 set laststatus=2 
 set noswapfile
 set nowrap
@@ -45,7 +46,6 @@ let xml_syntax_folding=1
 " colors
 syntax on  " sometimes this is not on by default
 colorscheme iijo
-filetype plugin on
 au BufNewFile,BufRead *.tt setf tt2html
 au BufNewFile,BufRead *.md setf mkd
 
