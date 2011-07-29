@@ -24,7 +24,7 @@ my @plugins = (
     'CompletionDriver::Turtles',  # turtle command completion
 );
 $_REPL->load_plugin($_) for @plugins;
-$_REPL->normal_color('blue');
+$_REPL->normal_color('reset');
 $_REPL->fancy_prompt(sub {
     my $self = shift;
     my $p = $self->current_package;
