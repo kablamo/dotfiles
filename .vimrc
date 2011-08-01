@@ -45,7 +45,7 @@ let xml_syntax_folding=1
 
 " colors
 syntax on  " sometimes this is not on by default
-colorscheme iijo
+colorscheme iijoHulk
 au BufNewFile,BufRead *.tt setf tt2html
 au BufNewFile,BufRead *.md setf mkd
 
