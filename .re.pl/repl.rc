@@ -24,13 +24,11 @@ my @plugins = (
     'CompletionDriver::Turtles',  # turtle command completion
 );
 $_REPL->load_plugin($_) for @plugins;
-$_REPL->normal_color('blue');
+$_REPL->normal_color('reset');
 $_REPL->fancy_prompt(sub {
     my $self = shift;
     my $p = $self->current_package;
-    color('reset') . 
-    color('bright_black') . $self->line_depth . ':' . $p . '$ ' .
-    color('reset');
+    color('reset') . $self->line_depth . ':' . $p . '> ';
 } );
 $Devel::REPL::Plugin::Packages::PKG_SAVE = 'main';
 
