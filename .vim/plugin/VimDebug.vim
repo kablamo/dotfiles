@@ -61,6 +61,8 @@ let s:COMPILER_ERROR  = "compiler error"     " not in use yet
 let s:RUNTIME_ERROR   = "runtime error"      " not in use yet
 let s:APP_EXITED      = "application exited" " not in use yet
 let s:DBGR_READY      = "debugger ready"      
+let s:CONNECT         = "CONNECT"
+let s:DISCONNECT      = "DISCONNECT"
 
 let s:PORT            = 6543
 let s:HOST            = "localhost"
@@ -69,6 +71,7 @@ let s:DONE_FILE       = ".vdd.done"
 " script variables
 let s:dbgrIsRunning   = 0
 let s:incantation     = ""
+let s:debugger        = ""
 let s:lineNumber      = 0
 let s:fileName        = ""
 let s:bufNr           = 0
@@ -77,6 +80,7 @@ let s:consoleBufNr    = -99
 let s:emptySigns      = []
 let s:breakPoints     = []
 let s:return          = 0
+let s:sessionId       = -1
 
 
 " debugger functions
@@ -86,23 +90,25 @@ function! DBGRstart(...)
       return
    endif
 
-   try
-      let s:incantation = s:Incantation(a:1)
-   catch "can't debug file type"
-      return
-   catch "vdd is missing"
-      return
-   endtry
-
-   exec "silent :! " . s:incantation. ' &'
+echo "--- 1"
+   let s:incantation = s:Incantation()
+echo "--- 2"
+   call s:StartVdd()
+echo "--- 3"
+echo "--- " . s:incantation
+echo "--- " . s:sessionId
+echo "--- " . s:debugger
+echo "--- " . s:lineNumber
+echo "--- " . s:fileName
 
    " do after system() so nongui vim doesn't show a blank screen
    echo "\rstarting the debugger..."
 
+   " TODO throw exceptions if you can't connect
    if !s:SocketConnect()
       return
    endif
-   if !s:SocketConnectAgain()
+   if !s:SocketConnect2()
       return
    endif
 
@@ -116,6 +122,8 @@ function! DBGRstart(...)
 
    let s:dbgrIsRunning = 1
    redraw!
+   call s:HandleCmdResult("connected to VimDebug daemon")
+   call s:Handshake()
    call s:HandleCmdResult("started the debugger")
 endfunction
 function! DBGRnext()
@@ -364,20 +372,15 @@ function! s:AutoIncantation(...)
    endif
 endfunction
 function! s:Incantation(...)
-   if !executable('vdd')
-      echo "\rvdd is not in your PATH.  Something went wrong with your install."
-      throw "vdd is missing"
-   endif
-   let s:bufNr          = bufnr("%")
-   let s:fileName       = bufname("%")
-   let l:debugger       = s:DbgrName(s:fileName)
-   let l:vddIncantation =
-    \ "vdd " . l:debugger . " " . s:AutoIncantation(l:debugger)
-
-   return l:vddIncantation . (a:0 == 0 ? '' : (" " . join(a:000, " ")))
+   let s:bufNr       = bufnr("%")
+   let s:fileName    = bufname("%")
+   let s:debugger    = s:DbgrName()
+   let s:incantation = s:AutoIncantation(s:debugger) . 
+      \ (a:0 == 0 ? '' : (" " . join(a:000, " ")))
+   return s:incantation
 endfunction 
-function! s:DbgrName(fileName)
-   let l:fileExtension = fnamemodify(a:fileName, ':e')
+function! s:DbgrName()
+   let l:fileExtension = fnamemodify(s:fileName, ':e')
 
    " consult file extension and filetype
    if     &l:filetype == "perl"   || l:fileExtension == "pl"
@@ -397,7 +400,7 @@ endfunction
 
 
 function! s:HandleCmdResult(...)
-   let l:data       = s:SocketRead()
+   let l:data = s:SocketRead()
    if l:data == ''
       return
    endif
@@ -422,10 +425,12 @@ function! s:HandleCmdResult(...)
       call s:HandleProgramTermination()
       redraw! | echo "\rthe application being debugged terminated"
 
+   elseif l:status == s:CONNECT
+      let s:sessionId = l:output
+
    else
       echo "error:001.  something bad happened.  please report this to vimdebug at iijo dot org"
    endif
-
 
    return
 endfunction
@@ -549,6 +554,20 @@ function! s:ConsolePrint(msg)
 endfunction
 
 " socket functions
+function! s:StartVdd()
+   if !executable('vdd')
+      echo "\rvdd is not in your PATH.  Something went wrong with your install."
+      throw "\rvdd is not in your PATH.  Something went wrong with your install."
+   endif
+   exec "silent :! vdd &"
+endfunction
+function! s:Handshake()
+    let l:msg  = "start:" . s:sessionId .
+               \      ":" . s:debugger  .
+               \      ":" . s:incantation
+echo '================== msg: ' . l:msg
+    call s:SocketWrite(l:msg)
+endfunction
 function! s:SocketConnect()
    perl << EOF
       use IO::Socket;
@@ -571,8 +590,8 @@ endfunction
 function! s:SocketRead()
    try 
       " yeah this is a very inefficient but non blocking loop.
-      " debugger signals completion by touching the file
-      " while the debugger thinks, the user can cancel their operation
+      " vdd signals that its done sending a msg when it touches the file.
+      " while VimDebug thinks, the user can cancel their operation.
       while filereadable(s:DONE_FILE) != 1
 echo "waiting"
       endwhile
@@ -589,7 +608,7 @@ echo "delete now"
       my $data = '';
       $data .= <$DBGRsocket1> until substr($data, -1 * $EOM_LEN) eq $EOM;
       $data = substr($data, 0, -1 * $EOM_LEN); # chop EOM
-      $data =~ s|'|''|g; # escape '
+      $data =~ s|'|''|g; # escape single quotes
       VIM::DoCommand("return '" . $data . "'");
 EOF
 endfunction
@@ -598,7 +617,7 @@ function! s:SocketWrite(data)
 endfunction
 " TODO: figure out how to and pass perl vars into vim functions so we don't
 " have duplicate code
-function! s:SocketConnectAgain()
+function! s:SocketConnect2()
    perl << EOF
       use IO::Socket;
       foreach my $i (0..9) {
