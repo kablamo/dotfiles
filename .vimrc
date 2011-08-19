@@ -81,6 +81,12 @@ nmap <leader>P "+p
 let g:perldoc_program='/usr/bin/perldoc'
 map <leader>o :Perldoc
 
+" fugitive keybindings
+map <leader>g  :Gcommit<cr>
+map <leader>gs :Gstatus<cr>
+map <leader>ge :Gedit HEAD<cr>
+map <leader>gd :Gdiff<cr>
+
 " Complete whole filenames/lines with a quicker shortcut key in insert mode
 imap <C-f> <C-x><C-f>
 imap <C-l> <C-x><C-l>
