@@ -89,37 +89,16 @@ function! DBGRstart(...)
       echo "\rthe debugger is already running"
       return
    endif
-
-echo "--- 1"
    let s:incantation = s:Incantation()
-echo "--- 2"
    call s:StartVdd()
-echo "--- 3"
-echo "--- " . s:incantation
-echo "--- " . s:sessionId
-echo "--- " . s:debugger
-echo "--- " . s:lineNumber
-echo "--- " . s:fileName
-
    " do after system() so nongui vim doesn't show a blank screen
    echo "\rstarting the debugger..."
-
-   " TODO throw exceptions if you can't connect
-   if !s:SocketConnect()
-      return
-   endif
-   if !s:SocketConnect2()
-      return
-   endif
-
+   call s:SocketConnect()
+   call s:SocketConnect2()
    if has("autocmd")
-     autocmd VimLeave * call DBGRquit()
+      autocmd VimLeave * call DBGRquit()
    endif
-
-   if g:DBGRshowConsole == 1
-      call DBGRopenConsole()
-   endif
-
+   call DBGRopenConsole()
    let s:dbgrIsRunning = 1
    redraw!
    call s:HandleCmdResult("connected to VimDebug daemon")
@@ -232,7 +211,7 @@ function! DBGRprint(...)
       return
    endif
    if a:0 > 0
-      call s:SocketWrite("printExpression:" . a:1)
+      call s:SocketWrite("print:" . a:1)
       call s:HandleCmdResult()
    endif
 endfunction
@@ -362,13 +341,13 @@ function! s:LineNrFromId(id)
 endfunction
 function! s:AutoIncantation(...)
    if     a:1 == "Perl"
-      return "perl -Ilib -d '" . s:fileName . "'"
+      return "perl -Ilib -d " . s:fileName
    elseif a:1 == "Gdb"
-      return "gdb '" . s:fileName . "' -f"
+      return "gdb " . s:fileName . " -f"
    elseif a:1 == "Python"
-      return "pdb '" . s:fileName . "'"
+      return "pdb " . s:fileName
    elseif a:1 == "Ruby"
-      return "ruby -rdebug '" . s:fileName . "'"
+      return "ruby -rdebug " . s:fileName
    endif
 endfunction
 function! s:Incantation(...)
@@ -400,20 +379,11 @@ endfunction
 
 
 function! s:HandleCmdResult(...)
-   let l:data = s:SocketRead()
-   if l:data == ''
-      return
-   endif
-
-   let l:cmdResult  = split(l:data, s:EOR_REGEX)
-   let l:status     = l:cmdResult[0]
-   let l:lineNumber = l:cmdResult[1]
-   let l:fileName   = l:cmdResult[2]
-   let l:output     = l:cmdResult[3]
-
-   call s:ConsolePrint(l:output)
+   let l:cmdResult  = split(s:SocketRead(), s:EOR_REGEX, 1)
+   let [l:status, l:lineNumber, l:fileName, l:value, l:output] = l:cmdResult
 
    if l:status == s:DBGR_READY
+      call s:ConsolePrint(l:output)
       if len(l:lineNumber) > 0
          call s:CurrentLineMagic(l:lineNumber, l:fileName)
       endif
@@ -422,11 +392,15 @@ function! s:HandleCmdResult(...)
       endif
 
    elseif l:status == s:APP_EXITED
+      call s:ConsolePrint(l:output)
       call s:HandleProgramTermination()
       redraw! | echo "\rthe application being debugged terminated"
 
    elseif l:status == s:CONNECT
-      let s:sessionId = l:output
+      let s:sessionId = l:value
+
+   elseif l:status == s:DISCONNECT
+      echo "disconnected"
 
    else
       echo "error:001.  something bad happened.  please report this to vimdebug at iijo dot org"
@@ -521,6 +495,9 @@ endfunction
 
 " debugger console functions
 function! DBGRopenConsole()
+   if g:DBGRshowConsole == 0
+      return 0
+   endif
    new "debugger console"
    let s:consoleBufNr = bufnr('%')
    exe "resize " . g:DBGRconsoleHeight
@@ -530,6 +507,9 @@ function! DBGRopenConsole()
    wincmd p
 endfunction
 function! DBGRcloseConsole()
+   if g:DBGRshowConsole == 0
+      return 0
+   endif
    let l:consoleWinNr = bufwinnr(s:consoleBufNr)
    if l:consoleWinNr == -1
       return
@@ -538,6 +518,9 @@ function! DBGRcloseConsole()
    q
 endfunction
 function! s:ConsolePrint(msg)
+   if g:DBGRshowConsole == 0
+      return 0
+   endif
    let l:consoleWinNr = bufwinnr(s:consoleBufNr)
    if l:consoleWinNr == -1
       "call confirm(a:msg, "&Ok")
@@ -565,7 +548,6 @@ function! s:Handshake()
     let l:msg  = "start:" . s:sessionId .
                \      ":" . s:debugger  .
                \      ":" . s:incantation
-echo '================== msg: ' . l:msg
     call s:SocketWrite(l:msg)
 endfunction
 function! s:SocketConnect()
@@ -577,14 +559,12 @@ function! s:SocketConnect()
             PeerAddr => "localhost",
             PeerPort => "6543",
          );
-         if (defined $DBGRsocket1) {
-            VIM::DoCommand("return 1");
-            return;
-         }
+         return if defined $DBGRsocket1;
          sleep 1;
       }
-      VIM::Msg("cannot connect to port 6543 at localhost");
-      VIM::DoCommand("return 0");
+      my $msg = "cannot connect to port 6543 at localhost";
+      VIM::Msg($msg);
+      VIM::DoCommand("throw '${msg}'");
 EOF
 endfunction
 function! s:SocketRead()
@@ -593,19 +573,18 @@ function! s:SocketRead()
       " vdd signals that its done sending a msg when it touches the file.
       " while VimDebug thinks, the user can cancel their operation.
       while filereadable(s:DONE_FILE) != 1
-echo "waiting"
       endwhile
-echo "delete now"
       call delete(s:DONE_FILE)
    catch /Vim:Interrupt/
       echo "cancelled"
-      call s:SocketWrite2('command:stop')
+      call s:SocketWrite2('stop:' . s:sessionId)
    endtry
    
    perl << EOF
       my $EOM     = VIM::Eval('s:EOM');
       my $EOM_LEN = VIM::Eval('s:EOM_LEN');
       my $data = '';
+      $data .= <$DBGRsocket1> until substr($data, -1 * $EOM_LEN) eq $EOM;
       $data .= <$DBGRsocket1> until substr($data, -1 * $EOM_LEN) eq $EOM;
       $data = substr($data, 0, -1 * $EOM_LEN); # chop EOM
       $data =~ s|'|''|g; # escape single quotes
@@ -626,14 +605,12 @@ function! s:SocketConnect2()
             PeerAddr => "localhost",
             PeerPort => "6543",
          );
-         if (defined $DBGRsocket2) {
-            VIM::DoCommand("return 1");
-            return;
-         }
+         return if defined $DBGRsocket2;
          sleep 1;
       }
-      VIM::Msg("cannot connect to port 6543 at localhost");
-      VIM::DoCommand("return 0");
+      my $msg = "cannot connect to port 6543 at localhost";
+      VIM::Msg($msg);
+      VIM::DoCommand("throw '${msg}'");
 EOF
 endfunction
 function! s:SocketWrite2(data)
