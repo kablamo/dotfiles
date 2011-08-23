@@ -45,7 +45,7 @@ let xml_syntax_folding=1
 
 " colors
 syntax on  " sometimes this is not on by default
-colorscheme iijoHulk
+colorscheme iijo
 au BufNewFile,BufRead *.tt setf tt2html
 au BufNewFile,BufRead *.md setf mkd
 
@@ -142,6 +142,10 @@ autocmd BufRead,BufNewFile *.t,*.pl,*.plx,*.pm noremap <leader>y :Tidy<CR>
 
 " dbext
 let dbext_default_display_cmd_line = 1
+
+" supertab
+let g:SuperTabMappingForward = '<s-tab>'
+let g:SuperTabMappingBackward = '<tab>'
 
 try 
     source /home/eric/.vimrc.local
