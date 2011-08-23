@@ -32,11 +32,15 @@ endif
 :hi NonText      cterm=none           ctermfg=235 ctermbg=235
 ":hi Normal 
 :hi Operator     cterm=none           ctermfg=252
+:hi Pmenu		 cterm=none           ctermfg=255 ctermbg=236
+:hi PmenuSel	 cterm=none           ctermfg=22 ctermbg=10
+":hi PmenuSbar	 cterm=none
+":hi PmenuThumb	 cterm=none
 :hi PreProc      cterm=none           ctermfg=white 
 :hi Question     cterm=none           ctermfg=white
 :hi Search       cterm=none           ctermfg=none ctermbg=233
 :hi SignColumn   cterm=none           ctermfg=none ctermbg=233
-:hi Special      cterm=none           ctermfg=246
+:hi Special      cterm=none           ctermfg=238
 :hi SpecialKey   cterm=none           ctermfg=green
 :hi SpellErrors  cterm=bold           ctermfg=white
 :hi Statement    cterm=bold           ctermfg=white 
