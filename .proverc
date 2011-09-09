@@ -1,5 +1,3 @@
---state=hot,fast,all,save
---jobs 9
 --lib
 --verbose
 --comments
