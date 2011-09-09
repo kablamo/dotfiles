@@ -11,10 +11,10 @@ endif
 :hi Cursor       cterm=reverse
 :hi CursorLine   cterm=none           ctermfg=none ctermbg=236
 :hi Define       cterm=none           ctermfg=white 
-:hi DiffAdd      cterm=bold           ctermfg=10 ctermbg=236
-:hi DiffChange   cterm=none           ctermfg=34 ctermbg=236
-:hi DiffDelete   cterm=none           ctermfg=236 ctermbg=236
-:hi DiffText     cterm=bold           ctermfg=10 ctermbg=236
+:hi DiffAdd      cterm=bold           ctermfg=10 ctermbg=none
+:hi DiffChange   cterm=none           ctermfg=34 ctermbg=none
+:hi DiffDelete   cterm=none           ctermfg=236 ctermbg=none
+:hi DiffText     cterm=bold           ctermfg=10 ctermbg=none
 :hi Directory    cterm=none           ctermfg=245
 :hi Error        cterm=bold           ctermfg=white
 :hi ErrorMsg     cterm=bold           ctermfg=white
