@@ -134,7 +134,7 @@ let Tlist_Compact_Format=1
 let Tlist_Enable_Fold_Column=0
 
 " PERLDOC2
-let g:Perldoc_path = '/home/eric/Documents/perldoc'
+let g:Perldoc_path = '/home/eric/Documents/perldoc/'
 
 " perltidy
 autocmd BufRead,BufNewFile *.t,*.pl,*.plx,*.pm command! -range=% -nargs=* Tidy <line1>,<line2>!perltidy -q
