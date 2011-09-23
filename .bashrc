@@ -79,3 +79,7 @@ alias upgrade='sudo apt-get full-upgrade'
 alias screen='screen -U'
 alias db='sqlite3 flashcards.db'
 alias tunnel='autossh -v -R 9999:localhost:9999 -N -l eric iijo.org -p 4321'
+
+# local aliases
+[ -f $HOME/.aliases ] &&
+   . $HOME/.aliases
