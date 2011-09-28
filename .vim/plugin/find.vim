@@ -1,6 +1,11 @@
 " inspired by code by Vladimir Marek from:
 " http://vim.wikia.com/wiki/Find_files_in_subdirectories
 "
+" TODO: 
+" - don't search in current dir.  use some variable or :set path?
+" - NERDTree plugin?
+" - patch NERDTreeFind with this?
+" - add command t behavior?
 
 function! Find(name)
   let l:list=system("find . -regex '.*".a:name.".*' | perl -ne 'print \"$.\\t$_\"'")
