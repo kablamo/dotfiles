@@ -120,22 +120,25 @@ map <leader><tab> :Scratch<cr>
 let NERDSpaceDelims=2
 
 " NERD Tree
-map <leader>ls :NERDTree<cr>
+map <leader>ls :NERDTreeToggle<cr>
+map <leader>ls. :NERDTreeFind<cr>
 let NERDTreeChDirMode=1
 let NERDTreeWinPos='Right'
 let NERDTreeStatusline=-1
+let NERDTreeQuitOnOpen=1
 
 " NERD Tree with ack
 let g:path_to_search_app = "/usr/local/bin/ack"
 
 " CommandT
-let g:CommandTMaxFiles=90000
+let g:CommandTMaxFiles=20000
 let g:CommandTMaxDepth=100
 
 " Taglist
-" map <leader>t :Tlist<cr>
-" let Tlist_Compact_Format=1
-" let Tlist_Enable_Fold_Column=0
+map <leader>m :Tlist<cr>
+let Tlist_Compact_Format=1
+let Tlist_Enable_Fold_Column=0
+let Tlist_Use_Right_Window=1
 
 " PERLDOC2
 let g:Perldoc_path = '/home/eric/Documents/perldoc/'
