@@ -49,12 +49,6 @@ fi
 [ -f $HOME/perl5/perlbrew/etc/bashrc ] && 
    . $HOME/perl5/perlbrew/etc/bashrc
 
-# cdargs
-[ -f /usr/share/doc/cdargs/examples/cdargs-bash.sh ] && 
-   . /usr/share/doc/cdargs/examples/cdargs-bash.sh
-[ -f $HOME/bin/cdargs-bash.sh ] && 
-   . $HOME/bin/cdargs-bash.sh
-
 # aliases
 wiki() {
    dig +short txt $1.wp.dg.cx
