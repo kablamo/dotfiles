@@ -26,7 +26,7 @@ set shiftround
 set smartcase
 set smarttab
 set tabstop=4
-set textwidth=78
+set textwidth=0
 set undolevels=1000
 set winminheight=0
 set wildmode=longest,list,full
@@ -148,7 +148,7 @@ autocmd BufRead,BufNewFile *.t,*.pl,*.plx,*.pm command! -range=% -nargs=* Tidy <
 autocmd BufRead,BufNewFile *.t,*.pl,*.plx,*.pm noremap <leader>y :Tidy<CR>
 
 " perlprove
-au BufRead,BufNewFile *.t set filetype=perl | compiler perlprove
+" au BufRead,BufNewFile *.t set filetype=perl | compiler perlprove
 
 " dbext
 let dbext_default_display_cmd_line = 1
