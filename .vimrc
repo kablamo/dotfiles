@@ -72,6 +72,7 @@ map <leader>k :winc k<cr>:winc _<cr>
 map <leader>l :winc l<cr>:winc _<cr>
 map <leader>h :winc h<cr>:winc _<cr>
 map <leader>_ :winc _<cr>
+map <leader>= :winc =<cr>
 
 " OS clipboard yank and paste
 nmap <leader>Y "+y
