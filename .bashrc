@@ -49,6 +49,8 @@ fi
 [ -f $HOME/perl5/perlbrew/etc/bashrc ] && 
    . $HOME/perl5/perlbrew/etc/bashrc
 
+export PERL5LIB=.:./lib:$PERL5LIB
+
 # aliases
 wiki() {
    dig +short txt $1.wp.dg.cx
