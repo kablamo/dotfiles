@@ -165,3 +165,9 @@ endtry
 
 " pathogen
 call pathogen#infect()
+
+" syntastic
+map <leader>s :SyntasticCheck<cr>
+let g:syntastic_mode_map = { 'mode': 'active',
+                           \ 'active_filetypes': ['javascript'],
+                           \ 'passive_filetypes': ['perl'] }
