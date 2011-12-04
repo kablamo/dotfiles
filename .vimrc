@@ -161,3 +161,6 @@ try
     source /home/eric/.vimrc.local
 catch
 endtry
+
+" pathogen
+call pathogen#infect()
