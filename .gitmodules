@@ -1,3 +1,6 @@
 [submodule "/home/eric/.vim/bundle/syntastic"]
 	path = /home/eric/.vim/bundle/syntastic
 	url = https://github.com/scrooloose/syntastic.git
+[submodule ".vim/bundle/greplace"]
+	path = .vim/bundle/greplace
+	url = https://github.com/vim-scripts/greplace.vim.git
