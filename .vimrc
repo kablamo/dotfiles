@@ -145,8 +145,16 @@ let Tlist_Use_Right_Window=1
 let g:Perldoc_path = '/home/eric/Documents/perldoc/'
 
 " perltidy
-autocmd BufRead,BufNewFile *.t,*.pl,*.plx,*.pm command! -range=% -nargs=* Tidy <line1>,<line2>!perltidy -q
-autocmd BufRead,BufNewFile *.t,*.pl,*.plx,*.pm noremap <leader>y :Tidy<CR>
+" autocmd BufRead,BufNewFile *.t,*.pl,*.plx,*.pm command! -range=% -nargs=* Tidy <line1>,<line2>!perltidy -q
+" autocmd BufRead,BufNewFile *.t,*.pl,*.plx,*.pm noremap <leader>y :Tidy<CR>
+fun DoTidy()
+    "run :Tidy on entire buffer and return cursor to (almost) original position"
+    let Pos = line2byte( line( "." ) )
+    :Tidy
+    exe "goto " . Pos
+endfun
+autocmd BufWrite *.t,*.pl,*.plx,*.pm call DoTidy()
+"au Filetype perl :echo 'yay'<CR>
 
 " perlprove
 " au BufRead,BufNewFile *.t set filetype=perl | compiler perlprove
