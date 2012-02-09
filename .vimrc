@@ -6,7 +6,7 @@ set copyindent
 set encoding=utf-8
 set expandtab
 set foldenable
-set foldlevelstart=1
+set foldlevelstart=9
 set foldmethod=syntax
 set fillchars=fold:\ ,vert:\ 
 set guioptions=m
@@ -179,3 +179,4 @@ map <leader>ts :SyntasticToggleMode<cr>
 let g:syntastic_mode_map = { 'mode': 'active',
                            \ 'active_filetypes': ['javascript'],
                            \ 'passive_filetypes': ['perl'] }
+
