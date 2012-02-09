@@ -51,6 +51,10 @@ fi
 
 export PERL5LIB=.:./lib:$PERL5LIB
 
+# perldoc tab completion
+[ -f $HOME/bin/perldoc-complete ] &&
+   complete -C perldoc-complete -o nospace -o default pod
+
 # aliases
 wiki() {
    dig +short txt $1.wp.dg.cx
@@ -76,6 +80,7 @@ alias screen='screen -U'
 alias db='sqlite3 flashcards.db'
 alias tunnel='autossh -v -R 9999:localhost:9999 -N -l eric iijo.org -p 4321'
 alias ack='ack --perl --ignore-dir=t -A 5'
+alias pod='perldoc'
 
 # local aliases
 [ -f $HOME/.aliases ] &&
