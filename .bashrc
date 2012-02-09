@@ -51,6 +51,9 @@ fi
 
 export PERL5LIB=.:./lib:$PERL5LIB
 
+[ -f /etc/bash_completion.d/git ] && 
+   . /etc/bash_completion.d/git 
+
 # perldoc tab completion
 [ -f $HOME/bin/perldoc-complete ] &&
    complete -C perldoc-complete -o nospace -o default pod
