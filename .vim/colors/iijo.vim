@@ -51,7 +51,7 @@ endif
 :hi Title        cterm=none           ctermfg=241
 :hi Todo         cterm=bold           ctermfg=white ctermbg=236
 :hi Type         cterm=none           ctermfg=253
-:hi Underlined   cterm=underline      ctermfg=white
+:hi Underlined   cterm=none           ctermfg=white
 :hi VertSplit    cterm=bold           ctermfg=234 ctermbg=234
 :hi Visual       cterm=reverse               
 :hi VisualNOS    cterm=none           ctermfg=green
