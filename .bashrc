@@ -83,6 +83,7 @@ alias screen='screen -U'
 alias db='sqlite3 flashcards.db'
 alias tunnel='autossh -v -R 9999:localhost:9999 -N -l eric iijo.org -p 4321'
 alias ack='ack --perl --ignore-dir=t -A 5'
+alias irc='ssh eric@braga.cuckoo.org -R 7877:localhost:7877'
 alias pod='perldoc'
 
 # local aliases
