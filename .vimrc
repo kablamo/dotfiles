@@ -152,6 +152,7 @@ fun DoTidy()
     let Pos = line2byte( line( "." ) )
     :Tidy
     exe "goto " . Pos
+    redraw
 endfun
 " autocmd BufWrite *.t,*.pl,*.plx,*.pm call DoTidy()
 
