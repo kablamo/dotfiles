@@ -6,7 +6,7 @@ set copyindent
 set encoding=utf-8
 set expandtab
 set foldenable
-set foldlevelstart=1
+set foldlevelstart=9
 set foldmethod=syntax
 set fillchars=fold:\ ,vert:\ 
 set guioptions=m
@@ -145,14 +145,15 @@ let Tlist_Use_Right_Window=1
 let g:Perldoc_path = '/home/eric/tmp/perldoc/'
 
 " perltidy
-" autocmd BufRead,BufNewFile *.t,*.pl,*.plx,*.pm command! -range=% -nargs=* Tidy <line1>,<line2>!perltidy -q
-" autocmd BufRead,BufNewFile *.t,*.pl,*.plx,*.pm noremap <leader>y :Tidy<CR>
-" fun DoTidy()
-"     "run :Tidy on entire buffer and return cursor to (almost) original position"
-"     let Pos = line2byte( line( "." ) )
-"     :Tidy
-"     exe "goto " . Pos
-" endfun
+autocmd BufRead,BufNewFile *.t,*.pl,*.plx,*.pm command! -range=% -nargs=* Tidy <line1>,<line2>!perltidy -q
+autocmd BufRead,BufNewFile *.sql,*.t,*.pl,*.plx,*.pm noremap <leader>pt :Tidy<CR>
+fun DoTidy()
+    "run :Tidy on entire buffer and return cursor to (almost) original position"
+    let Pos = line2byte( line( "." ) )
+    :Tidy
+    exe "goto " . Pos
+    redraw
+endfun
 " autocmd BufWrite *.t,*.pl,*.plx,*.pm call DoTidy()
 
 " perlprove
@@ -179,3 +180,4 @@ map <leader>ts :SyntasticToggleMode<cr>
 let g:syntastic_mode_map = { 'mode': 'active',
                            \ 'active_filetypes': ['javascript'],
                            \ 'passive_filetypes': ['perl'] }
+
