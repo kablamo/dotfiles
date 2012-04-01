@@ -58,10 +58,6 @@ export PERL5LIB=.:./lib:$PERL5LIB
 [ -f $HOME/bin/perldoc-complete ] &&
    complete -C perldoc-complete -o nospace -o default pod
 
-# node
-export NODE_PATH=$HOME/node_modules/.bin
-export PATH=$NODE_PATH:$PATH
-
 # aliases
 wiki() {
    dig +short txt $1.wp.dg.cx
