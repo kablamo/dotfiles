@@ -1,5 +1,4 @@
-use v5.10;
-use strict;
+use v5.12;
 use warnings;
 use Plack::Request;
 
@@ -10,7 +9,8 @@ sub _notify {
   my ($summary, $body) = split "\n", $content, 2;
   $summary //= "IRC";
   $body //= "";
-  system("/usr/bin/notify-send", "-i", $icon, $summary, $body);
+  # system("/usr/bin/notify-send", "-i", $icon, $summary, $body);
+  system("/usr/bin/notify-send", $summary, $body);
 }
 
 my $app = sub {
