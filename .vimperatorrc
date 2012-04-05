@@ -1,16 +1,15 @@
-"3.3 (created: 2012/01/12 13:11:52)
-
-" set focuscontent
 set hintchars=hjklasdf
 set scrollbars=false
 set gui=none
+set notabnumbers
 colorscheme kablamo
-source! /home/eric/.vimperatorrc.local
+let clock_format='(%t %d)'
 
 nmap <A-l> gt
 nmap <A-h> gT
 nmap ;b :buffer 
+nmap ;d d
 " pinboard
 nmap ;p :javascript q=location.href;if(document.getSelection){d=document.getSelection();}else{d='';};p=document.title;void(open('https://pinboard.in/add?url='+encodeURIComponent(q)+'&description='+encodeURIComponent(d)+'&title='+encodeURIComponent(p),'Pinboard','toolbar=no,width=700,height=350'));<CR>
 
-" vim: set ft=vimperator:
+source! /home/eric/.vimperatorrc.local
