@@ -4,10 +4,10 @@ use Term::ANSIColor;
 
 no warnings 'redefine';
 
+#   'FancyPrompt',                # provide an irb-like prompt
 my @plugins = (
     'ReadLineHistory',            # history saved across sessions
     'Colors',                     # colorize return value and errors
-    'FancyPrompt',                # provide an irb-like prompt
     'Refresh',                    # refresh before every eval
     'Interrupt',                  # improve handling of ^C
     'OutputCache',                # access previous results
@@ -24,13 +24,13 @@ my @plugins = (
     'CompletionDriver::Turtles',  # turtle command completion
 );
 $_REPL->load_plugin($_) for @plugins;
-$_REPL->normal_color('reset');
-$_REPL->fancy_prompt(sub {
-    my $self = shift;
-    my $p = $self->current_package;
-    color('reset') . $self->line_depth . ':' . $p . '> ';
-} );
-$Devel::REPL::Plugin::Packages::PKG_SAVE = 'main';
+#$_REPL->normal_color('reset');
+#$_REPL->fancy_prompt(sub {
+#    my $self = shift;
+#    my $p = $self->current_package;
+#    color('reset') . $self->line_depth . ':' . $p . '> ';
+#} );
+#$Devel::REPL::Plugin::Packages::PKG_SAVE = 'main';
 
 END {
  print "\n";
