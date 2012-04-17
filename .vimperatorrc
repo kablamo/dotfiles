@@ -1,0 +1,15 @@
+set hintchars=hjklasdf
+set scrollbars=false
+set gui=none
+set notabnumbers
+colorscheme kablamo
+let clock_format='(%t %d)'
+
+nmap <A-l> gt
+nmap <A-h> gT
+nmap ;b :buffer 
+nmap ;d d
+" pinboard
+nmap ;p :javascript q=location.href;if(document.getSelection){d=document.getSelection();}else{d='';};p=document.title;void(open('https://pinboard.in/add?url='+encodeURIComponent(q)+'&description='+encodeURIComponent(d)+'&title='+encodeURIComponent(p),'Pinboard','toolbar=no,width=700,height=350'));<CR>
+
+source! /home/eric/.vimperatorrc.local

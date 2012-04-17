@@ -1,5 +1,4 @@
-use v5.10;
-use strict;
+use v5.12;
 use warnings;
 use Plack::Request;
 
@@ -10,7 +9,8 @@ sub _notify {
   my ($summary, $body) = split "\n", $content, 2;
   $summary //= "IRC";
   $body //= "";
-  system("/usr/bin/notify-send", "-i", $icon, $summary, $body);
+  # system("/usr/bin/notify-send", "-i", $icon, $summary, $body);
+  system("/usr/bin/notify-send", $summary, $body);
 }
 
 my $app = sub {
@@ -19,3 +19,9 @@ my $app = sub {
   my $res = $req->new_response(200);
   return $res->finalize;
 };
+
+# This is a plack app which displays messages it receives using Ubuntu's
+# notification system.  
+#
+# Usage: 
+# plackup -l localhost:7877 bin/notify.psgi

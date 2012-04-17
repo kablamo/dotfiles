@@ -1,7 +1,14 @@
 xterm*background: #222222
 xterm*foreground: #DEDEDE
-xterm*faceName: Monospace:pixelsize=14
-xterm*boldFont: Monospace:bold:pixelsize=14
+xterm*faceName: Monospace:
+xterm*faceSize: 10
+xterm*faceSize1: 11
+xterm*faceSize2: 12
+xterm*faceSize3: 14
+xterm*faceSize4: 16
+xterm*faceSize5: 18
+xterm*faceSize6: 24
+xterm*boldFont: Monospace:bold:
 xterm*saveLines: 12000
 xterm*scrollBar: false
 xterm*scrollstyle: rxvt
@@ -9,28 +16,28 @@ xterm*perl-ext-common: default,matcher
 xterm*borderWidth: 0
 xterm*urlLauncher: google-chrome
 xterm*matcher.button: 1
-xterm*colorUL: #86a2bb
-! black
-xterm*color0  : #2E3436
-xterm*color8  : #555753
-! red
-xterm*color1  : #CC0000
-xterm*color9  : #EF2929
-! green
-xterm*color2  : #4E9A06
-xterm*color10 : #8AE234
-! yellow
-xterm*color3  : #C4A000
-xterm*color11 : #FCE94F
-! blue
-xterm*color4  : #3465A4
-xterm*color12 : #729FCF
-! magenta
-xterm*color5  : #75507B
-xterm*color13 : #AD7FA8
-! cyan
-xterm*color6  : #06989A
-xterm*color14 : #34E2E2
-! white
-xterm*color7  : #D3D7CF
-xterm*color15 : #EEEEEC
+! xterm*colorUL: #86a2bb
+! ! black
+! xterm*color0  : #2E3436
+! xterm*color8  : #555753
+! ! red
+! xterm*color1  : #CC0000
+! xterm*color9  : #EF2929
+! ! green
+! xterm*color2  : #4E9A06
+! xterm*color10 : #8AE234
+! ! yellow
+! xterm*color3  : #C4A000
+! xterm*color11 : #FCE94F
+! ! blue
+! xterm*color4  : #3465A4
+! xterm*color12 : #729FCF
+! ! magenta
+! xterm*color5  : #75507B
+! xterm*color13 : #AD7FA8
+! ! cyan
+! xterm*color6  : #06989A
+! xterm*color14 : #34E2E2
+! ! white
+! xterm*color7  : #D3D7CF
+! xterm*color15 : #EEEEEC
