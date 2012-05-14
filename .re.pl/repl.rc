@@ -7,11 +7,11 @@ no warnings 'redefine';
 my @plugins = (
     'ReadLineHistory',            # history saved across sessions
     'Colors',                     # colorize return value and errors
-    'FancyPrompt',                # provide an irb-like prompt
     'Refresh',                    # refresh before every eval
     'Interrupt',                  # improve handling of ^C
     'OutputCache',                # access previous results
     'Nopaste',                    # paste session with #nopaste
+    'FancyPrompt',                # provide an irb-like prompt
     'DDC',                        # format output with Data::Dumper::Concise
     'PPI',                        # PPI dumping of Perl code
     'MultiLine::PPI',             # allow multiple lines
@@ -27,10 +27,15 @@ $_REPL->load_plugin($_) for @plugins;
 $_REPL->normal_color('reset');
 $_REPL->fancy_prompt(sub {
     my $self = shift;
-    my $p = $self->current_package;
-    color('reset') . $self->line_depth . ':' . $p . '> ';
-} );
-$Devel::REPL::Plugin::Packages::PKG_SAVE = 'main';
+    sprintf '%03d%s> ', 
+            $self->lines_read,
+            $self->can('line_depth') ? ':' . $self->line_depth : '';
+
+});
+
+#    $Devel::REPL::Plugin::Packages::PKG_SAVE = 'main';
+#    my $p = $self->current_package;
+#    color('reset') . $self->line_depth . ':' . $p . '> ';
 
 END {
  print "\n";
