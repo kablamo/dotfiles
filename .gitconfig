@@ -11,6 +11,7 @@
    co = checkout
    br = branch
    mrg = merge --no-ff
+   l = log --name-only
 [core]
    #excludesfile = "/etc/gitexcludes"
    autocrlf = input
