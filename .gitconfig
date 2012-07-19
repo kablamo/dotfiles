@@ -11,7 +11,9 @@
    co = checkout
    br = branch
    mrg = merge --no-ff
-   l = log --name-only
+   ll = log --pretty=format:'%C(bold white)%s%Creset\n%h %an %cr'   --abbrev-commit --no-merges --name-only 
+   ls = log --pretty=format:'%C(bold white)%s%Creset\n%h %an %cr\n' --abbrev-commit --no-merges
+   lo = "!f () { git log --no-merges --abbrev-commit --date=relative --pretty=format:'%h%x00%cd%x00%s%x00%an' $@ | gawk -F '\\0' '{ printf \"%s %-12s  %-100s %s\\n\", $1, $2, gensub(/(.{79}).{2,}/, \"\\\\1…\",\"g\",$3), $4 }' | less -R; }; f"
 [core]
    #excludesfile = "/etc/gitexcludes"
    autocrlf = input
