@@ -127,9 +127,15 @@ let NERDTreeChDirMode=1
 let NERDTreeWinPos='Right'
 let NERDTreeStatusline=-1
 let NERDTreeQuitOnOpen=1
+let NERDTreeWinSize=60
 
 " NERD Tree with ack
 let g:path_to_search_app = "/usr/local/bin/ack"
+
+" buffergator
+let g:buffergator_split_size=60
+let g:buffergator_suppress_keymaps=1
+map <leader>b :BuffergatorOpen<cr>
 
 " CommandT
 let g:CommandTMaxFiles=20000
@@ -146,7 +152,7 @@ let g:Perldoc_path = '/home/eric/tmp/perldoc/'
 
 " perltidy
 autocmd BufRead,BufNewFile *.t,*.pl,*.plx,*.pm command! -range=% -nargs=* Tidy <line1>,<line2>!perltidy -q
-autocmd BufRead,BufNewFile *.sql,*.t,*.pl,*.plx,*.pm noremap <leader>pt :Tidy<CR>
+autocmd BufRead,BufNewFile *.sql,*.t,*.pl,*.plx,*.pm noremap <leader>t :Tidy<CR>
 fun DoTidy()
     "run :Tidy on entire buffer and return cursor to (almost) original position"
     let Pos = line2byte( line( "." ) )
@@ -155,6 +161,10 @@ fun DoTidy()
     redraw
 endfun
 " autocmd BufWrite *.t,*.pl,*.plx,*.pm call DoTidy()
+
+" xml tidy
+autocmd BufRead,BufNewFile *.xml command! -range=% -nargs=* Tidy <line1>,<line2>!xmllint --pretty 1 %
+autocmd BufRead,BufNewFile *.xml noremap <leader>t :Tidy<CR>
 
 " perlprove
 " au BufRead,BufNewFile *.t set filetype=perl | compiler perlprove
