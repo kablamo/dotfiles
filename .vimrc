@@ -191,3 +191,10 @@ let g:syntastic_mode_map = { 'mode': 'active',
                            \ 'active_filetypes': ['javascript'],
                            \ 'passive_filetypes': ['perl'] }
 
+" ack
+map <leader>* :Ack <cword> %<cr>
+map <leader>/ :Ack 
+
+" quickfix
+map <leader>cn :cn
+map <leader>cp :cp
