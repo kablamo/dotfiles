@@ -3,7 +3,7 @@ xterm*foreground: #DEDEDE
 xterm*faceName: Monospace:
 xterm*faceSize: 10
 xterm*faceSize1: 11
-xterm*faceSize2: 12
+xterm*faceSize2: 28
 xterm*faceSize3: 14
 xterm*faceSize4: 16
 xterm*faceSize5: 18
