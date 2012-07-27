@@ -5,6 +5,7 @@ set nocompatible
 set copyindent
 set encoding=utf-8
 set expandtab
+set exrc " for vroom
 set foldenable
 set foldlevelstart=9
 set foldmethod=syntax
