@@ -134,7 +134,8 @@ let NERDTreeWinSize=60
 let g:path_to_search_app = "/usr/local/bin/ack"
 
 " buffergator
-let g:buffergator_split_size=60
+let g:buffergator_split_size=10
+let g:buffergator_viewport_split_policy='B'
 let g:buffergator_suppress_keymaps=1
 map <leader>b :BuffergatorOpen<cr>
 
