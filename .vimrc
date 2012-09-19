@@ -33,6 +33,9 @@ set winminheight=0
 set wildmode=longest,list,full
 set nowrap
 
+" command line editing
+cnoremap <C-A> <Home>
+
 " mapleader
 let mapleader=";"
 
