@@ -35,6 +35,8 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
+export EDITOR=/usr/bin/vim
+
 # ssh keychain
 [ -f $HOME/.ssh/id_dsa ] &&
 [ -f "`which keychain`" ] && keychain id_dsa
