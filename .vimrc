@@ -26,6 +26,7 @@ set shiftwidth=4
 set shiftround
 set smartcase
 set smarttab
+set tags=/home/eric/tags
 set tabstop=4
 set textwidth=0
 set undolevels=1000
@@ -85,6 +86,12 @@ nmap <leader>P "+p
 " perldoc plugin
 let g:perldoc_program='/usr/bin/perldoc'
 map <leader>o :Perldoc
+
+function! CallPerldoc()
+    let target = matchstr(expand('<cfile>'), '\w\+\(::\w\+\)*')
+    set wildmode=list:full
+    return ":Perldoc "
+endfunction
 
 " fugitive keybindings
 map <leader>g  :Gcommit<cr>
