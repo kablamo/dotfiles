@@ -16,6 +16,7 @@ xterm*perl-ext-common: default,matcher
 xterm*borderWidth: 0
 xterm*urlLauncher: google-chrome
 xterm*matcher.button: 1
+xterm*eightBitInput: false
 ! xterm*colorUL: #86a2bb
 ! ! black
 ! xterm*color0  : #2E3436
