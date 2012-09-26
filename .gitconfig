@@ -21,3 +21,5 @@
    tool = vimdiff
 [difftool]
    prompt = 1
+[rebase]
+	autosquash = true
