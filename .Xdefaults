@@ -14,7 +14,7 @@ xterm*scrollBar: false
 xterm*scrollstyle: rxvt
 xterm*perl-ext-common: default,matcher
 xterm*borderWidth: 0
-xterm*urlLauncher: google-chrome
+xterm*urlLauncher: /usr/bin/google-chrome
 xterm*matcher.button: 1
 ! xterm*colorUL: #86a2bb
 ! ! black
