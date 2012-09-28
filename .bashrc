@@ -16,7 +16,8 @@ if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
 
-PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w ⚡ '
+#PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
@@ -33,6 +34,8 @@ esac
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
+
+export EDITOR=/usr/bin/vim
 
 # ssh keychain
 [ -f $HOME/.ssh/id_dsa ] &&

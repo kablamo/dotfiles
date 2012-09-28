@@ -42,7 +42,9 @@ screen -t git 0
 scrollback        10000
 screen -t . 1
 scrollback        10000
-screen -t . 5
+screen -t . 2
+scrollback        10000
+screen -t . 3
 scrollback        10000
 screen -t srvr 14
 scrollback        10000

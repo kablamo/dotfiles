@@ -27,6 +27,7 @@ set shiftwidth=4
 set shiftround
 set smartcase
 set smarttab
+set tags=/home/eric/tags
 set tabstop=4
 set textwidth=0
 set undolevels=1000
@@ -58,6 +59,9 @@ au BufNewFile,BufRead *.md setf mkd
 nnoremap <tab> %
 vnoremap <tab> %
 
+" previous buffer
+map <space> :e#<cr>
+
 " edit vimrc
 nmap <silent> <leader>ev :e $MYVIMRC<cr>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
@@ -86,6 +90,12 @@ nmap <leader>P "+p
 " perldoc plugin
 let g:perldoc_program='/usr/bin/perldoc'
 map <leader>o :Perldoc
+
+function! CallPerldoc()
+    let target = matchstr(expand('<cfile>'), '\w\+\(::\w\+\)*')
+    set wildmode=list:full
+    return ":Perldoc "
+endfunction
 
 " fugitive keybindings
 map <leader>g  :Gcommit<cr>
@@ -138,7 +148,8 @@ let NERDTreeWinSize=60
 let g:path_to_search_app = "/usr/local/bin/ack"
 
 " buffergator
-let g:buffergator_split_size=60
+let g:buffergator_split_size=10
+let g:buffergator_viewport_split_policy='B'
 let g:buffergator_suppress_keymaps=1
 map <leader>b :BuffergatorOpen<cr>
 
