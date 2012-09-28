@@ -58,6 +58,9 @@ au BufNewFile,BufRead *.md setf mkd
 nnoremap <tab> %
 vnoremap <tab> %
 
+" previous buffer
+map <space> :e#<cr>
+
 " edit vimrc
 nmap <silent> <leader>ev :e $MYVIMRC<cr>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
