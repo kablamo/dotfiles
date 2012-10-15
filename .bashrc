@@ -73,6 +73,10 @@ alias tunnel='autossh -v -R 9999:localhost:9999 -N -l eric iijo.org -p 4321'
 alias ack='ack --perl --ignore-dir=t -A 5'
 alias irc='ssh eric@braga.cuckoo.org -R 7877:localhost:7877'
 alias pod='perldoc'
+alias GET='lwp-request -m GET '
+alias PUT='lwp-request -m PUT '
+alias POST='lwp-request -m POST '
+alias HEAD='lwp-request -m HEAD '
 
 #echo ".bashrc done"
 
