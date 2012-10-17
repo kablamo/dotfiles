@@ -1,3 +1,4 @@
+export LESS="-MSiRXF"
 export EDITOR=/usr/bin/vim
 export TERM='xterm-256color'
 [ -z "$PS1" ] && return            # do nothing unless running interactively
@@ -18,20 +19,6 @@ if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
 fi
 
 PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w ⚡ '
-#PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-
-if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
-    . /etc/bash_completion
-fi
-
-# ssh keychain
-#[ -f $HOME/.ssh/id_dsa ] && [ -f "`which keychain`" ] && keychain id_dsa
-#[ -f $HOME/.ssh/eric   ] && [ -f "`which keychain`" ] && keychain eric
-#[ -z "$HOSTNAME" ] && HOSTNAME=`name -n` 
-#[ -f $HOME/.keychain/$HOSTNAME-sh ] && 
-#   . $HOME/.keychain/$HOSTNAME-sh
-#[ -f $HOME/.keychain/$HOSTNAME-sh-gpg ] &&
-#   . $HOME/.keychain/$HOSTNAME-sh-gpg
 
 # local::lib
 export PERL_LOCAL_LIB_ROOT="/home/eric/perl5";
@@ -43,13 +30,6 @@ export PATH="$HOME/perl5/bin:$PATH"
 
 # cpanm
 export PERL_CPANM_OPT="--local-lib=~/perl5"
-
-[ -f /etc/bash_completion.d/git ] && 
-   . /etc/bash_completion.d/git 
-
-# perldoc tab completion
-#[ -f $HOME/bin/perldoc-complete ] &&
-#   complete -C perldoc-complete -o nospace -o default pod
 
 # aliases
 wiki() {
@@ -78,6 +58,10 @@ alias tunnel='autossh -v -R 9999:localhost:9999 -N -l eric iijo.org -p 4321'
 alias ack='ack --perl --ignore-dir=t -A 5'
 alias irc='ssh eric@braga.cuckoo.org -R 7877:localhost:7877'
 alias pod='perldoc'
+alias GET='lwp-request -m GET '
+alias PUT='lwp-request -m PUT '
+alias POST='lwp-request -m POST '
+alias HEAD='lwp-request -m HEAD '
 
 # local aliases
 [ -f $HOME/.aliases ] &&
