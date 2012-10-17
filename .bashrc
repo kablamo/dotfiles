@@ -1,3 +1,4 @@
+export EDITOR=/usr/bin/vim
 export TERM='xterm-256color'
 [ -z "$PS1" ] && return            # do nothing unless running interactively
 HISTCONTROL=ignoredups:ignorespace # see HISTCONTROL in bash(1)
@@ -19,34 +20,18 @@ fi
 PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w ⚡ '
 #PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
-esac
-
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
-export EDITOR=/usr/bin/vim
-
 # ssh keychain
-[ -f $HOME/.ssh/id_dsa ] &&
-[ -f "`which keychain`" ] && keychain id_dsa
-[ -f $HOME/.ssh/eric   ] &&
-[ -f "`which keychain`" ] && keychain eric
-[ -z "$HOSTNAME" ] && HOSTNAME=`name -n`
-[ -f $HOME/.keychain/$HOSTNAME-sh ] &&
-   . $HOME/.keychain/$HOSTNAME-sh
-[ -f $HOME/.keychain/$HOSTNAME-sh-gpg ] &&
-   . $HOME/.keychain/$HOSTNAME-sh-gpg
+#[ -f $HOME/.ssh/id_dsa ] && [ -f "`which keychain`" ] && keychain id_dsa
+#[ -f $HOME/.ssh/eric   ] && [ -f "`which keychain`" ] && keychain eric
+#[ -z "$HOSTNAME" ] && HOSTNAME=`name -n` 
+#[ -f $HOME/.keychain/$HOSTNAME-sh ] && 
+#   . $HOME/.keychain/$HOSTNAME-sh
+#[ -f $HOME/.keychain/$HOSTNAME-sh-gpg ] &&
+#   . $HOME/.keychain/$HOSTNAME-sh-gpg
 
 # local::lib
 export PERL_LOCAL_LIB_ROOT="/home/eric/perl5";
@@ -57,14 +42,14 @@ export PERL5LIB=.:./lib:$PERL5LIB
 export PATH="$HOME/perl5/bin:$PATH"
 
 # cpanm
-PERL_CPANM_OPT="--local-lib=~/perl5"
+export PERL_CPANM_OPT="--local-lib=~/perl5"
 
 [ -f /etc/bash_completion.d/git ] && 
    . /etc/bash_completion.d/git 
 
 # perldoc tab completion
-[ -f $HOME/bin/perldoc-complete ] &&
-   complete -C perldoc-complete -o nospace -o default pod
+#[ -f $HOME/bin/perldoc-complete ] &&
+#   complete -C perldoc-complete -o nospace -o default pod
 
 # aliases
 wiki() {
