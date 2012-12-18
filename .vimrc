@@ -19,6 +19,7 @@ set incsearch
 set iskeyword-=:
 set iskeyword+=_
 set laststatus=2 
+set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
 set noswapfile
 set nowrap
 set scrolloff=10

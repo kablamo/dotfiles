@@ -1,5 +1,3 @@
-#echo ".bashrc starting"
-
 export LESS="-MSiRXF"
 export EDITOR=/usr/bin/vim
 export TERM='xterm-256color'
@@ -22,15 +20,6 @@ fi
 
 PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w ⚡ '
 
-# ssh keychain
-if [ -f "`which keychain`" ] ; then
-    [ -f $HOME/.ssh/id_dsa ] && keychain id_dsa
-    [ -f $HOME/.ssh/eric   ] && keychain eric
-    HOSTNAME=`name -n`
-    [ -f $HOME/.keychain/$HOSTNAME-sh ] && . $HOME/.keychain/$HOSTNAME-sh
-    [ -f $HOME/.keychain/$HOSTNAME-sh-gpg ] && . $HOME/.keychain/$HOSTNAME-sh-gpg
-fi
-
 # local::lib
 export PERL_LOCAL_LIB_ROOT="/home/eric/perl5";
 export PERL_MB_OPT="--install_base $HOME/perl5"
@@ -41,10 +30,6 @@ export PATH="$HOME/perl5/bin:$PATH"
 
 # cpanm
 export PERL_CPANM_OPT="--local-lib=~/perl5"
-
-# perldoc tab completion
-#[ -f $HOME/bin/perldoc-complete ] &&
-#   complete -C perldoc-complete -o nospace -o default pod
 
 # aliases
 wiki() {
@@ -72,16 +57,12 @@ alias db='sqlite3 flashcards.db'
 alias tunnel='autossh -v -R 9999:localhost:9999 -N -l eric iijo.org -p 4321'
 alias ack='ack --perl --ignore-dir=t -A 5'
 alias irc='ssh eric@braga.cuckoo.org -R 7877:localhost:7877'
-alias pod='perldoc'
+alias pod='perlfind'
 alias GET='lwp-request -m GET '
 alias PUT='lwp-request -m PUT '
 alias POST='lwp-request -m POST '
 alias HEAD='lwp-request -m HEAD '
 
-#echo ".bashrc done"
-
 # local aliases
 [ -f $HOME/.aliases ] &&
    . $HOME/.aliases
-
-#echo ".aliases done"
