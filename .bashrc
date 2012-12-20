@@ -21,7 +21,7 @@ fi
 PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w ⚡ '
 
 # use vim as my $PAGER
-export PAGER="/usr/share/vim/vim72/macros/less.sh"
+export PAGER="/bin/sh -c \"unset PAGER;col -b -x | vim -R -c 'set ft=man nomod nolist' -\""
 
 # local::lib
 export PERL_LOCAL_LIB_ROOT="/home/eric/perl5";
