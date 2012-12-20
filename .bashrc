@@ -20,6 +20,9 @@ fi
 
 PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w ⚡ '
 
+# use vim as my $PAGER
+export PAGER="/usr/share/vim/vim72/macros/less.sh"
+
 # local::lib
 export PERL_LOCAL_LIB_ROOT="/home/eric/perl5";
 export PERL_MB_OPT="--install_base $HOME/perl5"
@@ -35,7 +38,7 @@ export PERL_CPANM_OPT="--local-lib=~/perl5"
 wiki() {
    dig +short txt $1.wp.dg.cx
 }
-#   sleep 10; alert
+alias less=$PAGER
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 alias hg='history | grep --color=auto'
 alias grep='grep --color=auto'
