@@ -214,3 +214,8 @@ map <leader>/ :Ack
 " quickfix
 map <leader>cn :cn
 map <leader>cp :cp
+
+" Man pages
+runtime ftplugin/man.vim
+let $PAGER=''
+nmap K :Man <c-r>=expand("<cword>")<cr><cr>
