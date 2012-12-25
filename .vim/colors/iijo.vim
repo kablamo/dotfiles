@@ -10,6 +10,7 @@ endif
 :hi Constant     cterm=none           ctermfg=244
 :hi Cursor       cterm=reverse
 :hi CursorLine   cterm=none           ctermfg=none ctermbg=236
+:hi CursorColumn cterm=none           ctermfg=none ctermbg=236
 :hi Define       cterm=none           ctermfg=white 
 :hi DiffAdd      cterm=bold           ctermfg=10 ctermbg=none
 :hi DiffChange   cterm=none           ctermfg=34 ctermbg=none
@@ -26,7 +27,7 @@ endif
 :hi IncSearch    cterm=bold           ctermfg=154 ctermbg=none
 :hi Include      cterm=none           ctermfg=white 
 :hi LineNr       cterm=none           ctermfg=white 
-:hi MatchParen   cterm=bold           ctermfg=green ctermbg=none
+:hi MatchParen   cterm=bold           ctermfg=none ctermbg=240
 :hi ModeMsg      cterm=none           ctermfg=white
 :hi MoreMsg      cterm=none           ctermfg=white
 :hi NonText      cterm=none           ctermfg=235 ctermbg=235
