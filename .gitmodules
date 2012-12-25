@@ -10,3 +10,6 @@
 [submodule ".vim/bundle/vim-buffergator"]
 	path = .vim/bundle/vim-buffergator
 	url = https://github.com/jeetsukumaran/vim-buffergator.git
+[submodule ".vim/bundle/vim-paren-crosshairs"]
+	path = .vim/bundle/vim-paren-crosshairs
+	url = git@github.com:chreekat/vim-paren-crosshairs.git
