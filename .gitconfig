@@ -2,24 +2,26 @@
     name = Eric Johnson
     email = eric.git@iijo.org
 [alias]
-   ci = commit
-   cia = commit -a
-   st = status -s
-   di = diff -b
-   dt = difftool 
-   tree = log --graph --pretty=oneline --abbrev-commit
-   co = checkout
-   br = branch
-   mrg = merge --no-ff
-   ll = log --pretty=format:'%C(bold white)%s%Creset\n%h %an %cr'   --abbrev-commit --no-merges --name-only 
-   ls = log --pretty=format:'%C(bold white)%s%Creset\n%h %an %cr\n' --abbrev-commit --no-merges
-   lo = "!f () { git log --no-merges --abbrev-commit --date=relative --pretty=format:'%h%x00%cd%x00%s%x00%an' $@ | gawk -F '\\0' '{ printf \"%s %-12s  %-100s %s\\n\", $1, $2, gensub(/(.{79}).{2,}/, \"\\\\1…\",\"g\",$3), $4 }' | less -R; }; f"
+    b = branch
+    ci = commit
+    cia = commit -a
+    co = checkout
+    d = difftool 
+    di = diff -b
+    ll = log --pretty=format:'%C(bold white)%s%Creset\n%h %an %cr'   --abbrev-commit --no-merges --name-only 
+    lo = "!f () { git log --no-merges --abbrev-commit --date=relative --pretty=format:'%h%x00%cd%x00%s%x00%an' $@ | gawk -F '\\0' '{ printf \"%s %-12s  %-100s %s\\n\", $1, $2, gensub(/(.{79}).{2,}/, \"\\\\1…\",\"g\",$3), $4 }' | less -R; }; f"
+    ls = log --pretty=format:'%C(bold white)%s%Creset\n%h %an %cr\n' --abbrev-commit --no-merges
+    mrg = merge --no-ff
+    p = push origin HEAD
+    pp = !"echo 'Pull'; git pull; echo 'Push'; git push"
+    s = status -sb
+    tree = log --graph --pretty=oneline --abbrev-commit
 [core]
-   #excludesfile = "/etc/gitexcludes"
-   autocrlf = input
+    #excludesfile = "/etc/gitexcludes"
+    autocrlf = input
 [diff]
-   tool = vimdiff
+    tool = vimdiff
 [difftool]
-   prompt = 1
+    prompt = 1
 [rebase]
 	autosquash = true
