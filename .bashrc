@@ -71,6 +71,7 @@ alias PUT='lwp-request -m PUT '
 alias POST='lwp-request -m POST '
 alias HEAD='lwp-request -m HEAD '
 
+alias g='git'
 alias gu='git pull'
 alias gll='git ll'
 alias gls='git ls'
