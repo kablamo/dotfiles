@@ -2,6 +2,7 @@
     name = Eric Johnson
     email = eric.git@iijo.org
 [alias]
+    alias = config --get-regexp alias
     b = branch
     ci = commit
     cia = commit -a
