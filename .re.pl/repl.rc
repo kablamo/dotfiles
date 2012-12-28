@@ -10,11 +10,10 @@ my @plugins = (
     'Refresh',                    # refresh before every eval
     'Interrupt',                  # improve handling of ^C
     'OutputCache',                # access previous results
-    'Nopaste',                    # paste session with #nopaste
     'FancyPrompt',                # provide an irb-like prompt
     'DDC',                        # format output with Data::Dumper::Concise
-    'PPI',                        # PPI dumping of Perl code
-    'MultiLine::PPI',             # allow multiple lines
+#   'PPI',                        # PPI dumping of Perl code
+#   'MultiLine::PPI',             # allow multiple lines
     'Completion',
     'CompletionDriver::Keywords', # substr, while, etc
     'CompletionDriver::LexEnv',   # current environment

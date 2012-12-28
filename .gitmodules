@@ -7,3 +7,6 @@
 [submodule ".vim/bundle/perlomni"]
 	path = .vim/bundle/perlomni
 	url = git@github.com:c9s/perlomni.vim.git
+[submodule ".vim/bundle/vim-paren-crosshairs"]
+	path = .vim/bundle/vim-paren-crosshairs
+	url = git@github.com:chreekat/vim-paren-crosshairs.git
