@@ -2,9 +2,10 @@
     name = Eric Johnson
     email = eric.git@iijo.org
 [alias]
+    alias = config --get-regexp alias
     b = branch
-    ci = commit
-    cia = commit -a
+    c = commit
+    ca = commit -a
     co = checkout
     d = difftool 
     di = diff -b
@@ -13,7 +14,7 @@
     ls = log --pretty=format:'%C(bold white)%s%Creset\n%h %an %cr\n' --abbrev-commit --no-merges
     mrg = merge --no-ff
     p = push origin HEAD
-    pp = !"echo 'Pull'; git pull; echo 'Push'; git push"
+    pp = !"echo 'Pull'; git pull; echo 'Push'; git push origin HEAD"
     s = status -sb
     tree = log --graph --pretty=oneline --abbrev-commit
 [core]
