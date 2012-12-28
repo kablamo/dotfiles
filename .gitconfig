@@ -7,8 +7,10 @@
     c = commit
     ca = commit -a
     co = checkout
+    count = shortlog -sn
     d = difftool 
     di = diff -b
+    h = help
     ll = log --pretty=format:'%C(bold white)%s%Creset\n%h %an %cr'   --abbrev-commit --no-merges --name-only 
     lo = "!f () { git log --no-merges --abbrev-commit --date=relative --pretty=format:'%h%x00%cd%x00%s%x00%an' $@ | gawk -F '\\0' '{ printf \"%s %-12s  %-100s %s\\n\", $1, $2, gensub(/(.{79}).{2,}/, \"\\\\1…\",\"g\",$3), $4 }' | less -R; }; f"
     ls = log --pretty=format:'%C(bold white)%s%Creset\n%h %an %cr\n' --abbrev-commit --no-merges
@@ -23,6 +25,6 @@
 [diff]
     tool = vimdiff
 [difftool]
-    prompt = 1
+    prompt = true
 [rebase]
 	autosquash = true
