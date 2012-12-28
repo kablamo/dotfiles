@@ -35,6 +35,11 @@ set winminheight=0
 set wildmode=longest,list,full
 set nowrap
 
+" filetype (required for perl omni completion)
+filetype on
+filetype plugin on
+filetype indent on
+
 " command line editing
 cnoremap <C-A> <Home>
 
@@ -178,6 +183,12 @@ let g:SuperTabMappingBackward = '<tab>'
 "map <leader>s :SyntasticCheck<cr>
 "map <leader>ts :SyntasticToggleMode<cr>
 "let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['javascript', 'perl'] }
+
+" Perl omni complete
+let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
+
+" PerlHelp
+map <unique> <leader>PH :PerlHelp 
 
 " ack
 map <leader>* :Ack <cword> %<cr>
