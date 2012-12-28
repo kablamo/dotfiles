@@ -87,16 +87,6 @@ map <leader>= :winc =<cr>
 nmap <leader>Y "+y
 nmap <leader>P "+p
 
-" perldoc plugin
-let g:perldoc_program='/usr/bin/perldoc'
-map <leader>o :Perldoc
-
-function! CallPerldoc()
-    let target = matchstr(expand('<cfile>'), '\w\+\(::\w\+\)*')
-    set wildmode=list:full
-    return ":Perldoc "
-endfunction
-
 " fugitive keybindings
 map <leader>g  :Gcommit<cr>
 map <leader>gs :Gstatus<cr>
@@ -123,11 +113,6 @@ endfunction
 augroup perl_files
    set foldtext=PerlFoldText()
 augroup end
-
-" slime
-vmap <C-c><C-c> "ry:call Send_to_Screen(@r)<cr>
-nmap <C-c><C-c> vip<C-c><C-c>
-nmap <C-c>v :call Screen_Vars()<cr>
 
 " scratch
 map <leader><tab> :Scratch<cr>
@@ -163,9 +148,6 @@ let Tlist_Compact_Format=1
 let Tlist_Enable_Fold_Column=0
 let Tlist_Use_Right_Window=1
 
-" PERLDOC2
-let g:Perldoc_path = '/home/eric/tmp/perldoc/'
-
 " perltidy
 autocmd BufRead,BufNewFile *.t,*.pl,*.plx,*.pm command! -range=% -nargs=* Tidy <line1>,<line2>!perltidy -q
 autocmd BufRead,BufNewFile *.sql,*.t,*.pl,*.plx,*.pm noremap <leader>t :Tidy<CR>
@@ -192,20 +174,10 @@ let dbext_default_display_cmd_line = 1
 let g:SuperTabMappingForward = '<s-tab>'
 let g:SuperTabMappingBackward = '<tab>'
 
-try 
-    source /home/eric/.vimrc.local
-catch
-endtry
-
-" pathogen
-call pathogen#infect()
-
 " syntastic
-map <leader>s :SyntasticCheck<cr>
-map <leader>ts :SyntasticToggleMode<cr>
-let g:syntastic_mode_map = { 'mode': 'active',
-                           \ 'active_filetypes': ['javascript'],
-                           \ 'passive_filetypes': ['perl'] }
+"map <leader>s :SyntasticCheck<cr>
+"map <leader>ts :SyntasticToggleMode<cr>
+"let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['javascript', 'perl'] }
 
 " ack
 map <leader>* :Ack <cword> %<cr>
@@ -219,3 +191,11 @@ map <leader>cp :cp
 runtime ftplugin/man.vim
 let $PAGER=''
 nmap K :Man <c-r>=expand("<cword>")<cr><cr>
+
+" pathogen
+call pathogen#infect()
+
+try 
+    source /home/eric/.vimrc.local
+catch
+endtry
