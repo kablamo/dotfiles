@@ -136,9 +136,6 @@ let NERDTreeStatusline=-1
 let NERDTreeQuitOnOpen=1
 let NERDTreeWinSize=60
 
-" NERD Tree with ack
-let g:path_to_search_app = "/usr/local/bin/ack"
-
 " buffergator
 let g:buffergator_split_size=10
 let g:buffergator_viewport_split_policy='B'
@@ -181,11 +178,6 @@ let dbext_default_display_cmd_line = 1
 let g:SuperTabMappingForward = '<s-tab>'
 let g:SuperTabMappingBackward = '<tab>'
 
-" syntastic
-"map <leader>s :SyntasticCheck<cr>
-"map <leader>ts :SyntasticToggleMode<cr>
-"let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['javascript', 'perl'] }
-
 " Perl omni complete
 let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 
@@ -197,8 +189,8 @@ map <leader>* :Ack <cword> %<cr>
 map <leader>/ :Ack 
 
 " quickfix
-map <leader>cn :cn
-map <leader>cp :cp
+map <leader>cn :cn<cr>
+map <leader>cp :cp<cr>
 
 " Man pages
 runtime ftplugin/man.vim
