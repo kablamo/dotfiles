@@ -19,9 +19,11 @@ set incsearch
 set iskeyword-=:
 set iskeyword+=_
 set laststatus=2 
+set nolazyredraw           " turn off lazy redraw
 set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
 set noswapfile
 set nowrap
+set number
 set scrolloff=10
 set shiftwidth=4
 set shiftround
