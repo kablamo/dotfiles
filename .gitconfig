@@ -27,4 +27,6 @@
 [difftool]
     prompt = true
 [rebase]
-	autosquash = true
+    autosquash = true
+[branch]
+    autosetuprebase = always
