@@ -71,6 +71,7 @@ map <space> :e#<cr>
 
 " edit files
 map <leader>eb :e /home/eric/.bashrc<cr>
+map <leader>eg :e /home/eric/.gitconfig<cr>
 map <leader>ev :e $MYVIMRC<cr>
 map <leader>et :e /home/eric/.todo/todo.txt<cr>
 
@@ -201,9 +202,9 @@ map <leader>* :Ack <cword> %<cr>
 map <leader>/ :Ack 
 
 " quickfix
-map qn :cn<cr>
-map qp :cp<cr>
-map qw :cp<cr>
+map fn :cn<cr>
+map fp :cp<cr>
+map fw :cp<cr>
 
 " Man pages
 runtime ftplugin/man.vim
