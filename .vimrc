@@ -95,9 +95,10 @@ nmap <leader>Y "+y
 nmap <leader>P "+p
 
 " fugitive keybindings
-map <leader>g  :Git 
+map <leader>g<space> :Git 
 map <leader>ga :Gwrite<cr>
-map <leader>gc :Gcommit<cr>
+map <leader>g  :Gcommit<cr>
+map <leader>gn <leader>ga<cr>:Gcommit<cr>
 map <leader>gd :Gdiff<cr>
 map <leader>ge :Gedit HEAD<cr>
 map <leader>gl :Glog<cr>
