@@ -83,10 +83,10 @@ map! <F1> <Esc>
 map <leader>d :bd<cr>
 map <leader>n :bn<cr>
 map <leader>p :bp<cr>
-map <leader>j :winc j<cr>:winc _<cr>
-map <leader>k :winc k<cr>:winc _<cr>
-map <leader>l :winc l<cr>:winc _<cr>
-map <leader>h :winc h<cr>:winc _<cr>
+map <leader>j :winc j<cr>
+map <leader>k :winc k<cr>
+map <leader>l :winc l<cr>
+map <leader>h :winc h<cr>
 map <leader>_ :winc _<cr>
 map <leader>= :winc =<cr>
 
@@ -95,10 +95,13 @@ nmap <leader>Y "+y
 nmap <leader>P "+p
 
 " fugitive keybindings
-map <leader>g  :Gcommit<cr>
+map <leader>g  :Git 
+map <leader>gc :Gcommit<cr>
+map <leader>ga :Gwrite<cr>
 map <leader>gs :Gstatus<cr>
 map <leader>ge :Gedit HEAD<cr>
 map <leader>gd :Gdiff<cr>
+map <leader>gl :Glog<cr>
 
 " Complete whole filenames/lines with a quicker shortcut key in insert mode
 imap <C-f> <C-x><C-f>
@@ -182,15 +185,19 @@ let g:SuperTabMappingBackward = '<tab>'
 let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 
 " PerlHelp
-map <unique> <leader>PH :PerlHelp 
+map <leader>PH :PerlHelp 
+
+" vim help
+map <leader>H :h 
 
 " ack
 map <leader>* :Ack <cword> %<cr>
 map <leader>/ :Ack 
 
 " quickfix
-map <leader>cn :cn<cr>
-map <leader>cp :cp<cr>
+map qn :cn<cr>
+map qp :cp<cr>
+map qw :cp<cr>
 
 " Man pages
 runtime ftplugin/man.vim
