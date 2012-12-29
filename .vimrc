@@ -69,9 +69,10 @@ vnoremap <tab> %
 " previous buffer
 map <space> :e#<cr>
 
-" edit vimrc
-nmap <silent> <leader>ev :e $MYVIMRC<cr>
-nmap <silent> <leader>sv :so $MYVIMRC<CR>
+" edit files
+map <leader>eb :e /home/eric/.bashrc<cr>
+map <leader>ev :e $MYVIMRC<cr>
+map <leader>et :e /home/eric/.todo/todo.txt<cr>
 
 " easier to escape
 inoremap jj <ESC>
@@ -87,18 +88,22 @@ map <leader>j :winc j<cr>
 map <leader>k :winc k<cr>
 map <leader>l :winc l<cr>
 map <leader>h :winc h<cr>
-map <leader>_ :winc _<cr>
+map -         :winc _<cr>
 map <leader>= :winc =<cr>
 
 " OS clipboard yank and paste
 nmap <leader>Y "+y
 nmap <leader>P "+p
 
+" commandline awesum sauce
+map <leader>x :Sscratch<cr>:0r !
+
 " fugitive keybindings
 map <leader>g<space> :Git 
 map <leader>ga :Gwrite<cr>
-map <leader>g  :Gcommit<cr>
+map <leader>gc :Gcommit<cr>
 map <leader>gn <leader>ga<cr>:Gcommit<cr>
+map <leader>gpp :Git pp<cr>
 map <leader>gd :Gdiff<cr>
 map <leader>ge :Gedit HEAD<cr>
 map <leader>gl :Glog<cr>
