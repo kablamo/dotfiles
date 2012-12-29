@@ -96,12 +96,12 @@ nmap <leader>P "+p
 
 " fugitive keybindings
 map <leader>g  :Git 
-map <leader>gc :Gcommit<cr>
 map <leader>ga :Gwrite<cr>
-map <leader>gs :Gstatus<cr>
-map <leader>ge :Gedit HEAD<cr>
+map <leader>gc :Gcommit<cr>
 map <leader>gd :Gdiff<cr>
+map <leader>ge :Gedit HEAD<cr>
 map <leader>gl :Glog<cr>
+map <leader>gs :Gstatus<cr>
 
 " Complete whole filenames/lines with a quicker shortcut key in insert mode
 imap <C-f> <C-x><C-f>
