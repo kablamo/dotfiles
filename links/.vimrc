@@ -70,7 +70,7 @@ vnoremap <tab> %
 map <space> :e#<cr>
 
 " edit files
-map <leader>eb :e /home/eric/code/dotfiles/links/.bashrc<cr>
+map <leader>ea :e /home/eric/code/dotfiles/links/.bash/aliases.sh<cr>
 map <leader>eg :e /home/eric/code/dotfiles/links/.gitconfig<cr>
 map <leader>ev :e /home/eric/code/dotfiles/links/.vimrc<cr>
 map <leader>et :e /home/eric/code/dotfiles/links/.todo/todo.txt<cr>
