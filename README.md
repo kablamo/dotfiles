@@ -1,7 +1,9 @@
 Dotfiles
 ========
 
-The key to everything is the script [bin/dotfiles](bin/dotfiles).  It does the following:
+The key to everything is the script [bin/dotfiles]
+(https://github.com/kablamo/dotfiles/blob/master/bin/dotfiles).  It does the
+following:
 
 * If any of the files in 'link' already exist in $HOME they are copied to /tmp/dotfiles-backup/
 * All the files in 'link' are linked into $HOME.
