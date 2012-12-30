@@ -10,3 +10,6 @@
 [submodule "links/.vim/bundle/vim-paren-crosshairs"]
 	path = links/.vim/bundle/vim-paren-crosshairs
 	url = git@github.com:chreekat/vim-paren-crosshairs.git
+[submodule "links/.vim/bundle/neocomplcache"]
+	path = links/.vim/bundle/neocomplcache
+	url = git@github.com:Shougo/neocomplcache.git

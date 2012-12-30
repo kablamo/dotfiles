@@ -185,11 +185,10 @@ autocmd BufRead,BufNewFile *.xml noremap <leader>t :Tidy<CR>
 let dbext_default_display_cmd_line = 1
 
 " supertab
-let g:SuperTabMappingForward = '<s-tab>'
-let g:SuperTabMappingBackward = '<tab>'
-
-" Perl omni complete
-let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
+let g:SuperTabMappingForward               = '<s-tab>'
+let g:SuperTabMappingBackward              = '<tab>'
+let g:SuperTabDefaultCompletionType        = "<c-x><c-o>"
+let g:SuperTabContextDefaultCompletionType = "<c-p>"
 
 " PerlHelp
 map <leader>PH :PerlHelp 
