@@ -1,12 +1,12 @@
-[submodule ".vim/bundle/vim-easymotion"]
-	path = .vim/bundle/vim-easymotion
+[submodule "links/.vim/bundle/vim-easymotion"]
+	path = links/.vim/bundle/vim-easymotion
 	url = git://github.com/Lokaltog/vim-easymotion.git
-[submodule ".vim/bundle/vim-buffergator"]
-	path = .vim/bundle/vim-buffergator
+[submodule "links/.vim/bundle/vim-buffergator"]
+	path = links/.vim/bundle/vim-buffergator
 	url = https://github.com/jeetsukumaran/vim-buffergator.git
-[submodule ".vim/bundle/perlomni"]
-	path = .vim/bundle/perlomni
+[submodule "links/.vim/bundle/perlomni"]
+	path = links/.vim/bundle/perlomni
 	url = git@github.com:c9s/perlomni.vim.git
-[submodule ".vim/bundle/vim-paren-crosshairs"]
-	path = .vim/bundle/vim-paren-crosshairs
+[submodule "links/.vim/bundle/vim-paren-crosshairs"]
+	path = links/.vim/bundle/vim-paren-crosshairs
 	url = git@github.com:chreekat/vim-paren-crosshairs.git
