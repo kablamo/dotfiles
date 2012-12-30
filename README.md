@@ -13,7 +13,6 @@ My .bashrc adds the 'bin' directory to $PATH.
 How to use it
 =============
 
-    cd ~
-    git clone https://github.com/kablamo/dotfiles.git code/dotfiles
+    git clone https://github.com/kablamo/dotfiles.git ~/code/dotfiles
     code/dotfiles/bin/dotfiles
 
