@@ -31,6 +31,12 @@ while (my $file = $links_dir->next) {
     if (-e $link) {
         $backup_dir->mkpath;
         my $backup = $backup_dir->file($basename);
+
+        if (! -o $link) {
+            say "Cannot backup $basename to $backup:  Permission denied.";
+            next;
+        }
+
         say "backing up $basename to $backup";
         move($link, $backup);
     }
@@ -39,3 +45,6 @@ while (my $file = $links_dir->next) {
     say $ln;
     `$ln`;
 }
+
+# TODO:
+# chmod files
