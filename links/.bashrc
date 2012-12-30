@@ -30,6 +30,9 @@ export PERL5LIB="$HOME/perl5/lib/perl5/i686-linux:$HOME/perl5/lib/perl5/i686-lin
 export PERL5LIB=.:./lib:$PERL5LIB
 export PATH="$HOME/perl5/bin:$PATH"
 
+# dotfiles
+export PATH="$HOME/code/dotfiles/bin:$PATH"
+
 # cpanm
 export PERL_CPANM_OPT="--local-lib=~/perl5"
 
