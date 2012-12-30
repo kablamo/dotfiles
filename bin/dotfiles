@@ -2,7 +2,6 @@
 
 use strict;
 use warnings;
-use feature qw/say/;
 
 use Path::Class qw/file dir/;
 use File::Copy qw/move copy/;
@@ -15,7 +14,7 @@ my $backup_dir = dir('/tmp/dotfiles-backup');
 while (my $file = $home_dir->next) {
     next unless $file->basename =~ /^\./;
     next if -e $file;
-    say "unlink $file" if -l $file;
+    print "unlink $file\n" if -l $file;
     unlink $file       if -l $file;
 }
 
@@ -33,16 +32,16 @@ while (my $file = $links_dir->next) {
         my $backup = $backup_dir->file($basename);
 
         if (! -o $link) {
-            say "Cannot backup $basename to $backup:  Permission denied.";
+            print "Cannot backup $basename to $backup:  Permission denied.\n";
             next;
         }
 
-        say "backing up $basename to $backup";
+        print "backing up $basename to $backup\n";
         move($link, $backup);
     }
 
     my $ln = "ln -s '$file' '$link'";
-    say $ln;
+    print $ln, "\n";
     `$ln`;
     # TODO: check for errors
 }
