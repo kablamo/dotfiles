@@ -194,9 +194,14 @@ let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 " PerlHelp
 map <leader>PH :PerlHelp 
 
+" Turn off warnings for perl compiler (see ':h :comp')
+let g:perl_compiler_force_warnings = 0
+
 " ack
-map <leader>* :Ack <cword> %<cr>
-map <leader>/ :Ack 
+nmap <leader>* :Ack <cword> %<cr>
+vmap <leader>* y:Ack <c-r>" %<cr>
+nmap <leader>/ :Ack 
+vmap <leader>/ y:Ack <c-r>"
 
 " quickfix
 map fn :cn<cr>
@@ -206,7 +211,7 @@ map fw :cp<cr>
 " Man pages
 runtime ftplugin/man.vim
 let $PAGER=''
-nmap K :Man <c-r>=expand("<cword>")<cr><cr>
+nmap K :Man <cword><cr>
 vmap K y:Man <c-r>"<cr>
 
 " Visual search fu
