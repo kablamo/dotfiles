@@ -29,6 +29,7 @@ set shiftwidth=4
 set shiftround
 set smartcase
 set smarttab
+set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 set tags=/home/eric/tags
 set tabstop=4
 set textwidth=0
