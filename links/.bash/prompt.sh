@@ -10,7 +10,7 @@
 
 function __git_prompt {
   GIT_PS1_SHOWDIRTYSTATE=1
-  __git_ps1 "[%s] " | sed 's/ \([+*]\{1,\}\)] $/\1] /'
+  __git_ps1 '[%s] ' 2>/dev/null | sed 's/ \([+*]\{1,\}\)] $/\1] /'
 }
 
 # Only show username@server over SSH.
