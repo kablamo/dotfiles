@@ -70,10 +70,10 @@ vnoremap <tab> %
 map <space> :e#<cr>
 
 " edit files
-map <leader>eb :e /home/eric/.bashrc<cr>
-map <leader>eg :e /home/eric/.gitconfig<cr>
-map <leader>ev :e $MYVIMRC<cr>
-map <leader>et :e /home/eric/.todo/todo.txt<cr>
+map <leader>eb :e /home/eric/code/dotfiles/links/.bashrc<cr>
+map <leader>eg :e /home/eric/code/dotfiles/links/.gitconfig<cr>
+map <leader>ev :e /home/eric/code/dotfiles/links/.vimrc<cr>
+map <leader>et :e /home/eric/code/dotfiles/links/.todo/todo.txt<cr>
 
 " easier to escape
 inoremap jj <ESC>
@@ -100,15 +100,15 @@ nmap <leader>P "+p
 map <leader>x :Sscratch<cr>:0r !
 
 " fugitive keybindings
-map <leader>g<space> :Git 
-map <leader>ga :Gwrite<cr>
-map <leader>gc :Gcommit<cr>
-map <leader>gn <leader>ga<cr>:Gcommit<cr>
-map <leader>gpp :Git pp<cr>
-map <leader>gd :Gdiff<cr>
-map <leader>ge :Gedit HEAD<cr>
-map <leader>gl :Glog<cr>
-map <leader>gs :Gstatus<cr>
+map <leader>ga  :Gwrite<cr>
+map <leader>gc  :Gcommit<cr>
+map <leader>gn  :Gwrite<cr>:Gcommit<cr>
+map <leader>gpp <leader>xgit pp<cr>
+map <leader>gp  <leader>xgit p<cr>
+map <leader>gd  :Gdiff<cr>
+map <leader>ge  :Gedit HEAD<cr>
+map <leader>gl  :Glog<cr>
+map <leader>gs  :Gstatus<cr>
 
 " Complete whole filenames/lines with a quicker shortcut key in insert mode
 imap <C-f> <C-x><C-f>
