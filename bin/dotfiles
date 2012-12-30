@@ -16,14 +16,14 @@ while (my $file = $home_dir->next) {
     next unless $file->basename =~ /^\./;
     next if -e $file;
     say "unlink $file" if -l $file;
-    unlink $file if -l $file;
+    unlink $file       if -l $file;
 }
 
 # create links in $home_dir to $links_dir
 while (my $file = $links_dir->next) {
     my $basename = $file->basename;
     next if $basename eq $links_dir->basename;
-    next if $basename =~ /\.\.$/;
+    next if $basename =~ /^\.\.$/;
 
     my $link = $home_dir->file($basename);
     next if -l $link;
@@ -44,5 +44,6 @@ while (my $file = $links_dir->next) {
     my $ln = "ln -s '$file' '$link'";
     say $ln;
     `$ln`;
+    # TODO: check for errors
 }
 
