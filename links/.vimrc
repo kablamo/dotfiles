@@ -207,6 +207,11 @@ map fw :cp<cr>
 runtime ftplugin/man.vim
 let $PAGER=''
 nmap K :Man <c-r>=expand("<cword>")<cr><cr>
+vmap K y:Man <c-r>"<cr>
+
+" Visual search fu
+vmap * y/<c-r>"<cr>
+vmap # y?<c-r>"<cr>
 
 " pathogen
 call pathogen#infect()
