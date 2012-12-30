@@ -17,6 +17,7 @@
     mrg = merge --no-ff
     p = push origin HEAD
     pp = !"echo 'Pull'; git pull; echo 'Push'; git push origin HEAD"
+    ribbon = tag --force _ribbon origin/master
     s = status -sb
     tree = log --graph --pretty=oneline --abbrev-commit
 [core]
