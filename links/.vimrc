@@ -184,17 +184,30 @@ autocmd BufRead,BufNewFile *.xml noremap <leader>t :Tidy<CR>
 " dbext
 let dbext_default_display_cmd_line = 1
 
-" supertab
-let g:SuperTabMappingForward               = '<s-tab>'
-let g:SuperTabMappingBackward              = '<tab>'
-let g:SuperTabDefaultCompletionType        = "<c-x><c-o>"
-let g:SuperTabContextDefaultCompletionType = "<c-p>"
+" neocomplcache
+let g:neocomplcache_enable_at_startup = 1
+let g:neocomplcache_enable_auto_select = 1
+let g:neocomplcache_enable_camel_case_completion = 1
+let g:neocomplcache_enable_underbar_completion = 1
+inoremap <expr><tab>  neocomplcache#start_manual_complete()
+inoremap <expr><c-o>  neocomplcache#manual_omni_complete()
+inoremap <expr><c-f>  neocomplcache#manual_filename_complete()
+inoremap <expr><c-h>  neocomplcache#cancel_popup()
+if !exists('g:neocomplcache_omni_patterns')
+  let g:neocomplcache_omni_patterns = {}
+endif
+"let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
+"let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+"let g:neocomplcache_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+"let g:neocomplcache_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+let g:neocomplcache_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 
 " PerlHelp
 map <leader>PH :PerlHelp 
 
 " Turn off warnings for perl compiler (see ':h :comp')
 let g:perl_compiler_force_warnings = 0
+comp perl
 
 " ack
 nmap <leader>* :Ack <cword> %<cr>
