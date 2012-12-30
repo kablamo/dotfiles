@@ -18,7 +18,7 @@ How to use it
     code/dotfiles/bin/dotfiles
 
 
-SEE ALSO
+See also
 --------
 
 https://github.com/kablamo/puppet
