@@ -46,5 +46,3 @@ while (my $file = $links_dir->next) {
     `$ln`;
 }
 
-# TODO:
-# chmod files
