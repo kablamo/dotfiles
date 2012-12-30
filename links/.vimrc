@@ -194,9 +194,6 @@ let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 " PerlHelp
 map <leader>PH :PerlHelp 
 
-" vim help
-map <leader>H :h 
-
 " ack
 map <leader>* :Ack <cword> %<cr>
 map <leader>/ :Ack 
