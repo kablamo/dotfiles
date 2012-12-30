@@ -7,13 +7,17 @@ use feature qw/say/;
 use Path::Class qw/file dir/;
 use File::Copy qw/move copy/;
 
-
 my $home_dir     = dir('/home/eric');
 my $dotfiles_dir = $home_dir->subdir('code/dotfiles/links');
 my $backup_dir   = dir('/tmp/dotfiles-backup');
 
-$home_dir = dir('/home/eric/tmp/boop');
-$home_dir->mkpath;
+# remove dotfiles in $home_dir which are dead links
+while (my $file = $home_dir->next) {
+    next unless $file->basename =~ /^\./;
+    next if -e $file;
+    say "unlink $file" if -l $file;
+    unlink $file if -l $file;
+}
 
 # create links in $home_dir to $dotfiles_dir
 while (my $file = $dotfiles_dir->next) {
@@ -37,12 +41,4 @@ while (my $file = $dotfiles_dir->next) {
     my $ln = "ln -s '$file' '$link'";
     say $ln;
     `$ln`;
-}
-
-# remove dotfiles in $home_dir which are dead links
-while (my $file = $home_dir->next) {
-    next unless $file->basename =~ /^\./;
-    next if -e $file;
-    say "unlink $file" if -l $file;
-    unlink $file if -l $file;
 }
