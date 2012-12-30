@@ -7,9 +7,9 @@ use feature qw/say/;
 use Path::Class qw/file dir/;
 use File::Copy qw/move copy/;
 
-my $home_dir     = dir('/home/eric');
-my $dotfiles_dir = $home_dir->subdir('code/dotfiles/links');
-my $backup_dir   = dir('/tmp/dotfiles-backup');
+my $home_dir   = dir('/home/eric');
+my $links_dir  = $home_dir->subdir('code/dotfiles/links');
+my $backup_dir = dir('/tmp/dotfiles-backup');
 
 # remove dotfiles in $home_dir which are dead links
 while (my $file = $home_dir->next) {
@@ -19,13 +19,11 @@ while (my $file = $home_dir->next) {
     unlink $file if -l $file;
 }
 
-# create links in $home_dir to $dotfiles_dir
-while (my $file = $dotfiles_dir->next) {
+# create links in $home_dir to $links_dir
+while (my $file = $links_dir->next) {
     my $basename = $file->basename;
-    next if $basename eq $dotfiles_dir->basename;
+    next if $basename eq $links_dir->basename;
     next if $basename =~ /\.\.$/;
-    next if $basename =~ /^.git$/;
-    next if $basename =~ /^.gitmodules$/;
     next if $basename =~ /^bin$/;
 
     my $link = $home_dir->file($basename);
