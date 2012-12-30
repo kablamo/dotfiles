@@ -24,7 +24,6 @@ while (my $file = $links_dir->next) {
     my $basename = $file->basename;
     next if $basename eq $links_dir->basename;
     next if $basename =~ /\.\.$/;
-    next if $basename =~ /^bin$/;
 
     my $link = $home_dir->file($basename);
     next if -l $link;
