@@ -15,5 +15,5 @@ How to use it
 
     cd ~
     git clone https://github.com/kablamo/dotfiles.git code/dotfiles
-    code/dotfiles/links/bin/dotfiles
+    code/dotfiles/bin/dotfiles
 
