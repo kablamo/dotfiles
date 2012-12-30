@@ -218,7 +218,7 @@ vmap <leader>/ y:Ack <c-r>"
 " quickfix
 map fn :cn<cr>
 map fp :cp<cr>
-map fw :cp<cr>
+map fw :cope<cr>
 
 " Man pages
 runtime ftplugin/man.vim
