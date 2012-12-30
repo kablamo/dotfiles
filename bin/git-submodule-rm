@@ -1,4 +1,5 @@
 #!/bin/bash
+# https://gist.github.com/2491147
 
 function actual_path() {
   if [ [ -z "$1" ] -a [ -d $1 ] ]; then
