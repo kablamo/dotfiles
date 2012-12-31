@@ -3,6 +3,7 @@ set nocompatible
 
 " set
 set copyindent
+set cursorline " highlight current line
 set encoding=utf-8
 set expandtab
 set exrc " for vroom
@@ -24,19 +25,19 @@ set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
 set noswapfile
 set nowrap
 set number
+set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%)
 set scrolloff=10
 set shiftwidth=4
 set shiftround
 set smartcase
 set smarttab
-set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
+set showcmd
 set tags=/home/eric/tags
 set tabstop=4
 set textwidth=0
 set undolevels=1000
 set winminheight=0
 set wildmode=longest,list,full
-set nowrap
 
 " filetype (required for perl omni completion)
 filetype on
