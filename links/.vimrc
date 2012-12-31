@@ -73,6 +73,7 @@ map <space> :e#<cr>
 
 " edit files
 map <leader>ea :e /home/eric/code/dotfiles/links/.bash/aliases.sh<cr>
+map <leader>ec :e /home/eric/code/dotfiles/links/.vim/colors/iijo.vim<cr>
 map <leader>eg :e /home/eric/code/dotfiles/links/.gitconfig<cr>
 map <leader>ev :e /home/eric/code/dotfiles/links/.vimrc<cr>
 map <leader>et :e /home/eric/code/dotfiles/links/.todo/todo.txt<cr>
@@ -189,9 +190,9 @@ let dbext_default_display_cmd_line = 1
 " neocomplcache
 let g:neocomplcache_enable_at_startup = 1
 let g:neocomplcache_enable_auto_select = 1
-let g:neocomplcache_enable_camel_case_completion = 1
-let g:neocomplcache_enable_underbar_completion = 1
-inoremap <expr><tab>  neocomplcache#start_manual_complete()
+let g:neocomplcache_enable_camel_case_completion = 0
+let g:neocomplcache_enable_underbar_completion = 0
+inoremap <expr><c-n>  neocomplcache#start_manual_complete()
 inoremap <expr><c-o>  neocomplcache#manual_omni_complete()
 inoremap <expr><c-f>  neocomplcache#manual_filename_complete()
 inoremap <expr><c-h>  neocomplcache#cancel_popup()
