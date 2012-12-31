@@ -9,8 +9,8 @@ endif
 hi Comment      cterm=none           ctermfg=244
 hi Constant     cterm=none           ctermfg=244
 hi Cursor       cterm=reverse
-hi CursorLine   cterm=none           ctermfg=none ctermbg=236
-hi CursorColumn cterm=none           ctermfg=none ctermbg=236
+hi CursorLine   cterm=none           ctermfg=none ctermbg=235
+hi CursorColumn cterm=none           ctermfg=none ctermbg=none
 hi Define       cterm=none           ctermfg=white 
 hi DiffAdd      cterm=bold           ctermfg=221 ctermbg=none
 hi DiffChange   cterm=none           ctermfg=none ctermbg=none
@@ -24,14 +24,14 @@ hi Folded       cterm=none           ctermfg=240 ctermbg=236
 hi Function     cterm=bold           ctermfg=white 
 hi Identifier   cterm=none           ctermfg=250
 hi Ignore       cterm=bold           ctermfg=white 
-hi IncSearch    cterm=bold           ctermfg=154 ctermbg=none
+hi IncSearch    cterm=bold           ctermfg=154 ctermbg=236
 hi Include      cterm=none           ctermfg=white 
-hi LineNr       cterm=none           ctermfg=236 ctermbg=233
-hi MatchParen   cterm=bold           ctermfg=none ctermbg=240
+hi LineNr       cterm=none           ctermfg=236 ctermbg=234
+hi MatchParen   cterm=reverse        ctermfg=240 ctermbg=none
 hi ModeMsg      cterm=none           ctermfg=white
 hi MoreMsg      cterm=none           ctermfg=white
-hi NonText      cterm=none           ctermfg=235 ctermbg=235
-"hi Normal 
+hi NonText      cterm=none           ctermfg=234 ctermbg=234
+"hi Normal        ctermbg=235
 hi Operator     cterm=none           ctermfg=252
 hi Pmenu		 cterm=none           ctermfg=255 ctermbg=236
 hi PmenuSel	 cterm=none           ctermfg=22 ctermbg=10
@@ -39,7 +39,7 @@ hi PmenuSel	 cterm=none           ctermfg=22 ctermbg=10
 "hi PmenuThumb	 cterm=none
 hi PreProc      cterm=none           ctermfg=white 
 hi Question     cterm=none           ctermfg=white
-hi Search       cterm=none           ctermfg=none ctermbg=233
+hi Search       cterm=none           ctermfg=none ctermbg=236
 hi SignColumn   cterm=none           ctermfg=none ctermbg=233
 hi Special      cterm=none           ctermfg=238
 hi SpecialKey   cterm=none           ctermfg=green
