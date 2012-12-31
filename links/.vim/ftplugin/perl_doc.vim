@@ -11,7 +11,7 @@ endif
 let b:did_ftplugin = 1
 
 if &keywordprg == '' | setlocal keywordprg=perldoc | endif   " See ':help K'
-setlocal iskeyword=a-z,A-Z,48-57,:,/,. " Adds / and . as used in requires.
+setlocal iskeyword=a-z,A-Z,48-57,:,/,.,_ " Adds / and . as used in requires.
 
 if !exists(':Perldoc')
   command! -n=? -buffer -complete=dir Perldoc :call s:Perldoc('<args>')
