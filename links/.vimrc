@@ -77,6 +77,7 @@ map <leader>ec :e /home/eric/code/dotfiles/links/.vim/colors/iijo.vim<cr>
 map <leader>eg :e /home/eric/code/dotfiles/links/.gitconfig<cr>
 map <leader>ev :e /home/eric/code/dotfiles/links/.vimrc<cr>
 map <leader>et :e /home/eric/code/dotfiles/links/.todo/todo.txt<cr>
+map <leader>em :e /home/eric/code/dotfiles/links/.tmux.conf<cr>
 
 " easier to escape
 inoremap jj <ESC>
@@ -101,6 +102,8 @@ nmap <leader>P "+p
 
 " vim-powerline
 "let g:Powerline_symbols = 'fancy'
+let g:Powerline_theme = 'kablamo'
+let g:Powerline_colorscheme = 'kablamo'
 
 " commandline awesum sauce
 map <leader>x :Sscratch<cr>:0r !
