@@ -235,6 +235,9 @@ vmap K y:Man <c-r>"<cr>
 vmap * y/<c-r>"<cr>
 vmap # y?<c-r>"<cr>
 
+" ctrlp
+let g:ctrlp_open_multiple_files = '1jr'
+
 " pathogen
 call pathogen#infect()
 call pathogen#helptags()
