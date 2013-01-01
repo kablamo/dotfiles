@@ -1,6 +1,6 @@
 " this stuff has to be first
 set nocompatible
-filetype off " required!  gets turned on later
+filetype off " required!  gets turned on again later
 set runtimepath+=~/.vim/bundle/vundle
 call vundle#rc()
 
@@ -12,6 +12,7 @@ Bundle 'Lokaltog/vim-easymotion'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'Shougo/neocomplcache'
 Bundle 'Shougo/vimproc'
+Bundle 'Townk/vim-autoclose'
 Bundle 'c9s/perlomni.vim'
 Bundle 'jeetsukumaran/vim-buffergator'
 Bundle 'kien/ctrlp.vim'
@@ -55,7 +56,7 @@ set undolevels=1000
 set winminheight=0
 set wildmode=longest,list,full
 
-" filetype (required for perl omni completion)
+" filetype (required for perl omni completion and vundle)
 filetype on
 filetype plugin on
 filetype indent on
@@ -253,6 +254,9 @@ vmap # y?<c-r>"<cr>
 
 " ctrlp
 let g:ctrlp_open_multiple_files = '1jr'
+
+" vundle
+map <leader>v :BundleList<cr>
 
 try 
     source /home/eric/.vimrc.local
