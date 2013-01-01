@@ -161,10 +161,6 @@ let g:buffergator_viewport_split_policy='B'
 let g:buffergator_suppress_keymaps=1
 map <leader>b :BuffergatorOpen<cr>
 
-" CommandT
-let g:CommandTMaxFiles=20000
-let g:CommandTMaxDepth=100
-
 " Taglist
 map <leader>m :Tlist<cr>
 let Tlist_Compact_Format=1
