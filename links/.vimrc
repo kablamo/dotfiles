@@ -97,8 +97,8 @@ map -         :winc _<cr>
 map <leader>= :winc =<cr>
 
 " OS clipboard yank and paste
-nmap <leader>Y "+y
-nmap <leader>P "+p
+nmap <leader>Y "*y
+nmap <leader>P "*p
 
 " vim-powerline
 "let g:Powerline_symbols = 'fancy'
