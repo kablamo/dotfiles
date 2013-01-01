@@ -22,3 +22,6 @@
 [submodule "links/.vim/bundle/vimproc"]
 	path = links/.vim/bundle/vimproc
 	url = https://github.com/Shougo/vimproc
+[submodule "links/.vim/bundle/ctrlp"]
+	path = links/.vim/bundle/ctrlp
+	url = git@github.com:kien/ctrlp.vim.git
