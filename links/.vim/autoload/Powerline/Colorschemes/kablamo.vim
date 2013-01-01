@@ -79,8 +79,8 @@ let g:Powerline#Colorschemes#kablamo#colorscheme = Pl#Colorscheme#Init([
 		\ }),
 	\
 	\ Pl#Hi#Segments(['fileinfo.flags'], {
-		\ 'n': ['brightestred', ['bold']],
-		\ 'N': ['darkred'],
+		\ 'n': ['brightpurple', ['bold']],
+		\ 'N': ['mediumpurple'],
 		\ 'i': ['brightestred', ['bold']],
 		\ }),
 	\
