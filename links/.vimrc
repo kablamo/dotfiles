@@ -4,8 +4,10 @@ filetype off " required!  gets turned on later
 set runtimepath+=~/.vim/bundle/vundle
 call vundle#rc()
 
+" vundle manages vundle -- required
+Bundle 'gmarik/vundle'
+
 " Plugins!
-Bundle 'gmarik/vundle'  " required!
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'Shougo/neocomplcache'
