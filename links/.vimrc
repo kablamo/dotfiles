@@ -10,7 +10,7 @@ set exrc " for vroom
 set foldenable
 set foldlevelstart=9
 set foldmethod=syntax
-set fillchars=fold:\ ,vert:\ 
+set fillchars=fold:\ ,vert:\ ,stl:\ ,stlnc:\ 
 set guioptions=m
 set helpheight=200
 set hidden
@@ -98,6 +98,9 @@ map <leader>= :winc =<cr>
 " OS clipboard yank and paste
 nmap <leader>Y "+y
 nmap <leader>P "+p
+
+" vim-powerline
+"let g:Powerline_symbols = 'fancy'
 
 " commandline awesum sauce
 map <leader>x :Sscratch<cr>:0r !
