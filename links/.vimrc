@@ -16,6 +16,7 @@ Bundle 'Townk/vim-autoclose'
 Bundle 'c9s/perlomni.vim'
 Bundle 'jeetsukumaran/vim-buffergator'
 Bundle 'kien/ctrlp.vim'
+Bundle 'majutsushi/tagbar'
 Bundle 'tpope/vim-fugitive'
 
 " set things
@@ -49,7 +50,7 @@ set shiftround
 set smartcase
 set smarttab
 set showcmd
-set tags=/home/eric/tags
+set tags=/home/eric/perl5/tags
 set tabstop=4
 set textwidth=0
 set undolevels=1000
@@ -179,10 +180,16 @@ let g:buffergator_suppress_keymaps=1
 map <leader>b :BuffergatorOpen<cr>
 
 " Taglist
-map <leader>m :Tlist<cr>
-let Tlist_Compact_Format=1
-let Tlist_Enable_Fold_Column=0
-let Tlist_Use_Right_Window=1
+"map <leader>m :Tlist<cr>
+"let Tlist_Compact_Format=1
+"let Tlist_Enable_Fold_Column=0
+"let Tlist_Use_Right_Window=1
+
+" Tagbar
+map <leader>m :TagbarOpenAutoClose<cr>
+let g:tagbar_autofocus = 1
+let g:tagbar_autoclose = 1
+let g:tagbar_indent = 1
 
 " perltidy
 autocmd BufRead,BufNewFile *.t,*.pl,*.plx,*.pm command! -range=% -nargs=* Tidy <line1>,<line2>!perltidy -q
