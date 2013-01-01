@@ -1,7 +1,5 @@
-xterm*background: #222222
+! fonts
 xterm*boldFont: Monospace:9
-xterm*borderWidth: 0
-xterm*eightBitInput: false
 xterm*faceName: Monospace:9
 xterm*faceNameDoublesize: WenQuanYi Micro Hei:antialias=true:pixelsize=18
 xterm*faceSize1: 11
@@ -11,13 +9,20 @@ xterm*faceSize4: 16
 xterm*faceSize5: 18
 xterm*faceSize6: 24
 xterm*faceSize:  10
-xterm*fastScroll: true
+
+! colors
+xterm*background: #222222
 xterm*foreground: #DEDEDE
+
+! double-click to select whole URLs
+xterm*charClass: 33:48,36-47:48,58-59:48,61:48,63-64:48,95:48,126:48
+
+! everything else
+xterm*borderWidth: 0
+xterm*eightBitInput: false
+xterm*fastScroll: true
 xterm*loginShell: true
 xterm*saveLines: 12000
 xterm*scrollBar: false
 xterm*scrollstyle: rxvt
 xterm.utf8: true
-
-! double-click to select whole URLs :D
-xterm*charClass: 33:48,36-47:48,58-59:48,61:48,63-64:48,95:48,126:48
