@@ -1,7 +1,7 @@
 " this has to be first
 set nocompatible
 
-" set
+" set things
 set copyindent
 set cursorline " highlight current line
 set encoding=utf-8
