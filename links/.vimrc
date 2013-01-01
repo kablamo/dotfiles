@@ -237,6 +237,7 @@ vmap # y?<c-r>"<cr>
 
 " pathogen
 call pathogen#infect()
+call pathogen#helptags()
 
 try 
     source /home/eric/.vimrc.local
