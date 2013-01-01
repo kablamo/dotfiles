@@ -238,10 +238,6 @@ vmap # y?<c-r>"<cr>
 " ctrlp
 let g:ctrlp_open_multiple_files = '1jr'
 
-" pathogen
-call pathogen#infect()
-call pathogen#helptags()
-
 try 
     source /home/eric/.vimrc.local
 catch
