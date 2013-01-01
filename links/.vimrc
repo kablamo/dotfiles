@@ -17,6 +17,7 @@ Bundle 'c9s/perlomni.vim'
 Bundle 'jeetsukumaran/vim-buffergator'
 Bundle 'kien/ctrlp.vim'
 Bundle 'majutsushi/tagbar'
+Bundle 'sjl/gundo.vim'
 Bundle 'tpope/vim-fugitive'
 
 " set things
@@ -261,6 +262,9 @@ vmap # y?<c-r>"<cr>
 
 " ctrlp
 let g:ctrlp_open_multiple_files = '1jr'
+
+" gundo
+map <leader>u :GundoToggle<cr>
 
 " vundle
 map <leader>v :BundleList<cr>
