@@ -1,44 +1,23 @@
 xterm*background: #222222
-xterm*foreground: #DEDEDE
-xterm*faceName: Monospace:
-xterm*faceSize: 10
+xterm*boldFont: Monospace:9
+xterm*borderWidth: 0
+xterm*eightBitInput: false
+xterm*faceName: Monospace:9
+xterm*faceNameDoublesize: WenQuanYi Micro Hei:antialias=true:pixelsize=18
 xterm*faceSize1: 11
 xterm*faceSize2: 28
 xterm*faceSize3: 14
 xterm*faceSize4: 16
 xterm*faceSize5: 18
 xterm*faceSize6: 24
-xterm*boldFont: Monospace:bold:
+xterm*faceSize:  10
+xterm*fastScroll: true
+xterm*foreground: #DEDEDE
+xterm*loginShell: true
 xterm*saveLines: 12000
 xterm*scrollBar: false
 xterm*scrollstyle: rxvt
-xterm*perl-ext-common: default,matcher
-xterm*borderWidth: 0
-xterm*urlLauncher: /usr/bin/google-chrome
-xterm*matcher.button: 1
-xterm*eightBitInput: false
-! xterm*colorUL: #86a2bb
-! ! black
-! xterm*color0  : #2E3436
-! xterm*color8  : #555753
-! ! red
-! xterm*color1  : #CC0000
-! xterm*color9  : #EF2929
-! ! green
-! xterm*color2  : #4E9A06
-! xterm*color10 : #8AE234
-! ! yellow
-! xterm*color3  : #C4A000
-! xterm*color11 : #FCE94F
-! ! blue
-! xterm*color4  : #3465A4
-! xterm*color12 : #729FCF
-! ! magenta
-! xterm*color5  : #75507B
-! xterm*color13 : #AD7FA8
-! ! cyan
-! xterm*color6  : #06989A
-! xterm*color14 : #34E2E2
-! ! white
-! xterm*color7  : #D3D7CF
-! xterm*color15 : #EEEEEC
+xterm.utf8: true
+
+! double-click to select whole URLs :D
+xterm*charClass: 33:48,36-47:48,58-59:48,61:48,63-64:48,95:48,126:48
