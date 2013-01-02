@@ -56,6 +56,7 @@ set tabstop=4
 set textwidth=0
 set undolevels=1000
 set winminheight=0
+set wildignore=tags
 set wildmode=longest,list,full
 
 " filetype (required for perl omni completion and vundle)
@@ -90,13 +91,17 @@ vnoremap <tab> %
 " previous buffer
 map <space> :e#<cr>
 
-" edit files
+" edit dotfiles
 map <leader>ea :e /home/eric/code/dotfiles/links/.bash/aliases.sh<cr>
 map <leader>ec :e /home/eric/code/dotfiles/links/.vim/colors/iijo.vim<cr>
 map <leader>eg :e /home/eric/code/dotfiles/links/.gitconfig<cr>
 map <leader>ev :e /home/eric/code/dotfiles/links/.vimrc<cr>
 map <leader>et :e /home/eric/code/dotfiles/links/.todo/todo.txt<cr>
 map <leader>em :e /home/eric/code/dotfiles/links/.tmux.conf<cr>
+
+" edit local dotfiles
+map <leader>ela :e /home/eric/.aliases<cr>
+map <leader>elv :e /home/eric/.vimrc.local<cr>
 
 " easier to escape
 inoremap jj <ESC>
@@ -223,6 +228,7 @@ inoremap <expr><c-n>  neocomplcache#start_manual_complete()
 inoremap <expr><c-o>  neocomplcache#manual_omni_complete()
 inoremap <expr><c-f>  neocomplcache#manual_filename_complete()
 inoremap <expr><c-h>  neocomplcache#cancel_popup()
+inoremap <expr><esc>  neocomplcache#cancel_popup()
 if !exists('g:neocomplcache_omni_patterns')
   let g:neocomplcache_omni_patterns = {}
 endif
