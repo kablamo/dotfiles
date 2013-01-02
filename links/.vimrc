@@ -228,7 +228,6 @@ inoremap <expr><c-n>  neocomplcache#start_manual_complete()
 inoremap <expr><c-o>  neocomplcache#manual_omni_complete()
 inoremap <expr><c-f>  neocomplcache#manual_filename_complete()
 inoremap <expr><c-h>  neocomplcache#cancel_popup()
-inoremap <expr><esc>  neocomplcache#cancel_popup()
 if !exists('g:neocomplcache_omni_patterns')
   let g:neocomplcache_omni_patterns = {}
 endif
