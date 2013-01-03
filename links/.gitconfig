@@ -23,6 +23,7 @@
 [core]
     #excludesfile = "/etc/gitexcludes"
     autocrlf = input
+	excludesfile = /home/eric/.gitignore_global
 [diff]
     tool = vimdiff
 [difftool]
