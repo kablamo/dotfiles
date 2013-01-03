@@ -15,11 +15,14 @@ Bundle 'Shougo/vimproc'
 Bundle 'Townk/vim-autoclose'
 Bundle 'c9s/perlomni.vim'
 Bundle 'jeetsukumaran/vim-buffergator'
+Bundle 'kana/vim-scratch'
 Bundle 'kien/ctrlp.vim'
 Bundle 'majutsushi/tagbar'
 Bundle 'sjl/gundo.vim'
-Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-eunuch'
+Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-markdown'
+Bundle 'tpope/vim-rsi'
 
 " set things
 set copyindent
@@ -274,7 +277,9 @@ let g:ctrlp_open_multiple_files = '1jr'
 map <leader>u :GundoToggle<cr>
 
 " vundle
-map <leader>v :BundleList<cr>
+map <leader>vl :BundleList<cr>
+map <leader>vi :BundleInstall<cr>
+map <leader>vv yy:<c-r>"<bs><cr>
 
 try 
     source /home/eric/.vimrc.local
