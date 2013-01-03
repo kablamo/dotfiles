@@ -18,7 +18,7 @@ alias ack='ack --perl --ignore-dir=t -A 5'
 alias irc='ssh eric@braga.cuckoo.org -R 7877:localhost:7877'
 alias tunnel='autossh -v -R 9999:localhost:9999 -N -l eric iijo.org -p 4321'
 alias httpdump="sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET \/.*\""
-alias t='/home/eric/bin/todo.sh -p -P'
+alias t='/home/eric/code/dotfiles/bin/todo.sh -p -P'
 
 alias free='free -m'
 alias install='sudo apt-get install'
