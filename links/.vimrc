@@ -137,11 +137,11 @@ let g:Powerline_colorscheme = 'kablamo'
 map <leader>x :Sscratch<cr>:0r !
 
 " fugitive keybindings
-map <leader>gco :!git checkout <c-r><c-g><cr><cr><cr>l
+map <leader>gco :Git! checkout <c-r><c-g><cr><cr><cr>l
 map <leader>gc. :Gwrite<cr>:Gcommit <c-r><c-g><cr>
 map <leader>gcc :Gcommit<cr>
-map <leader>gg  :Gwrite<cr>:Gcommit<cr>
-map <leader>gpp <leader>xgit pp<cr>
+map <leader>gca :Gwrite<cr>:Gcommit<cr>
+map <leader>gpp :Git! pp<cr>
 map <leader>gd  :Gdiff<cr>
 map <leader>ge  :Gedit HEAD<cr>
 map <leader>gl  :Glog<cr>
@@ -279,6 +279,8 @@ map <leader>u :GundoToggle<cr>
 " vundle
 map <leader>vl :BundleList<cr>
 map <leader>vi :BundleInstall<cr>
+
+" apply a single line of my .vimrc
 map <leader>vv yy:<c-r>"<bs><cr>
 
 try 
