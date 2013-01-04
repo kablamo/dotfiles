@@ -6,6 +6,7 @@
     b = branch
     c = commit
     ca = commit -a
+    catchup = log --patch --reverse --topo-order _ribbon..origin/master
     co = checkout
     count = shortlog -sn
     d = difftool 
