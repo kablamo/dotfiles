@@ -1,28 +1,10 @@
 " this stuff has to be first
 set nocompatible
-filetype off " required!  gets turned on again later
-set runtimepath+=~/.vim/bundle/vundle
-call vundle#rc()
 
-" vundle manages vundle -- required
-Bundle 'gmarik/vundle'
-
-" Plugins!
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'Lokaltog/vim-powerline'
-Bundle 'Shougo/neocomplcache'
-Bundle 'Shougo/vimproc'
-Bundle 'Townk/vim-autoclose'
-Bundle 'c9s/perlomni.vim'
-Bundle 'jeetsukumaran/vim-buffergator'
-Bundle 'kana/vim-scratch'
-Bundle 'kien/ctrlp.vim'
-Bundle 'majutsushi/tagbar'
-Bundle 'sjl/gundo.vim'
-Bundle 'tpope/vim-eunuch'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-markdown'
-Bundle 'tpope/vim-rsi'
+" pathogen
+runtime bundle/vim-pathogen/autoload/pathogen.vim
+call pathogen#infect()
+call pathogen#helptags()
 
 " set things
 set copyindent
