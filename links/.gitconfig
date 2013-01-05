@@ -12,6 +12,7 @@
     d = difftool 
     di = diff -b
     h = help
+    history = blame -w -c -n
     ll = log --pretty=format:'%C(bold white)%s%Creset\n%h %an %cr'   --abbrev-commit --no-merges --name-only 
     lo = "!f () { git log --no-merges --abbrev-commit --date=relative --pretty=format:'%h%x00%cd%x00%s%x00%an' $@ | gawk -F '\\0' '{ printf \"%s %-12s  %-100s %s\\n\", $1, $2, gensub(/(.{79}).{2,}/, \"\\\\1…\",\"g\",$3), $4 }' | less -R; }; f"
     ls = log --pretty=format:'%C(bold white)%s%Creset\n%h %an %cr\n' --abbrev-commit --no-merges
@@ -21,6 +22,8 @@
     ribbon = tag --force _ribbon origin/master
     s = status -sb
     tree = log --graph --pretty=oneline --abbrev-commit
+    whois = "!sh -c 'git log -i -1 --pretty=\"format:%an <%ae>\n\" --author=\"$1\"' -"
+    whatis = show -s --pretty='tformat:%h (%s, %ad)' --date=short
 [core]
     #excludesfile = "/etc/gitexcludes"
     autocrlf = input
