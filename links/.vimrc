@@ -274,6 +274,10 @@ vmap # y?<c-r>"<cr>
 
 " ctrlp
 let g:ctrlp_open_multiple_files = '1jr'
+let g:ctrlp_extensions = [
+  \ 'tag', 'buffertag', 'quickfix', 'dir', 'rtscript',
+  \ 'undo', 'line', 'changes', 'mixed', 'bookmarkdir']
+map <leader>t :CtrlPTag<cr>
 
 " gundo
 map <leader>u :GundoToggle<cr>
