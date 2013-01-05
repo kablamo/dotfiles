@@ -50,11 +50,11 @@ set nowrap
 set number
 set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%)
 set scrolloff=10
-set shiftwidth=4
 set shiftround
+set shiftwidth=4
+set showcmd
 set smartcase
 set smarttab
-set showcmd
 set tags=/home/eric/perl5/tags
 set tabstop=4
 set textwidth=0
@@ -247,7 +247,9 @@ map <leader>PH :PerlHelp
 
 " Turn off warnings for perl compiler (see ':h :comp')
 let g:perl_compiler_force_warnings = 0
-comp perl
+
+" refactor perl subs
+map <leader>rf <esc>:'<,'>!extract_perl_sub<cr>
 
 " ack
 nmap <leader>* :Ack <cword> %<cr>
