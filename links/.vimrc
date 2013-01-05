@@ -264,10 +264,6 @@ map <leader>t :CtrlPTag<cr>
 " gundo
 map <leader>u :GundoToggle<cr>
 
-" vundle
-map <leader>vl :BundleList<cr>
-map <leader>vi :BundleInstall<cr>
-
 " apply a single line of my .vimrc
 map <leader>vv yy:<c-r>"<bs><cr>
 
