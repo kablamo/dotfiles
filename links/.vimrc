@@ -97,7 +97,7 @@ map <leader>ea :e /home/eric/code/dotfiles/links/.bash/aliases.sh<cr>
 map <leader>ec :e /home/eric/code/dotfiles/links/.vim/colors/iijo.vim<cr>
 map <leader>eg :e /home/eric/code/dotfiles/links/.gitconfig<cr>
 map <leader>ev :e /home/eric/code/dotfiles/links/.vimrc<cr>
-map <leader>et :e /home/eric/code/dotfiles/links/.todo/todo.txt<cr>
+map <leader>et :e /home/eric/Dropbox/.todo/todo.txt<cr>
 map <leader>em :e /home/eric/code/dotfiles/links/.tmux.conf<cr>
 
 " edit local dotfiles
