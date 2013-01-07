@@ -8,6 +8,7 @@ use File::Copy qw/move copy/;
 
 my $home_dir   = dir('/home/eric');
 my $links_dir  = $home_dir->subdir('code/dotfiles/links');
+my $copy_dir   = $home_dir->subdir('code/dotfiles/copy');
 my $backup_dir = dir('/tmp/dotfiles-backup');
 
 # remove dotfiles in $home_dir which are dead links
@@ -15,7 +16,7 @@ while (my $file = $home_dir->next) {
     next unless $file->basename =~ /^\./;
     next if -e $file;
     print "unlink $file\n" if -l $file;
-    unlink $file       if -l $file;
+    unlink $file           if -l $file;
 }
 
 # create links in $home_dir to $links_dir
@@ -27,22 +28,49 @@ while (my $file = $links_dir->next) {
     my $link = $home_dir->file($basename);
     next if -l $link;
 
-    if (-e $link) {
-        $backup_dir->mkpath;
-        my $backup = $backup_dir->file($basename);
-
-        if (! -o $link) {
-            print "Cannot backup $basename to $backup:  Permission denied.\n";
-            next;
-        }
-
-        print "backing up $basename to $backup\n";
-        move($link, $backup);
-    }
+    backup($link) || next;
 
     my $ln = "ln -s '$file' '$link'";
     print $ln, "\n";
     `$ln`;
     # TODO: check for errors
+}
+
+# copy files from $copy_dir to $home_dir
+while (my $from = $copy_dir->next) {
+    my $basename = $from->basename;
+    next if $basename eq $copy_dir->basename;
+    next if $basename =~ /^\.\.$/;
+
+    my $to = $home_dir->file($basename);
+
+    backup($to) || next;
+
+    print "copying from $from to $to\n";
+    copy($from, $to);
+    # TODO: check for errors
+}
+
+# Returns 1 if the file was backed up successfully
+# Returns 1 if the file does not exist (no need to backup)
+# Returns 0 if permisssions don't allow file to be moved
+sub backup {
+    my $file     = shift;
+    my $basename = $file->basename;
+
+    $backup_dir->mkpath;
+    my $backup = $backup_dir->file($basename);
+
+    return 1 unless -e $file;
+
+    if (! -o $file) {
+        print "Cannot backup $basename to $backup:  Permission denied.\n";
+        return 0;
+    }
+
+    print "backing up $basename to $backup\n";
+    move($file, $backup);
+
+    return 1;
 }
 
