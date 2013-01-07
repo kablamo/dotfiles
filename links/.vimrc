@@ -10,7 +10,7 @@ call pathogen#helptags()
 set copyindent
 set cursorline " highlight current line
 if version >= 703
-  set cryptmethod=blowfish
+    set cryptmethod=blowfish
 endif
 set encoding=utf-8
 set expandtab
