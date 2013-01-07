@@ -11,6 +11,7 @@
     count = shortlog -sn
     d = difftool 
     di = diff -b
+    df = diff --name-only
     h = help
     history = blame -w -c -n
     ll = log --pretty=format:'%C(bold white)%s%Creset\n%h %an %cr'   --abbrev-commit --no-merges --name-only 
