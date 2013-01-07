@@ -9,7 +9,9 @@ call pathogen#helptags()
 " set things
 set copyindent
 set cursorline " highlight current line
-set cryptmethod=blowfish
+if version >= 703
+    set cryptmethod=blowfish
+endif
 set encoding=utf-8
 set expandtab
 set exrc " for vroom
