@@ -22,9 +22,9 @@
 [submodule "links/.vim/bundle/vim-scratch"]
 	path = links/.vim/bundle/vim-scratch
 	url = git@github.com:kana/vim-scratch.git
-[submodule "links/.vim/bundle/ctrlp"]
-	path = links/.vim/bundle/ctrlp
-	url = git@github.com:kien/ctrlp.git
+[submodule "links/.vim/bundle/ctrlp.vim"]
+	path = links/.vim/bundle/ctrlp.vim
+	url = git@github.com:kien/ctrlp.vim.git
 [submodule "links/.vim/bundle/tagbar"]
 	path = links/.vim/bundle/tagbar
 	url = git@github.com:majutsushi/tagbar.git
