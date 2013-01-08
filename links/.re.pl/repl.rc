@@ -11,7 +11,7 @@ my @plugins = (
     'Interrupt',                  # improve handling of ^C
     'OutputCache',                # access previous results
     'FancyPrompt',                # provide an irb-like prompt
-    'DDC',                        # format output with Data::Dumper::Concise
+    'DataPrinter',                # format output with Data::Printer
 #   'PPI',                        # PPI dumping of Perl code
 #   'MultiLine::PPI',             # allow multiple lines
     'Completion',
@@ -20,7 +20,7 @@ my @plugins = (
     'CompletionDriver::Globals',  # global variables
     'CompletionDriver::INC',      # loading new modules
     'CompletionDriver::Methods',  # class method completion
-    'CompletionDriver::Turtles',  # turtle command completion
+#   'CompletionDriver::Turtles',  # turtle command completion
 );
 $_REPL->load_plugin($_) for @plugins;
 $_REPL->normal_color('reset');
