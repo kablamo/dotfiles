@@ -1,1 +1,13 @@
 BEGIN {$DB::deep = 500}
+use DB::Pluggable;
+DB::Pluggable->run_with_config(\<<EOINI)
+[BreakOnTestNumber]
+ 
+[TypeAhead]
+type = {l
+type = c
+ifenv = DBTYPEAHEAD
+ 
+[StackTraceAsHTML]
+[DataPrinter]
+EOINI}
