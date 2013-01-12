@@ -46,3 +46,6 @@
 [submodule "links/.vim/bundle/ctrlp.vim"]
 	path = links/.vim/bundle/ctrlp.vim
 	url = git@github.com:kien/ctrlp.vim.git
+[submodule "links/.vim/bundle/tabular"]
+	path = links/.vim/bundle/tabular
+	url = git@github.com:godlygeek/tabular.git
