@@ -82,6 +82,7 @@ map <space> :e#<cr>
 
 " edit dotfiles
 map <leader>ea :e /home/eric/code/dotfiles/links/.bash/aliases.sh<cr>
+map <leader>ee :e /home/eric/code/dotfiles/links/.bash/env.sh<cr>
 map <leader>ec :e /home/eric/code/dotfiles/links/.vim/colors/iijo.vim<cr>
 map <leader>eg :e /home/eric/code/dotfiles/links/.gitconfig<cr>
 map <leader>ev :e /home/eric/code/dotfiles/links/.vimrc<cr>
