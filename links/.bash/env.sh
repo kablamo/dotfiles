@@ -8,11 +8,19 @@ export LESS="-MSiRXF"
 # TODO: delete this
 export PAGER="/usr/bin/less"
 
-
 # perlbrew
 export PERLBREW_ROOT="$HOME/perl5/perlbrew"
-[ -x $PERLBREW_ROOT ] && source ${PERLBREW_ROOT}/etc/bashrc
-[ -x $PERLBREW_ROOT ] && export PERL_CPANM_OPT="--local-lib=$PERLBREW_ROOT/perls/perl-5.16.2"
-
-# PERL5LIB
-export PERL5LIB=.:./lib:$PERL5LIB:$PERLBREW_ROOT/perls/perl-5.16.2/lib/perl5:$PERLBREW_ROOT/perls/perl-5.16.2/lib/5.16.2
+if [[ -x $PERLBREW_ROOT ]] ; then
+    source ${PERLBREW_ROOT}/etc/bashrc
+    export PERL_CPANM_OPT="--local-lib=$PERLBREW_ROOT/perls/perl-5.16.2"
+    export MY_PERL_LIB=$PERLBREW_ROOT/perls/perl-5.16.2/lib
+    # I don't think I need these
+    #export PERL_MB_OPT="--install_base $MY_PERL_LIB/perl5" 
+    #export PERL_MM_OPT=INSTALL_BASE=$MY_PERL_LIB/perl5 
+    export PERL5LIB=$MY_PERL_LIB/5.16.2
+    export PERL5LIB=$MY_PERL_LIB/site_perl:$PERL5LIB
+    export PERL5LIB=$MY_PERL_LIB/perl5/i686-linux-gnu-thread-multi-64int:$PERL5LIB
+    export PERL5LIB=$MY_PERL_LIB/perl5/i686-linux:$PERL5LIB
+    export PERL5LIB=$MY_PERL_LIB/perl5:$PERL5LIB
+    export PERL5LIB=.:./lib:$PERL5LIB
+fi
