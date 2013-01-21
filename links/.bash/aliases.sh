@@ -36,6 +36,14 @@ tsay() {
     translate $* | say $2 -
 }
 
+metacpan-favorites() {
+    curl -s  https://metacpan.org/author/KABLAMO | perl -ne 'if (m!class="release".*/release/([^"]+)!) { $_ = $1; s/-/::/g; print $_,$/ }'
+}
+ 
+cpanm-metacpan-favorites() {
+    metacpan-favorites | cpanm -nv
+}
+
 
 alias hg='history | grep --color=auto'
 alias grep='grep --color=auto'
