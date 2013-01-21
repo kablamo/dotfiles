@@ -65,6 +65,7 @@ alias search="apt-cache search"
 alias minicpanm='cpanm --mirror ~/minicpan --mirror-only'
 alias darkpan='cpanm --mirror http://mycompany.co.uk/DPAN --mirror-only'
 alias pod='perlfind'
+alias perl5lib='perl -E "say join \"\n\", split \":\", \$ENV{PERL5LIB}"'
 
 alias GET='lwp-request -m GET '
 alias PUT='lwp-request -m PUT '
