@@ -36,6 +36,14 @@ tsay() {
     translate $* | say $2 -
 }
 
+metacpan-favorites() {
+    curl -s  https://metacpan.org/author/KABLAMO | perl -ne 'if (m!class="release".*/release/([^"]+)!) { $_ = $1; s/-/::/g; print $_,$/ }'
+}
+ 
+cpanm-metacpan-favorites() {
+    metacpan-favorites | cpanm -nv
+}
+
 
 alias hg='history | grep --color=auto'
 alias grep='grep --color=auto'
@@ -65,6 +73,7 @@ alias search="apt-cache search"
 alias minicpanm='cpanm --mirror ~/minicpan --mirror-only'
 alias darkpan='cpanm --mirror http://mycompany.co.uk/DPAN --mirror-only'
 alias pod='perlfind'
+alias perl5lib='perl -E "say join \"\n\", split \":\", \$ENV{PERL5LIB}"'
 
 alias GET='lwp-request -m GET '
 alias PUT='lwp-request -m PUT '
