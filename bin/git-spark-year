@@ -1,0 +1,13 @@
+#!/bin/bash
+# Thanks to:
+# http://hoth.entp.com/2008/11/10/improving-my-git-workflo://github.com/holman/spark/wiki/Wicked-Cool-Usage 
+
+author=$USER
+[ -n $1 ] && author=$1
+
+echo $author
+
+for week in $(seq 52 -1 0); do
+    git log --author=$author --before="${week} weeks" --after="$[${week}+1] weeks" --format=oneline |
+    wc -l
+done | spark

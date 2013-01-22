@@ -1,0 +1,9 @@
+#!/bin/bash
+# Thanks to:
+# http://hoth.entp.com/2008/11/10/improving-my-git-workflo://github.com/holman/spark/wiki/Wicked-Cool-Usage 
+
+echo $1
+for day in $(seq 14 -1 0); do
+    git log --author=${1} --before="${day} days" --after="$[${day}+1] days" --format=oneline |
+    wc -l
+done | spark
