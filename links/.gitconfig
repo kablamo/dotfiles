@@ -8,13 +8,13 @@
     ca = commit -a
     catchup = log --patch --reverse --topo-order _ribbon..origin/master
     co = checkout
-    count = shortlog -sn
+    count = shortlog --summary --numbered
     d = difftool 
     deleted = log --diff-filter=D --summary
-    di = diff -b
+    di = diff --ignore-space-change
     df = diff --name-only
     h = help
-    history = blame -w -c -n
+    history = blame -w -c --show-number
     jo = "!f () { vim $(git diff --name-only $@); }; f"
     jm = "!f () { vim $(git diff --name-only --diff-filtered=U $@); }; f"
     ll = log --pretty=format:'%C(bold white)%s%Creset\n%h %an %cr'   --abbrev-commit --no-merges --name-only 
@@ -24,7 +24,7 @@
     p = push origin HEAD
     pp = !"echo 'Pull'; git pull; echo 'Push'; git push origin HEAD"
     ribbon = tag --force _ribbon origin/master
-    s = status -sb
+    s = status --short --branch
     tree = log --graph --pretty=oneline --abbrev-commit
     undo = git reset --hard HEAD^
     whois = "!sh -c 'git log -i -1 --pretty=\"format:%an <%ae>\n\" --author=\"$1\"' -"
