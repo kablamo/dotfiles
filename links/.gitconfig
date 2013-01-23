@@ -10,6 +10,7 @@
     co = checkout
     count = shortlog -sn
     d = difftool 
+    deleted = log --diff-filter=D --summary
     di = diff -b
     df = diff --name-only
     h = help
