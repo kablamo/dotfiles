@@ -80,17 +80,6 @@ alias PUT='lwp-request -m PUT '
 alias POST='lwp-request -m POST '
 alias HEAD='lwp-request -m HEAD '
 
-alias g='git'
-alias gu='git pull'
-alias gll='git ll'
-alias gls='git ls'
-alias glo='git lo'
-alias gp='git push origin HEAD'
-alias gd='git difftool'
-alias gc='git commit'
-alias gca='git commit -a'
-alias gb='git branch'
-alias gs='git status -sb' # upgrade your git if -sb breaks for you. it's fun.
 alias grm="git status | grep deleted | awk '{print \$3}' | xargs git rm"
 
 # local aliases
