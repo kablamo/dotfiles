@@ -271,6 +271,9 @@ map <leader>u :GundoToggle<cr>
 " apply a single line of my .vimrc
 map <leader>vv yy:<c-r>"<bs><cr>
 
+" faster exit
+map Q :qall<cr>
+
 try 
     source /home/eric/.vimrc.local
 catch
