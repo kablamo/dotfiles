@@ -26,4 +26,3 @@ xterm*saveLines: 12000
 xterm*scrollBar: false
 xterm*scrollstyle: rxvt
 xterm.utf8: true
-xterm.allowSendEvents: true
