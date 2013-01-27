@@ -69,7 +69,7 @@ sub backup {
         return 0;
     }
 
-    print "backing up $basename to $backup\n";
+    #print "backing up $basename to $backup\n";
     move($file, $backup);
 
     return 1;
