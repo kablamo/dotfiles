@@ -6,10 +6,11 @@ use warnings;
 use Path::Class qw/file dir/;
 use File::Copy qw/move copy/;
 
-my $home_dir   = dir('/home/eric');
-my $links_dir  = $home_dir->subdir('code/dotfiles/links');
-my $copy_dir   = $home_dir->subdir('code/dotfiles/copy');
-my $backup_dir = dir('/tmp/dotfiles-backup');
+my $home_dir     = dir('/home/eric');
+my $dotfiles_dir = $home_dir->subdir('code/dotfiles');
+my $links_dir    = $dotfiles_dir->subdir('links');
+my $copy_dir     = $dotfiles_dir->subdir('copy');
+my $backup_dir   = dir('/tmp/dotfiles-backup');
 
 # remove dotfiles in $home_dir which are dead links
 while (my $file = $home_dir->next) {
@@ -46,10 +47,10 @@ while (my $from = $copy_dir->next) {
 
     backup($to) || next;
 
-    print "copying from $from to $to\n";
     copy($from, $to);
-    # TODO: check for errors
 }
+
+`cd $dotfiles_dir && git submodule init && git submodule update`;
 
 # Returns 1 if the file was backed up successfully
 # Returns 1 if the file does not exist (no need to backup)
