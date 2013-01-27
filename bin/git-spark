@@ -1,5 +1,5 @@
 #!/usr/bin/env perl
-# Inspired by @trisweb's code on this wiki page:
+# Inspired by @trisweb:
 # http://github.com/holman/spark/wiki/Wicked-Cool-Usage 
 
 use strict;
@@ -7,42 +7,57 @@ use warnings;
 
 use Getopt::Long::Descriptive;
 use DateTime;
+use List::AllUtils qw/max sum/;
+use Math::Round qw/round/;
 
 my ($option, $usage) = describe_options(
     'usage: git spark %o [AUTHOR]',
-    ['hours|o=i'      => 'commits from the last x hours'],
-    ['days|d=i'       => 'commits from the last x days'],
-    ['weeks|w=i'      => 'commits from the last x weeks'],
-    ['months|m=i'     => 'commits from the last x months'],
-    ['years|y=i'      => 'commits from the last x years'],
-    ['help|h'         => 'show this message'],
+    ['hours|o=i'      => 'Commits from the last x hours'],
+    ['days|d=i'       => 'Commits from the last x days'],
+    ['weeks|w=i'      => 'Commits from the last x weeks'],
+    ['months|m=i'     => 'Commits from the last x months'],
+    ['years|y=i'      => 'Commits from the last x years'],
+    ['scale|s=i'      => 'Set the max value of the graph. Use this option to compare this graph with other graphs.'],
+    ['help|h'         => 'Show this message'],
 );
 
 my $author = $ARGV[0] || $ENV{USER};
+my $scale  = $option->{scale} || 0;
 
 print($usage), exit 0 if $option->{help};
+print($usage), exit 0 
+    if (!$option->{hours}  && 
+        !$option->{days}   && 
+        !$option->{weeks}  && 
+        !$option->{months} && 
+        !$option->{years});
 
-spark($author, $option->{hours},  'hours' ), exit 0 if $option->{hours};
-spark($author, $option->{days},   'days'  ), exit 0 if $option->{days};
-spark($author, $option->{weeks},  'weeks' ), exit 0 if $option->{weeks};
-spark($author, $option->{months}, 'months'), exit 0 if $option->{months};
-spark($author, $option->{years},  'years' ), exit 0 if $option->{years};
-
-print $usage;
+foreach my $key (qw/hours days weeks months years/) {
+    spark($option->{$key}, $key, $author, $scale) if $option->{$key};
+}
 
 sub spark {
-    my ($author, $max, $units) = @_;
-    my $data = countCommits(@_);
-    print "Commits by $author over the last $max $units\n";
-    print "$data\n";
-    print `spark $data`;
+    my ($value, $units, $author, $scale) = @_;
+
+    my @data  = countCommits(@_);
+    my $total = sum @data;
+    my $avg   = round($total / $#data);
+    my $max   = max @data;
+
+    my $sparkArgs  = $scale ? join(" ", $scale, @data)     : join(" ", @data);
+    my $dataString = $scale ? join(" ", "[$scale]", @data) : join(" ", @data);
+
+    print "Commits by $author over the last $value $units\n";
+    print "total: $total   avg: $avg   max: $max\n";
+    print "$dataString\n";
+    print `spark $sparkArgs`;
 }
 
 sub countCommits {
-    my ($author, $max, $units) = @_;
+    my ($value, $units, $author) = @_;
 
     my @commits;
-    foreach my $i (0..$max) {
+    foreach my $i (0..($value - 1)) {
         my $cmd = "git log " .
                   "--author=${author} " .
                   "--before='${i} ${units}' " . 
@@ -53,6 +68,6 @@ sub countCommits {
         push @commits, $count;
     }
 
-    return join(" ", reverse @commits);
+    return reverse @commits;
 }
 
