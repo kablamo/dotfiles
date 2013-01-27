@@ -54,7 +54,11 @@ alias ls='ls -Fh --color=never'
 alias c='clear'
 alias ..='cd ..'
 alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
 alias -- -='cd -'
+alias cdd='cd ~/code/dotfiles'
+alias cdp='cd ~/.puppet'
 
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 alias ack='ack --perl --ignore-dir=t -A 5'
@@ -64,8 +68,8 @@ alias httpdump="sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET
 alias t='/home/eric/code/dotfiles/bin/todo.sh -p -P'
 alias p='sudo puppet apply --confdir=/home/eric/.puppet ~/.puppet/manifests/site.pp -v'
 alias pw='perl -MCrypt::Diceware -E "say join(\" \", words(4))"'
-
 alias free='free -m'
+
 alias install='sudo apt-get install'
 alias remove='sudo apt-get remove'
 alias update='sudo apt-get update'
