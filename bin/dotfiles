@@ -47,7 +47,7 @@ while (my $from = $copy_dir->next) {
 
     backup($to) || next;
 
-    copy($from, $to);
+    cp($from, $to); # 'cp' preserves file perms. 'copy' doesn't.
 }
 
 `cd $dotfiles_dir && git submodule init && git submodule update`;
