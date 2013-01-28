@@ -4,7 +4,7 @@ use strict;
 use warnings;
 
 use Path::Class qw/file dir/;
-use File::Copy qw/move copy/;
+use File::Copy qw/move cp/;
 
 my $home_dir     = dir('/home/eric');
 my $dotfiles_dir = $home_dir->subdir('code/dotfiles');
