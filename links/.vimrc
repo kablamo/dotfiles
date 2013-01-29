@@ -207,9 +207,6 @@ autocmd BufRead,BufNewFile *.xml noremap <leader>t :Tidy<CR>
 " perlprove
 " au BufRead,BufNewFile *.t set filetype=perl | compiler perlprove
 
-" dbext
-let dbext_default_display_cmd_line = 1
-
 " neocomplcache
 let g:neocomplcache_enable_at_startup = 1
 let g:neocomplcache_enable_auto_select = 1
@@ -259,6 +256,10 @@ vmap * y/<c-r>"<cr>
 vmap # y?<c-r>"<cr>
 
 " ctrlp
+let g:ctrlp_max_files = 15000
+let g:ctrlp_max_depth = 50
+let g:ctrlp_by_filename = 1
+let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_open_multiple_files = '1jr'
 let g:ctrlp_extensions = [
   \ 'tag', 'buffertag', 'quickfix', 'dir', 'rtscript',

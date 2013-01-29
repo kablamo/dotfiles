@@ -6,7 +6,8 @@
     b = branch
     c = commit
     ca = commit -a
-    catchup = log --patch --reverse --topo-order _ribbon..origin/master
+#   catchup = log --patch --reverse --topo-order _ribbon..origin/master
+    catchup = "log --pretty=format:'git d -r %p -r %h%n%an %cr' --author='\\(mich\\|fran\\|leo\\)' --no-merges --patch --reverse --topo-order _ribbon..origin/master"
     co = checkout
     count = shortlog --summary --numbered
     d = difftool 
@@ -17,7 +18,7 @@
     history = blame -w -c --show-number
     jo = "!f () { vim $(git diff --name-only $@); }; f"
     jm = "!f () { vim $(git diff --name-only --diff-filtered=U $@); }; f"
-    ll = log --pretty=format:'%C(bold white)%s%Creset\n%h %an %cr'   --abbrev-commit --no-merges --name-only 
+    ll = log --pretty=format:'%C(bold white)%s%Creset%n%h %an %cr'   --abbrev-commit --no-merges --name-only 
     lo = "!f () { git log --no-merges --abbrev-commit --date=relative --pretty=format:'%h%x00%cd%x00%s%x00%an' $@ | gawk -F '\\0' '{ printf \"%s %-12s  %-100s %s\\n\", $1, $2, gensub(/(.{79}).{2,}/, \"\\\\1…\",\"g\",$3), $4 }' | less -R; }; f"
     ls = log --pretty=format:'%C(bold white)%s%Creset\n%h %an %cr\n' --abbrev-commit --no-merges
     mrg = merge --no-ff
