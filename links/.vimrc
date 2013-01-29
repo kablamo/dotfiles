@@ -207,9 +207,6 @@ autocmd BufRead,BufNewFile *.xml noremap <leader>t :Tidy<CR>
 " perlprove
 " au BufRead,BufNewFile *.t set filetype=perl | compiler perlprove
 
-" dbext
-let dbext_default_display_cmd_line = 1
-
 " neocomplcache
 let g:neocomplcache_enable_at_startup = 1
 let g:neocomplcache_enable_auto_select = 1

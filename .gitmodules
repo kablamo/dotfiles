@@ -49,3 +49,6 @@
 [submodule "links/.vim/bundle/tabular"]
 	path = links/.vim/bundle/tabular
 	url = git@github.com:godlygeek/tabular.git
+[submodule "links/.vim/bundle/vim-seek"]
+	path = links/.vim/bundle/vim-seek
+	url = git@github.com:goldfeld/vim-seek.git
