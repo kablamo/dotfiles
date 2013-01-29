@@ -11,7 +11,7 @@ export PAGER="/usr/bin/less"
 # perlbrew
 export PERLBREW_ROOT="$HOME/perl5/perlbrew"
 if [[ -x $PERLBREW_ROOT ]] ; then
-    source ${PERLBREW_ROOT}/etc/bashrc
+#   source ${PERLBREW_ROOT}/etc/bashrc
     export PERL_CPANM_OPT="--local-lib=$PERLBREW_ROOT/perls/perl-5.16.2"
     export MY_PERL_LIB=$PERLBREW_ROOT/perls/perl-5.16.2/lib
     # I don't think I need these
