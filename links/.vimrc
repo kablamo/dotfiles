@@ -259,6 +259,8 @@ vmap * y/<c-r>"<cr>
 vmap # y?<c-r>"<cr>
 
 " ctrlp
+let g:ctrlp_max_files = 15000
+let g:ctrlp_max_depth = 50
 let g:ctrlp_by_filename = 1
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_open_multiple_files = '1jr'
