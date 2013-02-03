@@ -24,6 +24,8 @@ copy_files($copy_dir => $home_dir);
 # update all the git submodules in $dotfiles_dir
 `cd $dotfiles_dir && git submodule init && git submodule update`;
 
+# done
+
 sub remove_dead_links($home_dir) {
     my $home_dir = shift;
 
