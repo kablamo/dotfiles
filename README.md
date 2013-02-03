@@ -5,7 +5,7 @@ The key to everything is the script [bin/dotfiles]
 (https://github.com/kablamo/dotfiles/blob/master/bin/dotfiles).  It does the
 following:
 
-* Ignore the 'bin' directory because my .bashrc adds the 'bin' directory to
+* Ignores the 'bin' directory because my .bashrc adds the 'bin' directory to
   $PATH.
 * All the files in 'link' are linked to $HOME.
 * All the files in 'copy' are copied to $HOME.
@@ -14,7 +14,7 @@ following:
       '$HOME/bin/'.
     * If there is no 'bin' directory, link all the executable files in the top
       level of the submodule directory to '$HOME/bin/'.
-* A note about When links are created: If the file already exists it is moved to
+* When links are created, if the file already exists it is moved to
   '/tmp/dotfiles-backup/' before the link is created.  A message is printed to
   tell you when this happens.
 
