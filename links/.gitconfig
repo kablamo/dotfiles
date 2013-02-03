@@ -7,7 +7,7 @@
     c = commit
     ca = commit -a
 #   catchup = log --patch --reverse --topo-order _ribbon..origin/master
-    catchup = "log --pretty=format:'git d -r %p -r %h%n%an %cr' --author='\\(mich\\|fran\\|leo\\)' --no-merges --patch --reverse --topo-order _ribbon..origin/master"
+#   catchup = "log --pretty=format:'git d -r %p -r %h%n%an %cr' --author='\\(mich\\|fran\\|leo\\)' --no-merges --patch --reverse --topo-order _ribbon..origin/master"
     co = checkout
     count = shortlog --summary --numbered
     d = difftool 
@@ -24,7 +24,7 @@
     mrg = merge --no-ff
     p = push origin HEAD
     pp = !"echo 'Pull'; git pull; echo 'Push'; git push origin HEAD"
-    ribbon = tag --force _ribbon origin/master
+#   ribbon = tag --force _ribbon origin/master
     s = status --short --branch
     tree = log --graph --pretty=oneline --abbrev-commit
     undo = git reset --hard HEAD^
