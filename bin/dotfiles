@@ -29,12 +29,13 @@ sub process_submodules {
 
     `cd $dotfiles_dir && git submodule init && git submodule update`;
 
-    while (my $dir = $home_dir->next) {
+    while (my $dir = $dotfiles_dir->next) {
         next unless -d $dir;
-        next if $dir =~ /^./;
-        next if $dir =~ /^copy$/;
-        next if $dir =~ /^links$/;
-        next if $dir =~ /^bin$/;
+        next if $dir->basename =~ $dotfiles_dir->basename;
+        next if $dir->basename =~ /^\./;
+        next if $dir =~ /copy$/;
+        next if $dir =~ /links$/;
+        next if $dir =~ /bin$/;
 
         my $bin_dir = $dir->subdir('bin');
         -e $bin_dir
@@ -63,12 +64,11 @@ sub create_links {
     remove_dead_links($home_dir);
 
     while (my $file = $links_dir->next) {
-        my $basename = $file->basename;
-        next if $basename eq $links_dir->basename;
-        next if $basename =~ /^\.\.$/;
-        next if $only_executable && -x $file;
+        next if $file->stringify eq $links_dir->stringify;
+        next if $file->basename =~ /^\.\.$/;
+        next if $only_executable && ! -x $file;
 
-        my $link = $home_dir->file($basename);
+        my $link = $home_dir->file($file->basename);
         next if -l $link;
 
         backup($link) || next;
