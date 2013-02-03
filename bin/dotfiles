@@ -26,7 +26,7 @@ copy_files($copy_dir => $home_dir);
 
 # done
 
-sub remove_dead_links($home_dir) {
+sub remove_dead_links {
     my $home_dir = shift;
 
     while (my $file = $home_dir->next) {
