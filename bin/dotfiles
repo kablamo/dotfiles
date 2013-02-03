@@ -13,44 +13,64 @@ my $copy_dir     = $dotfiles_dir->subdir('copy');
 my $backup_dir   = dir('/tmp/dotfiles-backup');
 
 # remove dotfiles in $home_dir which are dead links
-while (my $file = $home_dir->next) {
-    next unless $file->basename =~ /^\./;
-    next if -e $file;
-    print "unlink $file\n" if -l $file;
-    unlink $file           if -l $file;
-}
+remove_dead_links($home_dir);
 
 # create links in $home_dir to $links_dir
-while (my $file = $links_dir->next) {
-    my $basename = $file->basename;
-    next if $basename eq $links_dir->basename;
-    next if $basename =~ /^\.\.$/;
+create_links($home_dir => $links_dir);
 
-    my $link = $home_dir->file($basename);
-    next if -l $link;
+# copy files from $copy_dir to $home_dir
+copy_files($copy_dir => $home_dir);
 
-    backup($link) || next;
+# update all the git submodules in $dotfiles_dir
+`cd $dotfiles_dir && git submodule init && git submodule update`;
 
-    my $ln = "ln -s '$file' '$link'";
-    print $ln, "\n";
-    `$ln`;
-    # TODO: check for errors
+sub remove_dead_links($home_dir) {
+    my $home_dir = shift;
+
+    while (my $file = $home_dir->next) {
+        next unless $file->basename =~ /^\./;
+        next if -e $file;
+        print "unlink $file\n" if -l $file;
+        unlink $file           if -l $file;
+    }
+}
+
+sub create_links {
+    my ($home_dir, $links_dir) = @_;
+
+    while (my $file = $links_dir->next) {
+        my $basename = $file->basename;
+        next if $basename eq $links_dir->basename;
+        next if $basename =~ /^\.\.$/;
+
+        my $link = $home_dir->file($basename);
+        next if -l $link;
+
+        backup($link) || next;
+
+        my $ln = "ln -s '$file' '$link'";
+        print $ln, "\n";
+        `$ln`;
+        # TODO: check for errors
+    }
 }
 
 # copy files from $copy_dir to $home_dir
-while (my $from = $copy_dir->next) {
-    my $basename = $from->basename;
-    next if $basename eq $copy_dir->basename;
-    next if $basename =~ /^\.\.$/;
+sub copy_files {
+    my ($copy_dir, $home_dir) = @_;
 
-    my $to = $home_dir->file($basename);
+    while (my $from = $copy_dir->next) {
+        my $basename = $from->basename;
+        next if $basename eq $copy_dir->basename;
+        next if $basename =~ /^\.\.$/;
 
-    backup($to) || next;
+        my $to = $home_dir->file($basename);
 
-    cp($from, $to); # 'cp' preserves file perms. 'copy' doesn't.
+        backup($to) || next;
+
+        cp($from, $to); # 'cp' preserves file perms. 'copy' doesn't.
+    }
 }
-
-`cd $dotfiles_dir && git submodule init && git submodule update`;
 
 # Returns 1 if the file was backed up successfully
 # Returns 1 if the file does not exist (no need to backup)
