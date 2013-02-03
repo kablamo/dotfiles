@@ -28,8 +28,8 @@ How to use it
 Limited Scope
 -------------
 
-My dotfiles does not do and will not do OS package installs.  I manage those
-with [puppet](https://github.com/kablamo/puppet).  I should probably manage my
-dotfiles with puppet too.  So far my excuse is puppet is not always available
-on all systems that I use.  
+My dotfiles script does not do and will not ever do OS package installs.  I
+manage those with [puppet](https://github.com/kablamo/puppet).  I should
+probably manage my dotfiles with puppet too.  So far my excuse is puppet is not
+always available on all systems that I use.  
 
