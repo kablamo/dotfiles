@@ -6,25 +6,43 @@ use warnings;
 use Path::Class qw/file dir/;
 use File::Copy qw/move cp/;
 
-my $home_dir     = dir('/home/eric');
+my $home_dir     = dir($ENV{HOME});
 my $dotfiles_dir = $home_dir->subdir('code/dotfiles');
 my $links_dir    = $dotfiles_dir->subdir('links');
 my $copy_dir     = $dotfiles_dir->subdir('copy');
 my $backup_dir   = dir('/tmp/dotfiles-backup');
 
-# remove dotfiles in $home_dir which are dead links
-remove_dead_links($home_dir);
-
 # create links in $home_dir to $links_dir
-create_links($home_dir => $links_dir);
+create_links($links_dir => $home_dir);
 
 # copy files from $copy_dir to $home_dir
 copy_files($copy_dir => $home_dir);
 
-# update all the git submodules in $dotfiles_dir
-`cd $dotfiles_dir && git submodule init && git submodule update`;
+# update all the git submodules in the top level of $dotfiles_dir
+process_submodules($dotfiles_dir => $home_dir);
 
 # done
+
+sub process_submodules {
+    my ($dotfiles_dir, $home_dir) = @_;
+    my $home_bin_dir = $home_dir->subdir('bin');
+
+    `cd $dotfiles_dir && git submodule init && git submodule update`;
+
+    while (my $dir = $home_dir->next) {
+        next unless -d $dir;
+        next if $dir =~ /^./;
+        next if $dir =~ /^copy$/;
+        next if $dir =~ /^links$/;
+        next if $dir =~ /^bin$/;
+
+        my $bin_dir = $dir->subdir('bin');
+        -e $bin_dir
+            ? create_links($bin_dir => $home_bin_dir, 1)
+            : create_links($dir => $home_bin_dir, 1);
+    }
+
+}
 
 sub remove_dead_links {
     my $home_dir = shift;
@@ -38,12 +56,17 @@ sub remove_dead_links {
 }
 
 sub create_links {
-    my ($home_dir, $links_dir) = @_;
+    my ($links_dir, $home_dir, $only_executable) = @_;
+    $only_executable //= 0;
+
+    mkdir $home_dir;
+    remove_dead_links($home_dir);
 
     while (my $file = $links_dir->next) {
         my $basename = $file->basename;
         next if $basename eq $links_dir->basename;
         next if $basename =~ /^\.\.$/;
+        next if $only_executable && -x $file;
 
         my $link = $home_dir->file($basename);
         next if -l $link;
@@ -53,7 +76,6 @@ sub create_links {
         my $ln = "ln -s '$file' '$link'";
         print $ln, "\n";
         `$ln`;
-        # TODO: check for errors
     }
 }
 
