@@ -61,3 +61,6 @@
 [submodule "v"]
 	path = v
 	url = git@github.com:rupa/v.git
+[submodule "git-spark"]
+	path = git-spark
+	url = git@github.com:kablamo/git-spark.git
