@@ -25,7 +25,7 @@
     p = push origin HEAD
     pp = !"echo 'Pull'; git pull; echo 'Push'; git push origin HEAD"
 #   ribbon = tag --force _ribbon origin/master
-    s = status --short --branch --ignore-submodules
+    s = status --short --branch
     tree = log --graph --pretty=oneline --abbrev-commit
     undo = git reset --hard HEAD^
     whois = "!sh -c 'git log -i -1 --pretty=\"format:%an <%ae>\n\" --author=\"$1\"' -"
