@@ -8,6 +8,9 @@ export LESS="-MSiRXF"
 # TODO: delete this
 export PAGER="/usr/bin/less"
 
+# https://github.com/rupa/z
+. ~/bin/z.sh
+
 # perlbrew
 export PERLBREW_ROOT="$HOME/perl5/perlbrew"
 if [[ -x $PERLBREW_ROOT ]] ; then
