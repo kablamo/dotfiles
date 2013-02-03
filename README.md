@@ -5,11 +5,18 @@ The key to everything is the script [bin/dotfiles]
 (https://github.com/kablamo/dotfiles/blob/master/bin/dotfiles).  It does the
 following:
 
-* If any of the files in 'link' already exist in $HOME they are copied to /tmp/dotfiles-backup/
+* Ignore the 'bin' directory because my .bashrc adds the 'bin' directory to
+  $PATH.
 * All the files in 'link' are linked to $HOME.
 * All the files in 'copy' are copied to $HOME.
-
-My .bashrc adds the 'bin' directory to $PATH.
+* Foreach git submodule in the top level of the repo:
+    * If it has a 'bin' directory, link all the executable files in there to
+      '$HOME/bin/'.
+    * If there is no 'bin' directory, link all the executable files in the top
+      level of the submodule directory to '$HOME/bin/'.
+* A note about When links are created: If the file already exists it is moved to
+  '/tmp/dotfiles-backup/' before the link is created.  A message is printed to
+  tell you when this happens.
 
 
 How to use it
@@ -23,7 +30,6 @@ Limited Scope
 
 My dotfiles does not do and will not do OS package installs.  I manage those
 with [puppet](https://github.com/kablamo/puppet).  I should probably manage my
-dotfiles with puppet too.  So far my excuse is puppet is slow and is not
-always available on all systems that I use.  Not sure that this is a good
-excuse.
+dotfiles with puppet too.  So far my excuse is puppet is not always available
+on all systems that I use.  
 
