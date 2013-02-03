@@ -58,3 +58,6 @@
 [submodule "z"]
 	path = z
 	url = git@github.com:rupa/z.git
+[submodule "v"]
+	path = v
+	url = git@github.com:rupa/v.git
