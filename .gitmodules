@@ -52,9 +52,6 @@
 [submodule "links/.vim/bundle/vim-seek"]
 	path = links/.vim/bundle/vim-seek
 	url = git@github.com:goldfeld/vim-seek.git
-[submodule "git-ribbon"]
-	path = git-ribbon
-	url = git@github.com:kablamo/git-ribbon.git
 [submodule "z"]
 	path = z
 	url = git@github.com:rupa/z.git
