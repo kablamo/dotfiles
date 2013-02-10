@@ -49,7 +49,6 @@ sub remove_dead_links {
     my $home_dir = shift;
 
     while (my $file = $home_dir->next) {
-        next unless $file->basename =~ /^\./;
         next if -e $file;
         print "unlink $file\n" if -l $file;
         unlink $file           if -l $file;
