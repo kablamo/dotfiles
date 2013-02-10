@@ -58,9 +58,6 @@
 [submodule "v"]
 	path = v
 	url = git@github.com:rupa/v.git
-[submodule "git-spark"]
-	path = git-spark
-	url = git@github.com:kablamo/git-spark.git
 [submodule "links/.vim/bundle/vim-ribbon"]
 	path = links/.vim/bundle/vim-ribbon
 	url = git@github.com:kablamo/vim-ribbon.git
