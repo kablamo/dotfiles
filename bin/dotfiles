@@ -65,6 +65,7 @@ sub create_links {
     while (my $file = $links_dir->next) {
         next if $file->stringify eq $links_dir->stringify;
         next if $file->basename =~ /^\.\.$/;
+        next if $file->basename =~ /^\.git$/;
         next if $only_executable && ! -x $file;
 
         my $link = $home_dir->file($file->basename);
