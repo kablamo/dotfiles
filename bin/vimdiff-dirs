@@ -1,0 +1,52 @@
+#!/usr/bin/env perl
+
+use strict;
+use warnings;
+use feature qw/say/;
+
+use Getopt::Long::Descriptive;
+use Path::Class qw/file dir/;
+use List::Util qw/first/;
+
+my ($opt, $usage) = describe_options(
+    'vimdiff-dirs %o DIR_A DIR_B',
+    ['diff|d' => 'use normal boring "diff" instead of fancy "vimdiff"'],
+    ['help|h' => 'print this message'],
+);
+
+die $usage if $opt->help;
+die $usage unless scalar(@ARGV) == 2;
+
+my $dirA = dir($ARGV[0]);
+my $dirB = dir($ARGV[1]);
+
+say "compare differences between $dirA and $dirB";
+
+my @AFiles = filesInDir($dirA);
+my @BFiles = filesInDir($dirB);
+
+foreach my $fileA (@AFiles) {
+    my $fileB = first { $_->basename eq $fileA->basename } @BFiles;
+
+    next unless $fileB;
+
+    my $diff = $opt->diff ? 'diff' : 'vimdiff';
+    my $cmd = $diff . " \"$fileA\" \"$fileB\"";
+    say $cmd;
+
+    my $pid = fork();
+    if (!$pid) { # child
+        exec($cmd);
+    }
+    waitpid $pid, 0;
+}
+
+sub filesInDir {
+    my $dir = shift;
+    my @files;
+    while (my $file = $dir->next) {
+        next if $file->basename =~ /^\./;
+        push @files, $file;
+    }
+    return sort @files;
+}
