@@ -61,3 +61,6 @@
 [submodule "links/.vim/bundle/vim-ribbon"]
 	path = links/.vim/bundle/vim-ribbon
 	url = git@github.com:kablamo/vim-ribbon.git
+[submodule "links/.vim/bundle/gitv"]
+	path = links/.vim/bundle/gitv
+	url = git@github.com:gregsexton/gitv.git
