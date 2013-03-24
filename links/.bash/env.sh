@@ -15,12 +15,12 @@ export PAGER="/usr/bin/less"
 export PERLBREW_ROOT="$HOME/perl5/perlbrew"
 if [[ -x $PERLBREW_ROOT ]] ; then
     source ${PERLBREW_ROOT}/etc/bashrc
-    export PERL_CPANM_OPT="--local-lib=$PERLBREW_ROOT/perls/perl-5.16.2"
-    export MY_PERL_LIB=$PERLBREW_ROOT/perls/perl-5.16.2/lib
+    export PERL_CPANM_OPT="--local-lib=$PERLBREW_ROOT/perls/perl-5.16.3"
+    export MY_PERL_LIB=$PERLBREW_ROOT/perls/perl-5.16.3/lib
     # I don't think I need these
     #export PERL_MB_OPT="--install_base $MY_PERL_LIB/perl5" 
     #export PERL_MM_OPT=INSTALL_BASE=$MY_PERL_LIB/perl5 
-    export PERL5LIB=$MY_PERL_LIB/5.16.2
+    export PERL5LIB=$MY_PERL_LIB/5.16.3
     export PERL5LIB=$MY_PERL_LIB/site_perl:$PERL5LIB
     export PERL5LIB=$MY_PERL_LIB/perl5/i686-linux-gnu-thread-multi-64int:$PERL5LIB
     export PERL5LIB=$MY_PERL_LIB/perl5/i686-linux:$PERL5LIB
