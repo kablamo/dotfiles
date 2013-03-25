@@ -58,12 +58,12 @@
 [submodule "v"]
 	path = v
 	url = git@github.com:rupa/v.git
-[submodule "links/.vim/bundle/vim-ribbon"]
-	path = links/.vim/bundle/vim-ribbon
-	url = git@github.com:kablamo/vim-ribbon.git
 [submodule "links/.vim/bundle/gitv"]
 	path = links/.vim/bundle/gitv
 	url = git@github.com:gregsexton/gitv.git
+[submodule "links/.vim/bundle/vim-git"]
+	path = links/.vim/bundle/vim-git
+	url = git@github.com:tpope/vim-git.git
 [submodule "links/.vim/bundle/vim-git-log"]
 	path = links/.vim/bundle/vim-git-log
 	url = git@github.com:kablamo/vim-git-log.git
