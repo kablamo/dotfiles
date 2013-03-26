@@ -134,9 +134,10 @@ map <leader>gl  :Glog<cr>
 map <leader>gs  :Gstatus<cr>
 map <leader>gb  :Gblame<cr>
 
-" Complete whole filenames/lines with a quicker shortcut key in insert mode
+" Complete filenames/lines/omni with a quicker shortcut key in insert mode
 imap <C-f> <C-x><C-f>
 imap <C-l> <C-x><C-l>
+imap <C-o> <C-x><C-o>
 
 " folding
 " nnoremap <Space> za
@@ -173,14 +174,6 @@ let NERDTreeWinSize=60
 " buffergator
 let g:buffergator_split_size=10
 let g:buffergator_viewport_split_policy='B'
-let g:buffergator_suppress_keymaps=1
-map <leader>b :BuffergatorOpen<cr>
-
-" Taglist
-"map <leader>m :Tlist<cr>
-"let Tlist_Compact_Format=1
-"let Tlist_Enable_Fold_Column=0
-"let Tlist_Use_Right_Window=1
 
 " Tagbar
 map <leader>m :TagbarOpenAutoClose<cr>
@@ -190,7 +183,7 @@ let g:tagbar_indent = 1
 
 " perltidy
 autocmd BufRead,BufNewFile *.t,*.pl,*.plx,*.pm command! -range=% -nargs=* Tidy <line1>,<line2>!perltidy -q
-autocmd BufRead,BufNewFile *.sql,*.t,*.pl,*.plx,*.pm noremap <leader>t :Tidy<CR>
+autocmd BufRead,BufNewFile *.sql,*.t,*.pl,*.plx,*.pm noremap <leader>pt :Tidy<CR>
 fun DoTidy()
     "run :Tidy on entire buffer and return cursor to (almost) original position"
     let Pos = line2byte( line( "." ) )
@@ -202,14 +195,14 @@ endfun
 
 " xml tidy
 autocmd BufRead,BufNewFile *.xml command! -range=% -nargs=* Tidy <line1>,<line2>!xmllint --pretty 1 %
-autocmd BufRead,BufNewFile *.xml noremap <leader>t :Tidy<CR>
+autocmd BufRead,BufNewFile *.xml noremap <leader>xt :Tidy<CR>
 
 " perlprove
 " au BufRead,BufNewFile *.t set filetype=perl | compiler perlprove
 
 " neocomplcache
-let g:neocomplcache_enable_at_startup = 1
-let g:neocomplcache_enable_auto_select = 1
+let g:neocomplcache_enable_at_startup = 0
+let g:neocomplcache_enable_auto_select = 0
 let g:neocomplcache_enable_camel_case_completion = 0
 let g:neocomplcache_enable_underbar_completion = 0
 "inoremap <expr><c-n>  neocomplcache#start_manual_complete()
@@ -274,6 +267,12 @@ map <leader>vv yy:<c-r>"<bs><cr>
 
 " faster exit
 map Q :qall<cr>
+
+" gitk
+nmap <leader>gv :Gitv --all<cr>
+nmap <leader>gV :Gitv! --all<cr>
+vmap <leader>gV :Gitv! --all<cr>
+cabbrev git Git
 
 try 
     source /home/eric/.vimrc.local
