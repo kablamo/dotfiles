@@ -25,5 +25,5 @@ if [[ -x $PERLBREW_ROOT ]] ; then
     export PERL5LIB=$MY_PERL_LIB/perl5/i686-linux-gnu-thread-multi-64int:$PERL5LIB
     export PERL5LIB=$MY_PERL_LIB/perl5/i686-linux:$PERL5LIB
     export PERL5LIB=$MY_PERL_LIB/perl5:$PERL5LIB
-    export PERL5LIB=.:./lib:$PERL5LIB
+    export PERL5LIB=.:./lib:$PERL5LIB:/usr/share/perl5
 fi
