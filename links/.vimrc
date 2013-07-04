@@ -72,6 +72,9 @@ syntax on  " sometimes this is not on by default
 colorscheme iijo
 au BufNewFile,BufRead *.tt setf tt2html
 au BufNewFile,BufRead *.md setf mkd
+if has("gui_running")
+    colorscheme zmrok
+end
 
 " use tab to find matching parens
 nnoremap <tab> %
