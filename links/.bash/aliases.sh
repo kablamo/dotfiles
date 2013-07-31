@@ -68,6 +68,7 @@ alias t='/home/eric/code/dotfiles/bin/todo.sh -p -P'
 alias p='sudo puppet apply --confdir=/home/eric/.puppet ~/.puppet/manifests/site.pp -v'
 alias pw='perl -MCrypt::Diceware -E "say join(\" \", words(4))"'
 alias free='free -m'
+alias findly='find . -name '
 
 alias install='sudo apt-get install'
 alias remove='sudo apt-get remove'
