@@ -178,7 +178,7 @@ let g:buffergator_viewport_split_policy='B'
 " Tagbar
 map <leader>m :TagbarOpenAutoClose<cr>
 let g:tagbar_autofocus = 1
-let g:tagbar_autoclose = 1
+let g:tagbar_autoclose = 0
 let g:tagbar_indent = 1
 
 " perltidy
