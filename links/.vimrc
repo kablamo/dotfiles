@@ -174,6 +174,9 @@ let NERDTreeWinSize=60
 " buffergator
 let g:buffergator_split_size=10
 let g:buffergator_viewport_split_policy='B'
+let g:buffergator_suppress_keymaps=1
+map <leader>b :BuffergatorOpen<cr>
+map <leader>B :BuffergatorClose<cr>
 
 " Tagbar
 map <leader>m :TagbarOpenAutoClose<cr>
@@ -192,6 +195,7 @@ fun DoTidy()
     redraw
 endfun
 " autocmd BufWrite *.t,*.pl,*.plx,*.pm call DoTidy()
+noremap <leader>pt :Tidy<CR>
 
 " xml tidy
 autocmd BufRead,BufNewFile *.xml command! -range=% -nargs=* Tidy <line1>,<line2>!xmllint --pretty 1 %
@@ -249,11 +253,12 @@ vmap * y/<c-r>"<cr>
 vmap # y?<c-r>"<cr>
 
 " ctrlp
-let g:ctrlp_max_files = 15000
+let g:ctrlp_max_files = 30000
 let g:ctrlp_max_depth = 50
 let g:ctrlp_by_filename = 1
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_open_multiple_files = '1jr'
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
 let g:ctrlp_extensions = [
   \ 'tag', 'buffertag', 'quickfix', 'dir', 'rtscript',
   \ 'undo', 'line', 'changes', 'mixed', 'bookmarkdir']
