@@ -19,3 +19,8 @@ if [[ -e $PERLBREW_INIT ]] ; then
     source $PERLBREW_INIT
     source ${PERLBREW_ROOT}/etc/bashrc
 fi
+
+export PERL5LIB=./lib:$PERL5LIB
+
+# rbenv
+[ -x $HOME/.rbenv/bin/rbenv ] && eval "$(rbenv init -)"
