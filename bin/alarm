@@ -7,6 +7,7 @@ OLD_IFS=$IFS
 IFS=":"
 read -r h m s <<< "$@"
 IFS=$OLD_IFS
+echo
 
 seconds=$((( h * 60 * 60) + ( m * 60) + s ))
 start=$(date +%s)
@@ -16,7 +17,7 @@ while [[ $cur -lt $end ]]
 do
     cur=$(date +%s)
     left=$((end-cur))
-    printf "\r         %02d:%02d:%02d" $((left/3600)) $(( (left/60)%60)) $((left%60))
+    printf "\r         %02d:%02d:%02d         " $((left/3600)) $(( (left/60)%60)) $((left%60))
     sleep 1
 done
 echo
@@ -32,7 +33,7 @@ do
     do
         cur=$(date +%s)
         left=$((end-cur))
-        printf "\rSNOOZE : %02d:%02d:%02d" $((left/3600)) $(( (left/60)%60)) $((left%60))
+        printf "\rSNOOZE : %02d:%02d:%02d         " $((left/3600)) $(( (left/60)%60)) $((left%60))
         sleep 1
     done
     echo
