@@ -1,4 +1,6 @@
 #!/bin/bash
+# type 'ctl-c' to quit
+# type 'q'     to snooze
 
 snooze=10 # seconds
 alarm_mp3="/home/eric/Music/ooee.mp3"
@@ -20,6 +22,9 @@ do
     printf "\r         %02d:%02d:%02d         " $((left/3600)) $(( (left/60)%60)) $((left%60))
     sleep 1
 done
+echo
+echo
+echo "type 'ctl-c' to quit or 'q' to snooze"
 echo
 
 # entering the infinite loop that will the play the alarm tone paused by the snoozing time
