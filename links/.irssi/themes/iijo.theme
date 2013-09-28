@@ -5,7 +5,7 @@ replaces      = { "[]=" = "%K$*%n"; };
 # Only overrides are shown, defaults are commented
 abstracts = {
 
-  # GENERIC
+  ## GENERIC
   line_start         = "%K::%n ";
   timestamp          = "%K$0-%n";
   hilight            = "%W$*%W";
