@@ -6,29 +6,31 @@ replaces      = { "[]=" = "%K$*%n"; };
 abstracts = {
 
   ## GENERIC
-  line_start         = "%K::%n ";
-  timestamp          = "%K$0-%n";
-  hilight            = "%W$*%W";
-
-  # error            = "%R$*%n";
-  # channel          = "%_$*%_";
-  # nick             = "%_$*%_";
-  # nickhost         = "[$*]";
-  # server           = "%_$*%_";
-  # comment          = "[$*]";
-  # reason           = "{comment $*}";
-  # mode             = "{comment $*}";
+  line_start       = "%K:::%n ";
+  timestamp        = "%K$0-%n";
+  hilight          = "%W$*%W";
+  nick             = "%K$*%n";
+  # error          = "%R$*%n";
+  # channel        = "%_$*%_";
+  # nick           = "%_$*%_";
+  # nickhost       = "[$*]";
+  # server         = "%_$*%_";
+  # comment        = "[$*]";
+  # reason         = "{comment $*}";
+  # mode           = "{comment $*}";
 
   # channel specific messages
-  # channick_hilight = "%C$*%n";
-  # chanhost_hilight = "{nickhost %c$*%n}";
-  # channick         = "%c$*%n";
-  # chanhost         = "{nickhost $*}";
-  # channelhilight   = "%c$*%n";
-  # ban              = "%c$*%n";
+  channick_hilight = "%K$*%n";
+  chanhost_hilight = "{nickhost %n$*%n}";
+  channick         = "%K$*%n";
+  chanhost         = "{nickhost $*}";
+  channelhilight   = "%w$*%n";
+  ban              = "%w$*%n";
 
   ## MESSAGES
-  msgnick          = "$0$1-%c:%n %|";
+  msgnick          = "$0$1-%W:%n %|";
+  ownnick          = "%K$*%n";
+  menick           = "%9%W$*%n";
   # ownmsgnick     = "{msgnick $0 $1-}";
   # ownnick        = "%W$*%n";
   # pubmsgnick     = "{msgnick $0 $1-}";
@@ -44,11 +46,11 @@ abstracts = {
   # privmsgnick    = "{msgnick  %R$*%n}";
 
   ## ACTION
-  action_core       = "%M$*";
+  action_core       = "%K$*";
   action            = "{action_core $*}";
   pvtaction         = "{action_core $*}";
   ownaction_target  = "{action_core $*}";
-  # ownaction       = "{action $*}";
+  ownaction         = "{action $*}";
   pubaction         = "{action $*} ";
   # fix neatlength inconsistency, sigh
   # pvtaction_query = "{action $*}";
@@ -77,6 +79,13 @@ abstracts = {
   #netjoin  = "%C$*%n";
 
   ## NAMES
+  names_prefix      = "%K>%m>%M>%n ";
+  names_nick        = "%K$0$1-%n ";
+  names_nick_op     = "%K$0%n$1- ";
+  names_nick_halfop = "%K$0%n$1- ";
+  names_nick_voice  = "%K$0%n$1- ";
+  names_users       = "";
+  names_channel     = "";
   #names_prefix      = "";
   #names_nick        = "[%_$0%_$1-] ";
   #names_nick_op     = "{names_nick $*}";
@@ -100,10 +109,15 @@ abstracts = {
   ## STATUSBAR
   sb_background         = "%N";
   sbstart               = "";
-  prompt                = "     %K:%n ";
-  sb                    = "%K$*";
+  prompt                = "    %K:%n ";
+  sb                    = "%K$*   ";
   sbmode                = "";
   sbaway                = " (%Gaway%n)";
+  sb_act_sep            = "$*";
+  sb_act_text           = "$*";
+  sb_act_msg            = "$*";
+  sbnickmode            = "$0";
+  topicsbstart         = "{sbstart $*}";
 
   #sb_prompt_bg         = "%n";
   #sb_info_bg           = "%8";
@@ -133,14 +147,20 @@ formats = {
     pubmsg_me_channel      = "{pubmsgmenick {menick $[-15]0$3}{msgchannel $1}}$2";
     pubmsg_hilight         = "{pubmsghinick $0 $0 $[-15]1$3%n}$2";
     pubmsg_hilight_channel = "{pubmsghinick $0 $[-15]1$4{msgchannel $2}}$3";
-    pubmsg                 = "{pubmsgnick {pubnick %y$[-15]0}$2}$1";
-    pubmsg_channel         = "{pubmsgnick {pubnick %y$[-15]0}$2}$1";
+    pubmsg                 = "{pubmsgnick {pubnick %K$[-15]0}$2}$1";
+    pubmsg_channel         = "{pubmsgnick {pubnick %K$[-15]0}$2}$1";
     msg_private_query      = "{privmsgnick $[-15]0}$2";
   };
   "fe-common/irc" = {
-    own_action           = "{ownaction $[-13]0} $1";
+    own_action           = "{ownaction $0} $1";
     action_private       = "{pvtaction $[-13]0}$1";
     action_private_query = "{pvtaction_query $[-13]0} $2";
     action_public        = "{pubaction $[-13]0}$1";
+    channel_synced       = "";
+    topic                = "";
+    no_topic             = "";
+    topic_info           = "topic set by {nick $0} {nickhost $2} {comment $1}";
   };
 };
+
+# vim:ft=config
