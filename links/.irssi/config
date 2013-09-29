@@ -209,3 +209,7 @@ settings = {
     hilight_nick_matches = "yes";
   };
 };
+keyboard = ( 
+  { key = "^1"; id = "multi"; data = "change_window 1"; },
+  { key = "^2"; id = "multi"; data = "change_window 2"; },
+);
