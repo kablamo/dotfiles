@@ -209,7 +209,18 @@ settings = {
     hilight_nick_matches = "yes";
   };
 };
+
 keyboard = ( 
   { key = "^1"; id = "multi"; data = "change_window 1"; },
   { key = "^2"; id = "multi"; data = "change_window 2"; },
 );
+
+#windows = { 
+#  1  = { immortal = "yes"; name = "(status)"; level = "ALL"; };
+#  40 = { name = "hilight"; sticky = "yes"; };
+#};
+#
+#mainwindows = { 
+#  1  = { first_line = "7"; lines = "36"; };
+#  40 = { first_line = "1"; lines = "6"; };
+#};                    
