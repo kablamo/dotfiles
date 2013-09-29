@@ -75,6 +75,7 @@ abstracts = {
   #wallop_action = "%W * $*%n ";
 
   ## NETSPLITS
+  netsplit = "%K$*%n";
   #netsplit = "%R$*%n";
   #netjoin  = "%C$*%n";
 
