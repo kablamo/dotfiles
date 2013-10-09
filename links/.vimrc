@@ -204,24 +204,6 @@ autocmd BufRead,BufNewFile *.xml noremap <leader>xt :Tidy<CR>
 " perlprove
 " au BufRead,BufNewFile *.t set filetype=perl | compiler perlprove
 
-" neocomplcache
-let g:neocomplcache_enable_at_startup = 0
-let g:neocomplcache_enable_auto_select = 0
-let g:neocomplcache_enable_camel_case_completion = 0
-let g:neocomplcache_enable_underbar_completion = 0
-"inoremap <expr><c-n>  neocomplcache#start_manual_complete()
-"inoremap <expr><c-o>  neocomplcache#manual_omni_complete()
-"inoremap <expr><c-f>  neocomplcache#manual_filename_complete()
-"inoremap <expr><c-h>  neocomplcache#cancel_popup()
-"if !exists('g:neocomplcache_omni_patterns')
-"  let g:neocomplcache_omni_patterns = {}
-"endif
-"let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
-"let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-"let g:neocomplcache_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-"let g:neocomplcache_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-"let g:neocomplcache_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
-
 " PerlHelp
 map <leader>PH :PerlHelp 
 
