@@ -65,8 +65,8 @@ alias irc='ssh eric@braga -R 7877:localhost:7877'
 alias irssi='TERM="screen-256color" irssi'
 alias tunnel='autossh -v -R 9999:localhost:9999 -N -l eric iijo.org -p 4321'
 alias httpdump="sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET \/.*\""
-alias t='/home/eric/code/dotfiles/bin/todo.sh -p -P'
-alias p='sudo puppet apply --confdir=/home/eric/.puppet ~/.puppet/manifests/site.pp -v'
+alias t="$HOME/code/dotfiles/bin/todo.sh -p -P"
+alias p='sudo puppet apply --confdir=$HOME/.puppet ~/.puppet/manifests/site.pp -v'
 alias pw='genpass --minlength 12 --maxlength 12'
 alias free='free -m'
 alias findly='find . -name '
