@@ -18,7 +18,7 @@ set exrc " for vroom
 set foldenable
 set foldlevelstart=9
 set foldmethod=syntax
-set fillchars=fold:\ ,vert:\ ,stl:\ ,stlnc:\ 
+set fillchars=fold:\ ,vert:\ ,stl:\ ,stlnc:\
 set guioptions=m
 set helpheight=200
 set hidden
@@ -27,7 +27,7 @@ set ignorecase
 set incsearch
 set iskeyword-=:
 set iskeyword+=_
-set laststatus=2 
+set laststatus=2
 set nolazyredraw           " turn off lazy redraw
 set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
 set noswapfile
@@ -188,11 +188,9 @@ let g:tagbar_indent = 1
 autocmd BufRead,BufNewFile *.t,*.pl,*.plx,*.pm command! -range=% -nargs=* Tidy <line1>,<line2>!perltidy -q
 autocmd BufRead,BufNewFile *.sql,*.t,*.pl,*.plx,*.pm noremap <leader>pt :Tidy<CR>
 fun DoTidy()
-    "run :Tidy on entire buffer and return cursor to (almost) original position"
-    let Pos = line2byte( line( "." ) )
+    let l:winview = winsaveview()
     :Tidy
-    exe "goto " . Pos
-    redraw
+    call winrestview(l:winview)
 endfun
 " autocmd BufWrite *.t,*.pl,*.plx,*.pm call DoTidy()
 noremap <leader>pt :Tidy<CR>
@@ -205,7 +203,7 @@ autocmd BufRead,BufNewFile *.xml noremap <leader>xt :Tidy<CR>
 " au BufRead,BufNewFile *.t set filetype=perl | compiler perlprove
 
 " PerlHelp
-map <leader>PH :PerlHelp 
+map <leader>PH :PerlHelp
 
 " Turn off warnings for perl compiler (see ':h :comp')
 let g:perl_compiler_force_warnings = 0
@@ -216,7 +214,7 @@ map <leader>rf <esc>:'<,'>!extract_perl_sub<cr>
 " ack
 nmap <leader>* :Ack <cword> %<cr>
 vmap <leader>* y:Ack <c-r>" %<cr>
-nmap <leader>/ :Ack 
+nmap <leader>/ :Ack
 vmap <leader>/ y:Ack <c-r>"
 
 " quickfix
@@ -261,7 +259,24 @@ nmap <leader>gV :Gitv! --all<cr>
 vmap <leader>gV :Gitv! --all<cr>
 cabbrev git Git
 
-try 
+" rm whitespace at the end of lines
+function! TrimWhiteSpace()
+    let l:winview = winsaveview()
+    %s/\s\+$//e
+    call winrestview(l:winview)
+endfunction
+nnoremap <silent> <Leader>d$ :call TrimWhiteSpace()<CR>
+autocmd FileWritePre    * :call TrimWhiteSpace()
+autocmd FileAppendPre   * :call TrimWhiteSpace()
+autocmd FilterWritePre  * :call TrimWhiteSpace()
+autocmd BufWritePre     * :call TrimWhiteSpace()
+autocmd FileType perl,ruby autocmd FileWritePre    * :call TrimWhiteSpace()
+autocmd FileType perl,ruby autocmd FileAppendPre   * :call TrimWhiteSpace()
+autocmd FileType perl,ruby autocmd FilterWritePre  * :call TrimWhiteSpace()
+autocmd FileType perl,ruby autocmd BufWritePre     * :call TrimWhiteSpace()
+
+
+try
     source /home/eric/.vimrc.local
 catch
 endtry
