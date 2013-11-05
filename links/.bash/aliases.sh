@@ -61,14 +61,15 @@ alias cdd='cd ~/code/dotfiles'
 alias cdp='cd ~/.puppet'
 
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-alias ack='ack --perl --ignore-dir=t -A 5'
 alias irc='ssh eric@braga -R 7877:localhost:7877'
+alias irssi='TERM="screen-256color" irssi'
 alias tunnel='autossh -v -R 9999:localhost:9999 -N -l eric iijo.org -p 4321'
 alias httpdump="sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET \/.*\""
-alias t='/home/eric/code/dotfiles/bin/todo.sh -p -P'
-alias p='sudo puppet apply --confdir=/home/eric/.puppet ~/.puppet/manifests/site.pp -v'
-alias pw='perl -MCrypt::Diceware -E "say join(\" \", words(4))"'
+alias t="$HOME/code/dotfiles/bin/todo.sh -p -P"
+alias p='sudo puppet apply --confdir=$HOME/.puppet ~/.puppet/manifests/site.pp -v'
+alias pw='genpass --minlength 12 --maxlength 12'
 alias free='free -m'
+alias findly='find . -name '
 
 alias install='sudo apt-get install'
 alias remove='sudo apt-get remove'
@@ -87,6 +88,8 @@ alias POST='lwp-request -m POST '
 alias HEAD='lwp-request -m HEAD '
 
 alias grm="git status | grep deleted | awk '{print \$3}' | xargs git rm"
+alias mysql2csv='sed '\''s/\t/","/g;s/^/"/;s/$/"/;s/\n//g'\'''
+
 
 # local aliases
 [ -f $HOME/.aliases ] &&

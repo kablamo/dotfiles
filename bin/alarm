@@ -1,0 +1,45 @@
+#!/bin/bash
+# type 'ctl-c' to quit
+# type 'q'     to snooze
+
+snooze=10 # seconds
+alarm_mp3="/home/eric/Music/ooee.mp3"
+
+OLD_IFS=$IFS
+IFS=":"
+read -r h m s <<< "$@"
+IFS=$OLD_IFS
+echo
+
+seconds=$((( h * 60 * 60) + ( m * 60) + s ))
+start=$(date +%s)
+end=$((start + seconds))
+cur=$start
+while [[ $cur -lt $end ]]
+do
+    cur=$(date +%s)
+    left=$((end-cur))
+    printf "\r         %02d:%02d:%02d         " $((left/3600)) $(( (left/60)%60)) $((left%60))
+    sleep 1
+done
+echo
+echo
+echo "type 'ctl-c' to quit or 'q' to snooze"
+echo
+
+# entering the infinite loop that will the play the alarm tone paused by the snoozing time
+while
+    mplayer -really-quiet $alarm_mp3 2>/dev/null
+do
+    start=$(date +%s)
+    end=$((start + snooze))
+    cur=$start
+    while [[ $cur -lt $end ]]
+    do
+        cur=$(date +%s)
+        left=$((end-cur))
+        printf "\rSNOOZE : %02d:%02d:%02d         " $((left/3600)) $(( (left/60)%60)) $((left%60))
+        sleep 1
+    done
+    echo
+done

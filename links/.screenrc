@@ -37,7 +37,6 @@ hardstatus alwayslastline
 hardstatus string "%{= kw} %?%-w%?%{=u kw}%n %t%{= kw}%?%+w%? %="    #B&W
 sorendition kw
 
-#chdir /home/eric/code/FlashCards
 screen -t git 0
 scrollback        10000
 screen -t . 1

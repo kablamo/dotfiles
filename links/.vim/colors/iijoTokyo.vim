@@ -25,7 +25,7 @@ endif
 :hi Ignore       cterm=bold           ctermfg=white 
 :hi IncSearch    cterm=bold           ctermfg=154 ctermbg=none
 :hi Include      cterm=none           ctermfg=white 
-:hi LineNr       cterm=none           ctermfg=white 
+:hi LineNr       cterm=none           ctermfg=237 ctermbg=233
 :hi MatchParen   cterm=bold           ctermfg=190 ctermbg=none
 :hi ModeMsg      cterm=none           ctermfg=white
 :hi MoreMsg      cterm=none           ctermfg=white

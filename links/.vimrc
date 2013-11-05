@@ -18,7 +18,7 @@ set exrc " for vroom
 set foldenable
 set foldlevelstart=9
 set foldmethod=syntax
-set fillchars=fold:\ ,vert:\ ,stl:\ ,stlnc:\ 
+set fillchars=fold:\ ,vert:\ ,stl:\ ,stlnc:\
 set guioptions=m
 set helpheight=200
 set hidden
@@ -27,7 +27,7 @@ set ignorecase
 set incsearch
 set iskeyword-=:
 set iskeyword+=_
-set laststatus=2 
+set laststatus=2
 set nolazyredraw           " turn off lazy redraw
 set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
 set noswapfile
@@ -177,24 +177,26 @@ let NERDTreeWinSize=60
 " buffergator
 let g:buffergator_split_size=10
 let g:buffergator_viewport_split_policy='B'
+let g:buffergator_suppress_keymaps=1
+map <leader>b :BuffergatorOpen<cr>
+map <leader>B :BuffergatorClose<cr>
 
 " Tagbar
 map <leader>m :TagbarOpenAutoClose<cr>
 let g:tagbar_autofocus = 1
-let g:tagbar_autoclose = 1
+let g:tagbar_autoclose = 0
 let g:tagbar_indent = 1
 
 " perltidy
 autocmd BufRead,BufNewFile *.t,*.pl,*.plx,*.pm command! -range=% -nargs=* Tidy <line1>,<line2>!perltidy -q
 autocmd BufRead,BufNewFile *.sql,*.t,*.pl,*.plx,*.pm noremap <leader>pt :Tidy<CR>
 fun DoTidy()
-    "run :Tidy on entire buffer and return cursor to (almost) original position"
-    let Pos = line2byte( line( "." ) )
+    let l:winview = winsaveview()
     :Tidy
-    exe "goto " . Pos
-    redraw
+    call winrestview(l:winview)
 endfun
 " autocmd BufWrite *.t,*.pl,*.plx,*.pm call DoTidy()
+noremap <leader>pt :Tidy<CR>
 
 " xml tidy
 autocmd BufRead,BufNewFile *.xml command! -range=% -nargs=* Tidy <line1>,<line2>!xmllint --pretty 1 %
@@ -203,26 +205,8 @@ autocmd BufRead,BufNewFile *.xml noremap <leader>xt :Tidy<CR>
 " perlprove
 " au BufRead,BufNewFile *.t set filetype=perl | compiler perlprove
 
-" neocomplcache
-let g:neocomplcache_enable_at_startup = 0
-let g:neocomplcache_enable_auto_select = 0
-let g:neocomplcache_enable_camel_case_completion = 0
-let g:neocomplcache_enable_underbar_completion = 0
-"inoremap <expr><c-n>  neocomplcache#start_manual_complete()
-"inoremap <expr><c-o>  neocomplcache#manual_omni_complete()
-"inoremap <expr><c-f>  neocomplcache#manual_filename_complete()
-"inoremap <expr><c-h>  neocomplcache#cancel_popup()
-"if !exists('g:neocomplcache_omni_patterns')
-"  let g:neocomplcache_omni_patterns = {}
-"endif
-"let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
-"let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-"let g:neocomplcache_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-"let g:neocomplcache_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-"let g:neocomplcache_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
-
 " PerlHelp
-map <leader>PH :PerlHelp 
+map <leader>PH :PerlHelp
 
 " Turn off warnings for perl compiler (see ':h :comp')
 let g:perl_compiler_force_warnings = 0
@@ -233,7 +217,7 @@ map <leader>rf <esc>:'<,'>!extract_perl_sub<cr>
 " ack
 nmap <leader>* :Ack <cword> %<cr>
 vmap <leader>* y:Ack <c-r>" %<cr>
-nmap <leader>/ :Ack 
+nmap <leader>/ :Ack
 vmap <leader>/ y:Ack <c-r>"
 
 " quickfix
@@ -252,11 +236,12 @@ vmap * y/<c-r>"<cr>
 vmap # y?<c-r>"<cr>
 
 " ctrlp
-let g:ctrlp_max_files = 15000
+let g:ctrlp_max_files = 30000
 let g:ctrlp_max_depth = 50
 let g:ctrlp_by_filename = 1
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_open_multiple_files = '1jr'
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
 let g:ctrlp_extensions = [
   \ 'tag', 'buffertag', 'quickfix', 'dir', 'rtscript',
   \ 'undo', 'line', 'changes', 'mixed', 'bookmarkdir']
@@ -277,7 +262,24 @@ nmap <leader>gV :Gitv! --all<cr>
 vmap <leader>gV :Gitv! --all<cr>
 cabbrev git Git
 
-try 
+" rm whitespace at the end of lines
+function! TrimWhiteSpace()
+    let l:winview = winsaveview()
+    %s/\s\+$//e
+    call winrestview(l:winview)
+endfunction
+nnoremap <silent> <Leader>d$ :call TrimWhiteSpace()<CR>
+autocmd FileWritePre    * :call TrimWhiteSpace()
+autocmd FileAppendPre   * :call TrimWhiteSpace()
+autocmd FilterWritePre  * :call TrimWhiteSpace()
+autocmd BufWritePre     * :call TrimWhiteSpace()
+autocmd FileType perl,ruby autocmd FileWritePre    * :call TrimWhiteSpace()
+autocmd FileType perl,ruby autocmd FileAppendPre   * :call TrimWhiteSpace()
+autocmd FileType perl,ruby autocmd FilterWritePre  * :call TrimWhiteSpace()
+autocmd FileType perl,ruby autocmd BufWritePre     * :call TrimWhiteSpace()
+
+
+try
     source /home/eric/.vimrc.local
 catch
 endtry

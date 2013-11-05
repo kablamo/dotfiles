@@ -4,9 +4,6 @@
 [submodule "links/.vim/bundle/vim-powerline"]
 	path = links/.vim/bundle/vim-powerline
 	url = git@github.com:Lokaltog/vim-powerline.git
-[submodule "links/.vim/bundle/neocomplcache"]
-	path = links/.vim/bundle/neocomplcache
-	url = git@github.com:Shougo/neocomplcache.git
 [submodule "links/.vim/bundle/vimproc"]
 	path = links/.vim/bundle/vimproc
 	url = git@github.com:Shougo/vimproc.git

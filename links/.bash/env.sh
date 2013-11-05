@@ -12,18 +12,15 @@ export PAGER="/usr/bin/less"
 . ~/bin/z.sh
 
 # perlbrew
-export PERLBREW_ROOT="$HOME/perl5/perlbrew"
-if [[ -x $PERLBREW_ROOT ]] ; then
+unset PERL5LIB
+unset PERL_CPANM_OPT
+PERLBREW_INIT="$HOME/.perlbrew/init"
+if [[ -e $PERLBREW_INIT ]] ; then
+    source $PERLBREW_INIT
     source ${PERLBREW_ROOT}/etc/bashrc
-    export PERL_CPANM_OPT="--local-lib=$PERLBREW_ROOT/perls/perl-5.14.4"
-    export MY_PERL_LIB=$PERLBREW_ROOT/perls/perl-5.14.4/lib
-    # I don't think I need these
-    #export PERL_MB_OPT="--install_base $MY_PERL_LIB/perl5" 
-    #export PERL_MM_OPT=INSTALL_BASE=$MY_PERL_LIB/perl5 
-    export PERL5LIB=$MY_PERL_LIB/5.14.4
-    export PERL5LIB=$MY_PERL_LIB/site_perl:$PERL5LIB
-    export PERL5LIB=$MY_PERL_LIB/perl5/i686-linux-gnu-thread-multi-64int:$PERL5LIB
-    export PERL5LIB=$MY_PERL_LIB/perl5/i686-linux:$PERL5LIB
-    export PERL5LIB=$MY_PERL_LIB/perl5:$PERL5LIB
-    export PERL5LIB=.:./lib:$PERL5LIB
 fi
+
+export PERL5LIB=./lib:$PERL5LIB
+
+# rbenv
+[ -x $HOME/.rbenv/bin/rbenv ] && eval "$(rbenv init -)"
