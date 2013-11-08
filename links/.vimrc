@@ -266,14 +266,11 @@ function! TrimWhiteSpace()
     call winrestview(l:winview)
 endfunction
 nnoremap <silent> <Leader>d$ :call TrimWhiteSpace()<CR>
-autocmd FileWritePre    * :call TrimWhiteSpace()
-autocmd FileAppendPre   * :call TrimWhiteSpace()
-autocmd FilterWritePre  * :call TrimWhiteSpace()
-autocmd BufWritePre     * :call TrimWhiteSpace()
-autocmd FileType perl,ruby autocmd FileWritePre    * :call TrimWhiteSpace()
-autocmd FileType perl,ruby autocmd FileAppendPre   * :call TrimWhiteSpace()
-autocmd FileType perl,ruby autocmd FilterWritePre  * :call TrimWhiteSpace()
-autocmd FileType perl,ruby autocmd BufWritePre     * :call TrimWhiteSpace()
+" autocmd FileType perl,ruby autocmd FileWritePre    * :call TrimWhiteSpace()
+" autocmd FileType perl,ruby autocmd FileAppendPre   * :call TrimWhiteSpace()
+" autocmd FileType perl,ruby autocmd FilterWritePre  * :call TrimWhiteSpace()
+" autocmd FileType perl,ruby autocmd BufWritePre     * :call TrimWhiteSpace()
+autocmd FileType perl,ruby autocmd BufRead, BufNewFile * :call TrimWhiteSpace()
 
 
 try
