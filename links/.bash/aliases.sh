@@ -36,6 +36,15 @@ tsay() {
     translate $* | say $2 -
 }
 
+memfree() {
+    free=$( grep '^Inactive:' /proc/meminfo | awk '{ mem=($2)/(1024) ; printf "%0.0f", mem }')
+    total=$(grep '^MemTotal:' /proc/meminfo | awk '{ mem=($2)/(1024) ; printf "%0.0f", mem }')
+    pct=$( echo $free/$total | bc -l)
+    echo "Free  Memory: $free MB"
+    echo "Total Memory: $total MB"
+    printf "Percent Free: %.2f%%\n" $pct
+}
+
 metacpan-favorites() {
     curl -s  https://metacpan.org/author/KABLAMO | perl -ne 'if (m!class="release".*/release/([^"]+)!) { $_ = $1; s/-/::/g; print $_,$/ }'
 }
