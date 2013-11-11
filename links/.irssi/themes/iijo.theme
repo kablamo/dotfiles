@@ -28,7 +28,7 @@ abstracts = {
   ban              = "%w$*%n";
 
   ## MESSAGES
-  msgnick          = "$0$1-%W:%n %|";
+  msgnick          = "$0$1-%W  :%n %|";
   ownnick          = "%K$*%n";
   menick           = "%9%W$*%n";
   # ownmsgnick     = "{msgnick $0 $1-}";
@@ -76,6 +76,7 @@ abstracts = {
 
   ## NETSPLITS
   netsplit = "%K$*%n";
+  netjoin  = "%K$*%n";
   #netsplit = "%R$*%n";
   #netjoin  = "%C$*%n";
 
@@ -110,7 +111,7 @@ abstracts = {
   ## STATUSBAR
   sb_background         = "%N";
   sbstart               = "";
-  prompt                = "    %K:%n ";
+  prompt                = "    %K :%n ";
   sb                    = "%K$*   ";
   sbmode                = "";
   sbaway                = " (%Gaway%n)";
@@ -141,6 +142,7 @@ abstracts = {
 
 formats = {
   "fe-common/core" = {
+    daychange              = "%%F %W-%w-%K-----------------%n";
     own_msg                = "{ownmsgnick {ownnick $[-15]0$2}}$1";
     own_msg_channel        = "{ownmsgnick {ownnick $[-15]0$3}{msgchannel $1}}$2";
     own_msg_private_query  = "{ownprivmsgnick {ownprivnick $[-15]2}}$1";
@@ -153,10 +155,10 @@ formats = {
     msg_private_query      = "{privmsgnick $[-15]0}$2";
   };
   "fe-common/irc" = {
-    own_action           = "{ownaction $0} $1";
-    action_private       = "{pvtaction $[-13]0}$1";
-    action_private_query = "{pvtaction_query $[-13]0} $2";
-    action_public        = "{pubaction $[-13]0}$1";
+    own_action           = "{ownaction $[-15]0}  $1";
+    action_private       = "{pvtaction $[-15]0}  $1";
+    action_private_query = "{pvtaction_query $[-15]0}  $2";
+    action_public        = "{pubaction $[-15]0}  $1";
     channel_synced       = "";
     topic                = "";
     no_topic             = "";
