@@ -36,13 +36,16 @@ tsay() {
     translate $* | say $2 -
 }
 
-memfree() {
-    free=$( grep '^Inactive:' /proc/meminfo | awk '{ mem=($2)/(1024) ; printf "%0.0f", mem }')
-    total=$(grep '^MemTotal:' /proc/meminfo | awk '{ mem=($2)/(1024) ; printf "%0.0f", mem }')
-    pct=$( echo $free/$total | bc -l)
-    echo "Free  Memory: $free MB"
-    echo "Total Memory: $total MB"
-    printf "Percent Free: %.2f%%\n" $pct
+mem() {
+    memfree=$( grep '^MemFree:' /proc/meminfo | awk '{ mem=($2)/(1024) ; printf "%0.0f", mem }' )
+    buffers=$( grep '^Buffers:' /proc/meminfo | awk '{ mem=($2)/(1024) ; printf "%0.0f", mem }' )
+    cached=$(  grep '^Cached:'  /proc/meminfo | awk '{ mem=($2)/(1024) ; printf "%0.0f", mem }' )
+
+    free=$( echo $memfree + $buffers + $cached | bc -l )
+    total=$( grep '^MemTotal:' /proc/meminfo | awk '{ mem=($2)/(1024) ; printf "%0.0f", mem }' )
+    pct=$( echo 100*$free/$total | bc -l )
+
+    printf "%5.f MB free (%.0f%%)\n%5.f MB total\n" $free $pct $total
 }
 
 metacpan-favorites() {
@@ -103,3 +106,5 @@ alias mysql2csv='sed '\''s/\t/","/g;s/^/"/;s/$/"/;s/\n//g'\'''
 # local aliases
 [ -f $HOME/.aliases ] &&
    . $HOME/.aliases
+
+# vim: set ft=bash
