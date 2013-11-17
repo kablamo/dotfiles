@@ -40,12 +40,13 @@ mem() {
     memfree=$( grep '^MemFree:' /proc/meminfo | awk '{ mem=($2)/(1024) ; printf "%0.0f", mem }' )
     buffers=$( grep '^Buffers:' /proc/meminfo | awk '{ mem=($2)/(1024) ; printf "%0.0f", mem }' )
     cached=$(  grep '^Cached:'  /proc/meminfo | awk '{ mem=($2)/(1024) ; printf "%0.0f", mem }' )
+    free=$( echo $memfree+$buffers+$cached | bc -l )
 
-    free=$( echo $memfree + $buffers + $cached | bc -l )
     total=$( grep '^MemTotal:' /proc/meminfo | awk '{ mem=($2)/(1024) ; printf "%0.0f", mem }' )
-    pct=$( echo 100*$free/$total | bc -l )
+    used=$( echo $total-$free | bc -l )
+    pct=$( echo 100*$used/$total | bc -l )
 
-    printf "%5.f MB free (%.0f%%)\n%5.f MB total\n" $free $pct $total
+    printf "%5.f MB used (%.0f%%)\n%5.f MB total\n" $used $pct $total
 }
 
 metacpan-favorites() {
