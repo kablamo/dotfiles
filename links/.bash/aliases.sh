@@ -101,6 +101,7 @@ alias POST='lwp-request -m POST '
 alias HEAD='lwp-request -m HEAD '
 
 alias grm="git status | grep deleted | awk '{print \$3}' | xargs git rm"
+alias gcd='cd "$(git rev-parse --show-toplevel)"'
 alias mysql2csv='sed '\''s/\t/","/g;s/^/"/;s/$/"/;s/\n//g'\'''
 
 
