@@ -27,6 +27,7 @@
     p = push origin HEAD
     pp = !"echo 'Pull'; git pull; echo 'Push'; git push origin HEAD"
 #   ribbon = tag --force _ribbon origin/master
+    r = pull --rebase origin stage
     s = status --short --branch
     tree = log --graph --pretty=oneline --abbrev-commit
     undo = git reset --hard HEAD^
