@@ -117,11 +117,6 @@ map <leader>= :winc =<cr>
 nmap <leader>Y "*y
 nmap <leader>P "*p
 
-" vim-powerline
-"let g:Powerline_symbols = 'fancy'
-let g:Powerline_theme = 'kablamo'
-let g:Powerline_colorscheme = 'kablamo'
-
 " commandline awesum sauce
 map <leader>x :Sscratch<cr>:0r !
 
