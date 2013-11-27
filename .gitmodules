@@ -67,6 +67,3 @@
 [submodule "links/.vim/bundle/tmuxline.vim"]
 	path = links/.vim/bundle/tmuxline.vim
 	url = git@github.com:edkolev/tmuxline.vim.git
-[submodule "vim-gitgutter"]
-	path = vim-gitgutter
-	url = git@github.com:airblade/vim-gitgutter.git
