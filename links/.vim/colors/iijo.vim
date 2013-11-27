@@ -26,7 +26,7 @@ hi Identifier   cterm=none           ctermfg=250
 hi Ignore       cterm=bold           ctermfg=white 
 hi IncSearch    cterm=bold           ctermfg=154 ctermbg=236
 hi Include      cterm=none           ctermfg=white 
-hi LineNr       cterm=none           ctermfg=235 ctermbg=233
+hi LineNr       cterm=none           ctermfg=236 ctermbg=233
 hi MatchParen   cterm=reverse        ctermfg=240 ctermbg=none
 hi ModeMsg      cterm=none           ctermfg=white
 hi MoreMsg      cterm=none           ctermfg=white
@@ -40,7 +40,7 @@ hi PmenuSel	 cterm=none           ctermfg=22 ctermbg=10
 hi PreProc      cterm=none           ctermfg=white 
 hi Question     cterm=none           ctermfg=white
 hi Search       cterm=none           ctermfg=none ctermbg=236
-hi SignColumn   cterm=none           ctermfg=none ctermbg=232
+hi SignColumn   cterm=none           ctermfg=none ctermbg=234
 hi Special      cterm=none           ctermfg=238
 hi SpecialKey   cterm=none           ctermfg=green
 hi SpellErrors  cterm=bold           ctermfg=white

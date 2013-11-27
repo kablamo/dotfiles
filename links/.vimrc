@@ -270,47 +270,41 @@ autocmd FileType perl,ruby autocmd BufRead, BufNewFile * :call TrimWhiteSpace()
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
-let g:airline_symbols.space = "\ua0"
-let g:airline_left_sep = '»'
-let g:airline_left_sep = ''
-let g:airline_left_sep = '▶'
-let g:airline_right_sep = '«'
-let g:airline_right_sep = ''
-let g:airline_right_sep = '◀'
-let g:airline_symbols.linenr = 'Ξ'
-"let g:airline_symbols.branch = '⎇'
-let g:airline_symbols.branch = 'branch:'
-let g:airline_symbols.paste = 'Þ'
-"let g:airline_symbols.paste = '∥'
-let g:airline_symbols.whitespace = 'Ξ'
-"  let g:airline_left_sep = '⮀'
-"  let g:airline_left_alt_sep = '⮁'
-"  let g:airline_right_sep = '⮂'
-"  let g:airline_right_alt_sep = '⮃'
-"  let g:airline_symbols.branch = '⭠'
-"  let g:airline_symbols.readonly = '⭤'
-"  let g:airline_symbols.linenr = '⭡'
-let g:airline_theme="wombat"
-let g:airline_section_warning = ''
+let g:airline_symbols.space             = "\ua0"
+let g:airline_left_sep                  = '▶'
+let g:airline_right_sep                 = '◀'
+let g:airline_symbols.linenr            = 'LN'
+let g:airline_symbols.branch            = ''
+let g:airline_symbols.paste             = 'Þ'
+let g:airline_symbols.whitespace        = 'Ξ'
+let g:airline_theme                     = "iijo"
+let g:airline_section_warning           = ''
 let g:airline#extensions#default#layout = [
   \ [ 'a', 'b', 'c' ],
   \ [ 'x', 'y', 'z', 'warning' ]
   \ ]
+let g:airline#extensions#hunks#enabled = 0
+function! AirlineInit()
+  let g:airline_section_b = airline#section#create(['branch', ' branch'])
+endfunction
+autocmd VimEnter * call AirlineInit()
 
 " tmuxline
-"let g:tmuxline_preset = 'nightly_fox'
-let g:tmuxline_separators = {
-  \ 'left'      : '▶',
-  \ 'left_alt'  : '>',
-  \ 'right'     : '◀',
-  \ 'right_alt' : '<',
-  \ 'space'     : "\ua0"
-\ }
+let g:tmuxline_powerline_separators = 0
 let g:tmuxline_preset = {
   \'win'     : '#I #W',
   \'cwin'    : '#I #W',
   \'options' : {'status-justify' : 'left'}
 \ }
+
+" git gutter
+let g:gitgutter_enabled = 0
+let g:gitgutter_signs = 0
+let g:gitgutter_highlight_lines = 1
+let g:gitgutter_realtime = 0
+let g:gitgutter_eager = 0
+hi GitGutterChangeLine ctermfg=219
+hi GitGutterDeleteLine ctermfg=223
 
 try
     source /home/eric/.vimrc.local
