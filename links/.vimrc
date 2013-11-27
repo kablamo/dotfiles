@@ -117,11 +117,6 @@ map <leader>= :winc =<cr>
 nmap <leader>Y "*y
 nmap <leader>P "*p
 
-" vim-powerline
-"let g:Powerline_symbols = 'fancy'
-let g:Powerline_theme = 'kablamo'
-let g:Powerline_colorscheme = 'kablamo'
-
 " commandline awesum sauce
 map <leader>x :Sscratch<cr>:0r !
 
@@ -271,6 +266,51 @@ endfunction
 nnoremap <silent> <Leader>d$ :call TrimWhiteSpace()<CR>
 autocmd FileType perl,ruby autocmd BufRead, BufNewFile * :call TrimWhiteSpace()
 
+" airline
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+let g:airline_symbols.space = "\ua0"
+let g:airline_left_sep = '»'
+let g:airline_left_sep = ''
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = ''
+let g:airline_right_sep = '◀'
+let g:airline_symbols.linenr = 'Ξ'
+"let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.branch = 'branch:'
+let g:airline_symbols.paste = 'Þ'
+"let g:airline_symbols.paste = '∥'
+let g:airline_symbols.whitespace = 'Ξ'
+"  let g:airline_left_sep = '⮀'
+"  let g:airline_left_alt_sep = '⮁'
+"  let g:airline_right_sep = '⮂'
+"  let g:airline_right_alt_sep = '⮃'
+"  let g:airline_symbols.branch = '⭠'
+"  let g:airline_symbols.readonly = '⭤'
+"  let g:airline_symbols.linenr = '⭡'
+let g:airline_theme="wombat"
+let g:airline_section_warning = ''
+let g:airline#extensions#default#layout = [
+  \ [ 'a', 'b', 'c' ],
+  \ [ 'x', 'y', 'z', 'warning' ]
+  \ ]
+
+" tmuxline
+"let g:tmuxline_preset = 'nightly_fox'
+let g:tmuxline_separators = {
+  \ 'left'      : '▶',
+  \ 'left_alt'  : '>',
+  \ 'right'     : '◀',
+  \ 'right_alt' : '<',
+  \ 'space'     : "\ua0"
+\ }
+let g:tmuxline_preset = {
+  \'win'     : '#I #W',
+  \'cwin'    : '#I #W',
+  \'options' : {'status-justify' : 'left'}
+\ }
 
 try
     source /home/eric/.vimrc.local
