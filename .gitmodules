@@ -61,3 +61,9 @@
 [submodule "links/.vim/bundle/vim-git-log"]
 	path = links/.vim/bundle/vim-git-log
 	url = git@github.com:kablamo/vim-git-log.git
+[submodule "links/.vim/bundle/vim-airline"]
+	path = links/.vim/bundle/vim-airline
+	url = git@github.com:bling/vim-airline.git
+[submodule "links/.vim/bundle/tmuxline.vim"]
+	path = links/.vim/bundle/tmuxline.vim
+	url = git@github.com:edkolev/tmuxline.vim.git

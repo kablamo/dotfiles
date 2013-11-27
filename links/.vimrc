@@ -266,6 +266,37 @@ endfunction
 nnoremap <silent> <Leader>d$ :call TrimWhiteSpace()<CR>
 autocmd FileType perl,ruby autocmd BufRead, BufNewFile * :call TrimWhiteSpace()
 
+" airline
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+let g:airline_symbols.space = "\ua0"
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.linenr = '␤'
+"let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.branch = 'BRANCH:'
+let g:airline_symbols.paste = 'Þ'
+"let g:airline_symbols.paste = '∥'
+let g:airline_symbols.whitespace = 'Ξ'
+let g:airline_theme="wombat"
+
+" tmuxline
+"let g:tmuxline_preset = 'nightly_fox'
+let g:tmuxline_separators = {
+  \ 'left'      : '▶',
+  \ 'left_alt'  : '>',
+  \ 'right'     : '◀',
+  \ 'right_alt' : '<',
+  \ 'space'     : "\ua0"
+\ }
+let g:tmuxline_preset = {
+  \'win'     : '#I #W',
+  \'cwin'    : '#I #W',
+  \'options' : {'status-justify' : 'left'}
+\ }
 
 try
     source /home/eric/.vimrc.local
