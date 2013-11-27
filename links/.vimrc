@@ -205,8 +205,8 @@ autocmd BufRead,BufNewFile *.xml noremap <leader>xt :Tidy<CR>
 " perlprove
 " au BufRead,BufNewFile *.t set filetype=perl | compiler perlprove
 
-" PerlHelp
-map <leader>PH :PerlHelp
+" Perldoc
+map <leader>pd :Perldoc <c-r><c-w><cr>
 
 " Turn off warnings for perl compiler (see ':h :comp')
 let g:perl_compiler_force_warnings = 0
