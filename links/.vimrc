@@ -296,9 +296,10 @@ let g:tmuxline_preset = {
   \'cwin'    : '#I #W',
   \'options' : {'status-justify' : 'left'}
 \ }
+" \'z'       : '#(/home/eric/bin/tmux-git-fab.sh)',
 
 " git gutter
-let g:gitgutter_enabled = 0
+let g:gitgutter_enabled = 1
 let g:gitgutter_signs = 0
 let g:gitgutter_highlight_lines = 1
 let g:gitgutter_realtime = 0
