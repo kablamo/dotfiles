@@ -40,7 +40,7 @@ hi PmenuSel	 cterm=none           ctermfg=22 ctermbg=10
 hi PreProc      cterm=none           ctermfg=white 
 hi Question     cterm=none           ctermfg=white
 hi Search       cterm=none           ctermfg=none ctermbg=236
-hi SignColumn   cterm=none           ctermfg=none ctermbg=234
+hi SignColumn   cterm=none           ctermfg=none ctermbg=233
 hi Special      cterm=none           ctermfg=238
 hi SpecialKey   cterm=none           ctermfg=green
 hi SpellErrors  cterm=bold           ctermfg=white
