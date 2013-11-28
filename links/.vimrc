@@ -37,6 +37,7 @@ set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%)
 set scrolloff=10
 set shiftround
 set shiftwidth=4
+set shortmess=atI
 set showcmd
 set smartcase
 set smarttab
@@ -137,6 +138,9 @@ imap <C-f> <C-x><C-f>
 imap <C-l> <C-x><C-l>
 imap <C-o> <C-x><C-o>
 
+" insert quickly
+map <leader>i :insert<cr>
+
 " folding
 " nnoremap <Space> za
 " vnoremap <Space> za
@@ -153,9 +157,6 @@ endfunction
 augroup perl_files
    set foldtext=PerlFoldText()
 augroup end
-
-" scratch
-map <leader><tab> :Scratch<cr>
 
 " NERD Commenter
 let NERDSpaceDelims=2
