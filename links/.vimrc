@@ -299,13 +299,20 @@ let g:tmuxline_preset = {
 " \'z'       : '#(/home/eric/bin/tmux-git-fab.sh)',
 
 " git gutter
-let g:gitgutter_enabled = 1
-let g:gitgutter_signs = 0
-let g:gitgutter_highlight_lines = 1
-let g:gitgutter_realtime = 0
-let g:gitgutter_eager = 0
-hi GitGutterChangeLine ctermfg=219
-hi GitGutterDeleteLine ctermfg=223
+let g:gitgutter_enabled         = 1
+let g:gitgutter_signs           = 1
+let g:gitgutter_highlight_lines = 0
+let g:gitgutter_realtime        = 0
+let g:gitgutter_eager           = 0
+let g:gitgutter_diff_args       = '-w'
+let g:gitgutter_sign_added            = '+'
+let g:gitgutter_sign_modified         = '~'
+let g:gitgutter_sign_removed          = '_'
+let g:gitgutter_sign_modified_removed = '~'
+hi GitGutterAdd          cterm=none ctermfg=45  ctermbg=233
+hi GitGutterChange       cterm=none ctermfg=165 ctermbg=233
+hi GitGutterDelete       cterm=bold ctermfg=162 ctermbg=233
+hi GitGutterChangeDelete cterm=none ctermfg=160 ctermbg=233
 
 try
     source /home/eric/.vimrc.local
