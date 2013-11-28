@@ -70,6 +70,3 @@
 [submodule "links/.vim/bundle/vim-gitgutter"]
 	path = links/.vim/bundle/vim-gitgutter
 	url = git@github.com:airblade/vim-gitgutter.git
-[submodule "tmux-git"]
-	path = tmux-git
-	url = git@github.com:drmad/tmux-git.git
