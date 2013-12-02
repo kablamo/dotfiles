@@ -37,7 +37,7 @@ set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%)
 set scrolloff=10
 set shiftround
 set shiftwidth=4
-set shortmess=atI
+set shortmess=aoOtI
 set showcmd
 set smartcase
 set smarttab
