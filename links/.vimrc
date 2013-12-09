@@ -195,8 +195,8 @@ endfun
 noremap <leader>pt :Tidy<CR>
 
 " xml tidy
-autocmd BufRead,BufNewFile *.xml command! -range=% -nargs=* Tidy <line1>,<line2>!xmllint --pretty 1 %
-autocmd BufRead,BufNewFile *.xml noremap <leader>xt :Tidy<CR>
+" autocmd BufRead,BufNewFile *.xml command! -range=% -nargs=* Tidy <line1>,<line2>!xmllint --pretty 1 %
+" autocmd BufRead,BufNewFile *.xml noremap <leader>xt :Tidy<CR>
 
 " perlprove
 " au BufRead,BufNewFile *.t set filetype=perl | compiler perlprove
