@@ -3,3 +3,4 @@
 --color-match=reverse
 --color-lineno=reset
 --pager=less -R
+--ignore-dir=local

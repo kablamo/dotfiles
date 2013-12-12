@@ -105,6 +105,8 @@ alias grm="git status | grep deleted | awk '{print \$3}' | xargs git rm"
 alias gcd='cd "$(git rev-parse --show-toplevel)"'
 alias mysql2csv='sed '\''s/\t/","/g;s/^/"/;s/$/"/;s/\n//g'\'''
 
+alias reload="exec bash -l"
+
 
 # local aliases
 [ -f $HOME/.aliases ] &&
