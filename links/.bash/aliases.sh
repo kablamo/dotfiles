@@ -81,7 +81,7 @@ alias httpdump="sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET
 alias t="$HOME/code/dotfiles/bin/todo.sh -p -P"
 #alias p='sudo puppet apply --confdir=$HOME/.puppet ~/.puppet/manifests/site.pp -v'
 alias p="watch -n 1 'ps awwwuxf | grep eric | grep -v awwwuxf'"
-alias pw='genpass --minlength 12 --maxlength 12'
+alias pw='genpass --minlength 15 --maxlength 15'
 alias free='free -m'
 alias findly='find . -name '
 
