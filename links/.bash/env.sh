@@ -14,5 +14,5 @@ export PAGER="/usr/bin/less"
 # all my envs! plenv, rbenv, pyenv, ndenv, etc
 [ -x $HOME/.anyenv ] && eval "$(anyenv init -)"
 
-# need this in case plenv is not installed
-[ ! -x $HOME/.anyenv ] && export PERL5LIB=./lib:./local/lib/perl5:$PERL5LIB
+# make it easier to Perl
+export PERL5LIB=./lib:./local/lib/perl5:$PERL5LIB
