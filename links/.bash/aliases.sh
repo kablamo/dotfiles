@@ -107,6 +107,8 @@ alias mysql2csv='sed '\''s/\t/","/g;s/^/"/;s/$/"/;s/\n//g'\'''
 
 alias reload="exec bash -l"
 
+alias env.locallib="eval $(perl -I /home/eric/perl5/lib/perl5/ -Mlocal::lib)"
+
 
 # local aliases
 [ -f $HOME/.aliases ] &&
