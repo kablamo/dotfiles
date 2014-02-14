@@ -9,7 +9,8 @@ endif
 hi Comment      cterm=none           ctermfg=244
 hi Constant     cterm=none           ctermfg=244
 hi Cursor       cterm=reverse
-hi CursorLine   cterm=none           ctermfg=none ctermbg=235
+hi CursorLine   cterm=none           ctermfg=none ctermbg=none
+hi CursorLineNr cterm=none           ctermfg=236  ctermbg=233
 hi CursorColumn cterm=none           ctermfg=none ctermbg=none
 hi Define       cterm=none           ctermfg=white 
 hi DiffAdd      cterm=bold           ctermfg=221 ctermbg=none
