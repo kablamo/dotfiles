@@ -35,7 +35,7 @@
     whatis = show -s --pretty='tformat:%h (%s, %ad)' --date=short
 [core]
     #excludesfile = "/etc/gitexcludes"
-    autocrlf = input
+	autocrlf = false
     excludesfile = /home/eric/.gitignore_global
 [diff]
     tool = vimdiff
