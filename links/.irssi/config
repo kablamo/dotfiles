@@ -1,5 +1,6 @@
 servers = (
   { address = "irc.perl.org";      chatnet = "perl";      port = "6667"; },
+  { address = "irc.freenode.net";  chatnet = "freenode";  port = "6667"; },
   { address = "irc.ubuntu.com";    chatnet = "ubuntu";    port = "8001"; },
   { address = "eu.irc6.net";       chatnet = "ircnet";    port = "6667"; },
   { address = "open.ircnet.net";   chatnet = "ircnet";    port = "6667"; },
@@ -17,6 +18,7 @@ servers = (
 
 chatnets = {
   perl      = { type = "IRC"; max_kicks = "4"; max_msgs = "5"; max_whois = "4"; max_query_chans = "5"; };
+  freenode  = { type = "IRC"; max_kicks = "4"; max_msgs = "5"; max_whois = "4"; max_query_chans = "5"; };
   ircnet    = { type = "IRC"; max_kicks = "4"; max_msgs = "5"; max_whois = "4"; max_query_chans = "5"; };
   efnet     = { type = "IRC"; max_kicks = "4"; max_msgs = "3"; max_whois = "1"; };
   undernet  = { type = "IRC"; max_kicks = "1"; max_msgs = "3"; max_whois = "30"; };
@@ -32,6 +34,10 @@ chatnets = {
 };
 
 channels = (
+  { name = "#duckduckgo"; chatnet = "freenode"; autojoin = "Yes"; }
+  { name = "#londonpm";   chatnet = "perl";     autojoin = "Yes"; }
+  { name = "#perl";       chatnet = "perl";     autojoin = "Yes"; }
+  { name = "#foxtons";    chatnet = "perl";     autojoin = "Yes"; }
   { name = "#irssi"; chatnet = "ircnet"; autojoin = "No"; },
   { name = "silc";   chatnet = "silc";   autojoin = "No"; }
 );
