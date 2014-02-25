@@ -79,8 +79,9 @@ alias irssi='TERM="screen-256color" irssi'
 alias tunnel='autossh -v -R 9999:localhost:9999 -N -l eric iijo.org -p 4321'
 alias httpdump="sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET \/.*\""
 alias t="$HOME/code/dotfiles/bin/todo.sh -p -P"
-alias p='sudo puppet apply --confdir=$HOME/.puppet ~/.puppet/manifests/site.pp -v'
-alias pw='genpass --minlength 12 --maxlength 12'
+#alias p='sudo puppet apply --confdir=$HOME/.puppet ~/.puppet/manifests/site.pp -v'
+alias p="watch -n 1 'ps awwwuxf | grep eric | grep -v awwwuxf'"
+alias pw='genpass --minlength 15 --maxlength 15'
 alias free='free -m'
 alias findly='find . -name '
 
@@ -101,7 +102,12 @@ alias POST='lwp-request -m POST '
 alias HEAD='lwp-request -m HEAD '
 
 alias grm="git status | grep deleted | awk '{print \$3}' | xargs git rm"
+alias gcd='cd "$(git rev-parse --show-toplevel)"'
 alias mysql2csv='sed '\''s/\t/","/g;s/^/"/;s/$/"/;s/\n//g'\'''
+
+alias reload="exec bash -l"
+
+alias env.locallib="eval $(perl -I /home/eric/perl5/lib/perl5/ -Mlocal::lib)"
 
 
 # local aliases

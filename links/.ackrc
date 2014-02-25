@@ -1,5 +1,6 @@
 --color
---color-filename=white on_blue
+--color-filename=bold white
 --color-match=reverse
 --color-lineno=reset
 --pager=less -R
+--ignore-dir=local

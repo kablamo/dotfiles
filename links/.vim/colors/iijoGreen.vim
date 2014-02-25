@@ -6,7 +6,8 @@ if version > 580
  syntax reset
  endif
 endif
-hi Comment      cterm=none           ctermfg=197
+"hi Comment      cterm=none           ctermfg=197
+hi Comment      cterm=none           ctermfg=30
 hi Constant     cterm=none           ctermfg=244
 hi Cursor       cterm=reverse
 hi CursorLine   cterm=none           ctermfg=none ctermbg=236
@@ -21,7 +22,7 @@ hi ErrorMsg     cterm=bold           ctermfg=white
 hi FoldColumn   cterm=none           ctermfg=240 ctermbg=234
 hi Folded       cterm=none           ctermfg=250 ctermbg=236
 hi Function     cterm=bold           ctermfg=white 
-hi Identifier   cterm=none           ctermfg=148
+hi Identifier   cterm=none           ctermfg=154
 hi Ignore       cterm=bold           ctermfg=white 
 hi IncSearch    cterm=bold           ctermfg=154 ctermbg=none
 hi Include      cterm=none           ctermfg=white 
@@ -30,7 +31,7 @@ hi MatchParen   cterm=bold           ctermfg=green ctermbg=none
 hi ModeMsg      cterm=none           ctermfg=white
 hi MoreMsg      cterm=none           ctermfg=white
 hi NonText      cterm=none           ctermfg=235 ctermbg=235
-hi Normal       cterm=none           ctermfg=178
+hi Normal       cterm=none           ctermfg=40
 hi Operator     cterm=none           ctermfg=252
 hi PreProc      cterm=none           ctermfg=white 
 hi Question     cterm=none           ctermfg=white
@@ -39,7 +40,7 @@ hi SignColumn   cterm=none           ctermfg=none ctermbg=233
 hi Special      cterm=none           ctermfg=246
 hi SpecialKey   cterm=none           ctermfg=green
 hi SpellErrors  cterm=bold           ctermfg=white
-hi Statement    cterm=bold           ctermfg=202
+hi Statement    cterm=bold           ctermfg=191
 hi StatusLine   cterm=none           ctermfg=0 ctermbg=250
 hi StatusLineNC cterm=none           ctermfg=0 ctermbg=245
 hi String       cterm=none           ctermfg=white

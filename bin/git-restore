@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+if test $# -lt 2; then
+	echo "usage: git restore <commit> <filename>"
+	exit 1
+fi
+
+git checkout $1~1 $2

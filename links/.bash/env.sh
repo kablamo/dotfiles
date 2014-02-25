@@ -11,19 +11,8 @@ export PAGER="/usr/bin/less"
 # https://github.com/rupa/z
 . ~/bin/z.sh
 
-# perl
-unset PERL5LIB
-unset PERL_CPANM_OPT
-PERLBREW_INIT="$HOME/.perlbrew/init"
-if [[ -e $PERLBREW_INIT ]] ; then
-    source $PERLBREW_INIT
-    source ${PERLBREW_ROOT}/etc/bashrc
-fi
+# all my envs! plenv, rbenv, pyenv, ndenv, etc
+[ -x $HOME/.anyenv ] && eval "$(anyenv init -)"
 
-export PERL5LIB=./lib:$PERL5LIB
-
-# ruby
-[ -x $HOME/.rbenv/bin/rbenv ] && eval "$(rbenv init -)"
-
-# python
-[ -x $HOME/.pyenv ] && eval "$(pyenv init -)"
+# make it easier to Perl
+export PERL5LIB=./lib:./local/lib/perl5:$PERL5LIB

@@ -37,6 +37,7 @@ set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%)
 set scrolloff=10
 set shiftround
 set shiftwidth=4
+set shortmess=aoOtI " short messages so vi doesn't ask me to hit enter all the time
 set showcmd
 set smartcase
 set smarttab
@@ -117,11 +118,6 @@ map <leader>= :winc =<cr>
 nmap <leader>Y "*y
 nmap <leader>P "*p
 
-" vim-powerline
-"let g:Powerline_symbols = 'fancy'
-let g:Powerline_theme = 'kablamo'
-let g:Powerline_colorscheme = 'kablamo'
-
 " commandline awesum sauce
 map <leader>x :Sscratch<cr>:0r !
 
@@ -142,6 +138,9 @@ imap <C-f> <C-x><C-f>
 imap <C-l> <C-x><C-l>
 imap <C-o> <C-x><C-o>
 
+" insert quickly
+map <leader>i :insert<cr>
+
 " folding
 " nnoremap <Space> za
 " vnoremap <Space> za
@@ -158,9 +157,6 @@ endfunction
 augroup perl_files
    set foldtext=PerlFoldText()
 augroup end
-
-" scratch
-map <leader><tab> :Scratch<cr>
 
 " NERD Commenter
 let NERDSpaceDelims=2
@@ -199,14 +195,14 @@ endfun
 noremap <leader>pt :Tidy<CR>
 
 " xml tidy
-autocmd BufRead,BufNewFile *.xml command! -range=% -nargs=* Tidy <line1>,<line2>!xmllint --pretty 1 %
-autocmd BufRead,BufNewFile *.xml noremap <leader>xt :Tidy<CR>
+" autocmd BufRead,BufNewFile *.xml command! -range=% -nargs=* Tidy <line1>,<line2>!xmllint --pretty 1 %
+" autocmd BufRead,BufNewFile *.xml noremap <leader>xt :Tidy<CR>
 
 " perlprove
 " au BufRead,BufNewFile *.t set filetype=perl | compiler perlprove
 
-" PerlHelp
-map <leader>PH :PerlHelp
+" Perldoc
+map <leader>pd :Perldoc <c-r><c-w><cr>
 
 " Turn off warnings for perl compiler (see ':h :comp')
 let g:perl_compiler_force_warnings = 0
@@ -271,6 +267,53 @@ endfunction
 nnoremap <silent> <Leader>d$ :call TrimWhiteSpace()<CR>
 autocmd FileType perl,ruby autocmd BufRead, BufNewFile * :call TrimWhiteSpace()
 
+" airline
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+let g:airline_symbols.space             = "\ua0"
+let g:airline_left_sep                  = '▶'
+let g:airline_right_sep                 = '◀'
+let g:airline_symbols.linenr            = 'LN'
+let g:airline_symbols.branch            = ''
+let g:airline_symbols.paste             = 'Þ'
+let g:airline_symbols.whitespace        = 'Ξ'
+let g:airline_theme                     = "iijo"
+let g:airline_section_warning           = ''
+let g:airline#extensions#default#layout = [
+  \ [ 'a', 'b', 'c' ],
+  \ [ 'x', 'y', 'z', 'warning' ]
+  \ ]
+let g:airline#extensions#hunks#enabled = 0
+function! AirlineInit()
+  let g:airline_section_b = airline#section#create(['branch', ' branch'])
+endfunction
+autocmd VimEnter * call AirlineInit()
+
+" tmuxline
+let g:tmuxline_powerline_separators = 0
+let g:tmuxline_preset = {
+  \'win'     : '#I #W',
+  \'cwin'    : '#I #W',
+  \'options' : {'status-justify' : 'left'}
+\ }
+" \'z'       : '#(/home/eric/bin/tmux-git-fab.sh)',
+
+" git gutter
+let g:gitgutter_enabled         = 1
+let g:gitgutter_signs           = 1
+let g:gitgutter_highlight_lines = 0
+let g:gitgutter_realtime        = 0
+let g:gitgutter_eager           = 0
+let g:gitgutter_diff_args       = '-w'
+let g:gitgutter_sign_added            = '+'
+let g:gitgutter_sign_modified         = '~'
+let g:gitgutter_sign_removed          = '_'
+let g:gitgutter_sign_modified_removed = '~'
+hi GitGutterAdd          cterm=none ctermfg=45  ctermbg=233
+hi GitGutterChange       cterm=none ctermfg=165 ctermbg=233
+hi GitGutterDelete       cterm=bold ctermfg=162 ctermbg=233
+hi GitGutterChangeDelete cterm=none ctermfg=160 ctermbg=233
 
 try
     source /home/eric/.vimrc.local

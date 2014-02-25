@@ -1,9 +1,6 @@
 [submodule "links/.vim/bundle/vim-easymotion"]
 	path = links/.vim/bundle/vim-easymotion
 	url = git@github.com:Lokaltog/vim-easymotion.git
-[submodule "links/.vim/bundle/vim-powerline"]
-	path = links/.vim/bundle/vim-powerline
-	url = git@github.com:Lokaltog/vim-powerline.git
 [submodule "links/.vim/bundle/vimproc"]
 	path = links/.vim/bundle/vimproc
 	url = git@github.com:Shougo/vimproc.git
@@ -64,3 +61,12 @@
 [submodule "links/.vim/bundle/vim-git-log"]
 	path = links/.vim/bundle/vim-git-log
 	url = git@github.com:kablamo/vim-git-log.git
+[submodule "links/.vim/bundle/vim-airline"]
+	path = links/.vim/bundle/vim-airline
+	url = git@github.com:bling/vim-airline.git
+[submodule "links/.vim/bundle/tmuxline.vim"]
+	path = links/.vim/bundle/tmuxline.vim
+	url = git@github.com:edkolev/tmuxline.vim.git
+[submodule "links/.vim/bundle/vim-gitgutter"]
+	path = links/.vim/bundle/vim-gitgutter
+	url = git@github.com:airblade/vim-gitgutter.git
