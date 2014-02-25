@@ -35,11 +35,11 @@ chatnets = {
 
 channels = (
   { name = "#duckduckgo"; chatnet = "freenode"; autojoin = "Yes"; }
-  { name = "#londonpm";   chatnet = "perl";     autojoin = "Yes"; }
+  { name = "#london.pm";  chatnet = "perl";     autojoin = "Yes"; }
   { name = "#perl";       chatnet = "perl";     autojoin = "Yes"; }
   { name = "#foxtons";    chatnet = "perl";     autojoin = "Yes"; }
-  { name = "#irssi"; chatnet = "ircnet"; autojoin = "No"; },
-  { name = "silc";   chatnet = "silc";   autojoin = "No"; }
+  { name = "#irssi";      chatnet = "ircnet";   autojoin = "No";  },
+  { name = "silc";        chatnet = "silc";     autojoin = "No";  }
 );
 
 aliases = {
