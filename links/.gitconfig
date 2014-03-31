@@ -20,14 +20,14 @@
     history = blame -w -c --show-number
     jo = "!f () { vim $(git diff --name-only $@); }; f"
     jm = "!f () { vim $(git diff --name-only --diff-filtered=U $@); }; f"
-    ll = log --pretty=format:'%C(bold white)%s%Creset%n%h %an %ci %cr'   --abbrev-commit --no-merges --name-only 
+    ll = log --pretty=format:'%C(bold white)%s%Creset%n%h %an %ci %cr'   --abbrev-commit --name-only #--no-merges 
     lo = "!f () { git log --no-merges --abbrev-commit --date=relative --pretty=format:'%h%x00%cd%x00%s%x00%an' $@ | gawk -F '\\0' '{ printf \"%s %-12s  %-100s %s\\n\", $1, $2, gensub(/(.{79}).{2,}/, \"\\\\1…\",\"g\",$3), $4 }' | less -R; }; f"
     ls = log --pretty=format:'%C(bold white)%s%Creset\n%h %an %ci %cr\n' --abbrev-commit --no-merges
     mrg = merge --no-ff
     p = push origin HEAD
     pp = !"echo 'Pull'; git pull; echo 'Push'; git push origin HEAD"
 #   ribbon = tag --force _ribbon origin/master
-    r = pull --rebase origin stage
+#   r = pull --rebase origin stage
     s = status --short --branch
     tree = log --graph --pretty=oneline --abbrev-commit
     undo = git reset --hard HEAD^
