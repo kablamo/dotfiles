@@ -70,7 +70,7 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
 alias -- -='cd -'
-alias cdd='cd ~/code/dotfiles'
+alias cdd='cd ~/.dotfiles'
 alias cdp='cd ~/.puppet'
 alias cp='/bin/cp -v' 
 alias mv='/bin/mv -v' 
@@ -82,7 +82,7 @@ alias irc='ssh eric@braga -R 7877:localhost:7877'
 alias irssi='TERM="screen-256color" irssi'
 alias tunnel='autossh -v -R 9999:localhost:9999 -N -l eric iijo.org -p 4321'
 alias httpdump="sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET \/.*\""
-alias t="$HOME/code/dotfiles/bin/todo.sh -p -P"
+alias t="$HOME/.dotfiles/bin/todo.sh -p -P"
 alias tt="$HOME/.anyenv/envs/rbenv/shims/timetrap"
 #alias p='sudo puppet apply --confdir=$HOME/.puppet ~/.puppet/manifests/site.pp -v'
 alias p="watch -n 1 'ps awwwuxf | grep eric | grep -v awwwuxf'"
