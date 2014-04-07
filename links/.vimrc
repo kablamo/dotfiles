@@ -85,13 +85,13 @@ vnoremap <tab> %
 map <space> :e#<cr>
 
 " edit dotfiles
-map <leader>ea :e /home/eric/code/dotfiles/links/.bash/aliases.sh<cr>
-map <leader>ee :e /home/eric/code/dotfiles/links/.bash/env.sh<cr>
-map <leader>ec :e /home/eric/code/dotfiles/links/.vim/colors/iijo.vim<cr>
-map <leader>eg :e /home/eric/code/dotfiles/links/.gitconfig<cr>
-map <leader>ev :e /home/eric/code/dotfiles/links/.vimrc<cr>
-map <leader>et :e /home/eric/Dropbox/.todo/todo.txt<cr>
-map <leader>em :e /home/eric/code/dotfiles/links/.tmux.conf<cr>
+map <leader>ea :e ~/.dotfiles/links/.bash/aliases.sh<cr>
+map <leader>ee :e ~/.dotfiles/links/.bash/env.sh<cr>
+map <leader>ec :e ~/.dotfiles/links/.vim/colors/iijo.vim<cr>
+map <leader>eg :e ~/.dotfiles/links/.gitconfig<cr>
+map <leader>ev :e ~/.dotfiles/links/.vimrc<cr>
+map <leader>et :e ~/Dropbox/.todo/todo.txt<cr>
+map <leader>em :e ~/.dotfiles/links/.tmux.conf<cr>
 
 " edit local dotfiles
 map <leader>ela :e /home/eric/.aliases<cr>
