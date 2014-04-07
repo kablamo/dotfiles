@@ -7,7 +7,7 @@ use Path::Class qw/file dir/;
 use File::Copy qw/move cp/;
 
 my $home_dir     = dir($ENV{HOME});
-my $dotfiles_dir = $home_dir->subdir('code/dotfiles');
+my $dotfiles_dir = $home_dir->subdir('.dotfiles');
 my $links_dir    = $dotfiles_dir->subdir('links');
 my $copy_dir     = $dotfiles_dir->subdir('copy');
 my $backup_dir   = dir('/tmp/dotfiles-backup');
