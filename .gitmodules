@@ -73,3 +73,6 @@
 [submodule "perldoc-complete"]
 	path = perldoc-complete
 	url = git@github.com:ap/perldoc-complete.git
+[submodule "links/.vim/bundle/vim-sleuth"]
+	path = links/.vim/bundle/vim-sleuth
+	url = git@github.com:tpope/vim-sleuth.git
