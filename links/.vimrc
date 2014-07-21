@@ -41,6 +41,7 @@ set shortmess=aoOtI " short messages so vi doesn't ask me to hit enter all the t
 set showcmd
 set smartcase
 set smarttab
+set softtabstop=4
 set tags=/home/eric/perl5/tags
 set tabstop=4
 set textwidth=0
@@ -314,6 +315,10 @@ hi GitGutterAdd          cterm=none ctermfg=45  ctermbg=233
 hi GitGutterChange       cterm=none ctermfg=165 ctermbg=233
 hi GitGutterDelete       cterm=bold ctermfg=162 ctermbg=233
 hi GitGutterChangeDelete cterm=none ctermfg=160 ctermbg=233
+
+" Tabular
+map <leader>aa :Tabularize
+map <leader>a :Tabularize<cr>
 
 try
     source /home/eric/.vimrc.local
