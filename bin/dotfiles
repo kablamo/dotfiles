@@ -7,16 +7,18 @@ use Path::Class qw/file dir/;
 use File::Copy qw/move cp/;
 
 my $home_dir     = dir($ENV{HOME});
-my $dotfiles_dir = $home_dir->subdir('.dotfiles');
-my $links_dir    = $dotfiles_dir->subdir('links');
-my $copy_dir     = $dotfiles_dir->subdir('copy');
-my $backup_dir   = dir('/tmp/dotfiles-backup');
+my $home_bin_dir = $home_dir->subdir('bin');
 
-# create links in $home_dir to $links_dir
-create_links($links_dir => $home_dir);
+my $dotfiles_dir       = $home_dir->subdir('.dotfiles');
+my $dotfiles_bin_dir   = $dotfiles_dir->subdir('bin');
+my $dotfiles_links_dir = $dotfiles_dir->subdir('links');
+my $dotfiles_copy_dir  = $dotfiles_dir->subdir('copy');
 
-# copy files from $copy_dir to $home_dir
-copy_files($copy_dir => $home_dir);
+my $backup_dir = dir('/tmp/dotfiles-backup');
+
+create_links( $dotfiles_links_dir => $home_dir     );
+create_links( $dotfiles_bin_dir   => $home_bin_dir );
+copy_files(   $dotfiles_copy_dir  => $home_dir     );
 
 # update all the git submodules in the top level of $dotfiles_dir
 process_submodules($dotfiles_dir => $home_dir);
