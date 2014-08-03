@@ -13,7 +13,6 @@ if version >= 703
     set cryptmethod=blowfish
 endif
 set encoding=utf-8
-set expandtab
 set exrc " for vroom
 set foldenable
 set foldlevelstart=9
@@ -324,3 +323,6 @@ try
     source /home/eric/.vimrc.local
 catch
 endtry
+
+" something keeps turning this off so put this at the end
+set expandtab
