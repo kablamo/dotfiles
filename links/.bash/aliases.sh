@@ -101,6 +101,7 @@ alias minicpanm='cpanm --mirror ~/minicpan --mirror-only'
 alias darkpan='cpanm --mirror http://mycompany.co.uk/DPAN --mirror-only'
 alias pod='perlfind'
 alias perl5lib='perl -E "say join \"\n\", split \":\", \$ENV{PERL5LIB}"'
+alias static="plackup -e 'use Plack::Builder; builder { enable 'Static', path => qr{.*}, root => \".\" }'"
 
 alias GET='lwp-request -m GET '
 alias PUT='lwp-request -m PUT '
