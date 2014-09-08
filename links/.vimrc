@@ -41,7 +41,7 @@ set showcmd
 set smartcase
 set smarttab
 set softtabstop=4
-set tags=/home/eric/perl5/tags
+set tags=$HOME/perl5/tags
 set tabstop=4
 set textwidth=0
 set undolevels=1000
@@ -94,8 +94,8 @@ map <leader>et :e ~/Dropbox/.todo/todo.txt<cr>
 map <leader>em :e ~/.dotfiles/links/.tmux.conf<cr>
 
 " edit local dotfiles
-map <leader>ela :e /home/eric/.aliases<cr>
-map <leader>elv :e /home/eric/.vimrc.local<cr>
+map <leader>ela :e $HOME/.aliases<cr>
+map <leader>elv :e $HOME/.vimrc.local<cr>
 
 " easier to escape
 inoremap jj <ESC>
@@ -297,7 +297,7 @@ let g:tmuxline_preset = {
   \'cwin'    : '#I #W',
   \'options' : {'status-justify' : 'left'}
 \ }
-" \'z'       : '#(/home/eric/bin/tmux-git-fab.sh)',
+" \'z'       : '#($HOME/bin/tmux-git-fab.sh)',
 
 " git gutter
 let g:gitgutter_enabled         = 1
@@ -320,7 +320,7 @@ map <leader>aa :Tabularize
 map <leader>a :Tabularize<cr>
 
 try
-    source /home/eric/.vimrc.local
+    source $HOME/.vimrc.local
 catch
 endtry
 
