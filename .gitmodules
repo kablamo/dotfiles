@@ -4,9 +4,6 @@
 [submodule "links/.vim/bundle/vimproc"]
 	path = links/.vim/bundle/vimproc
 	url = git@github.com:Shougo/vimproc.git
-[submodule "links/.vim/bundle/vim-autoclose"]
-	path = links/.vim/bundle/vim-autoclose
-	url = git@github.com:Townk/vim-autoclose.git
 [submodule "links/.vim/bundle/perlomni.vim"]
 	path = links/.vim/bundle/perlomni.vim
 	url = git@github.com:c9s/perlomni.vim.git
