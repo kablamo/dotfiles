@@ -325,4 +325,6 @@ catch
 endtry
 
 " something keeps turning this off so put this at the end
+set tabstop=4
+set shiftwidth=4
 set expandtab
