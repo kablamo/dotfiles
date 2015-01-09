@@ -57,6 +57,14 @@ cpanm-metacpan-favorites() {
     metacpan-favorites | cpanm -nv
 }
 
+vman() {
+    vim -c "SuperMan $*"
+
+    if [ "$?" != "0" ]; then
+        echo "No manual entry for $*"
+    fi
+}
+
 
 alias hg='history | grep --color=auto'
 alias grep='grep --color=auto'
