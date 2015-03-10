@@ -73,3 +73,6 @@
 [submodule "links/.vim/bundle/vim-superman"]
 	path = links/.vim/bundle/vim-superman
 	url = https://github.com/Z1MM32M4N/vim-superman
+[submodule "links/.vim/bundle/vim-perl"]
+	path = links/.vim/bundle/vim-perl
+	url = https://github.com/vim-perl/vim-perl.git
