@@ -1,0 +1,7 @@
+cpanm Reply
+cpanm Term::ReadLine::Gnu
+cpanm pmtools
+cpanm Devel::Confess
+cpanm App::cpanoutdated
+cpanm cpan-listchanges
+cpanm Test::Pretty
