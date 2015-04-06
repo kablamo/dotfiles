@@ -121,10 +121,16 @@ alias gcd='cd "$(git rev-parse --show-toplevel)"'
 alias mysql2csv='sed '\''s/\t/","/g;s/^/"/;s/$/"/;s/\n//g'\'''
 
 alias reload="exec bash -l"
+alias tree="tree -I local"
 
 
+# TODO remove this
 # local aliases
 [ -f $HOME/.aliases ] &&
    . $HOME/.aliases
+
+# local bashrc
+[ -f $HOME/.bashrc.local ] &&
+   . $HOME/.bashrc.local
 
 # vim: set ft=bash
