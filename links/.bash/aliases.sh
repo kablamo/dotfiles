@@ -121,7 +121,9 @@ alias gcd='cd "$(git rev-parse --show-toplevel)"'
 alias mysql2csv='sed '\''s/\t/","/g;s/^/"/;s/$/"/;s/\n//g'\'''
 
 alias reload="exec bash -l"
+
 alias tree="tree -I local"
+alias env="env | sort"
 
 
 # TODO remove this
