@@ -293,9 +293,11 @@ autocmd VimEnter * call AirlineInit()
 " tmuxline
 let g:tmuxline_powerline_separators = 0
 let g:tmuxline_preset = {
+  \'c'       : '#S',
   \'win'     : '#I #W',
   \'cwin'    : '#I #W',
-  \'options' : {'status-justify' : 'left'}
+  \'options' : {'status-justify' : 'left'},
+  \'x'       : '#(whoami)@#H',
 \ }
 " \'z'       : '#($HOME/bin/tmux-git-fab.sh)',
 
