@@ -293,7 +293,7 @@ autocmd VimEnter * call AirlineInit()
 " tmuxline
 let g:tmuxline_powerline_separators = 0
 let g:tmuxline_preset = {
-  \'c'       : '#S',
+  \'a'       : '#S',
   \'win'     : '#I #W',
   \'cwin'    : '#I #W',
   \'options' : {'status-justify' : 'left'},
