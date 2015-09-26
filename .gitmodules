@@ -76,3 +76,6 @@
 [submodule "links/.vim/bundle/vim-perl"]
 	path = links/.vim/bundle/vim-perl
 	url = https://github.com/vim-perl/vim-perl.git
+[submodule "links/.vim/bundle/vim-extradite"]
+	path = links/.vim/bundle/vim-extradite
+	url = https://github.com/int3/vim-extradite.git
