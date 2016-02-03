@@ -30,4 +30,5 @@ if [[ ! "$MANPATH" == *$HOME/.fzf/man* && -d "$HOME/.fzf/man" ]]; then
 fi
 [[ $- == *i* ]] && source "$HOME/.fzf/shell/completion.bash" 2> /dev/null
 source "$HOME/.fzf/shell/key-bindings.bash"
+export FZF_DEFAULT_OPTS="--color=dark --history-size=10000"
 
