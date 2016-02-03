@@ -23,9 +23,6 @@ copy_files(   $dotfiles_copy_dir  => $home_dir     );
 # update all the git submodules in the top level of $dotfiles_dir
 process_submodules($dotfiles_dir => $home_dir);
 
-# install fzf
-`$home_dir/.fzf/install`;
-
 # done
 
 sub process_submodules {
