@@ -164,7 +164,7 @@ let NERDSpaceDelims=2
 " NERD Tree
 map <leader>ls :NERDTreeToggle<cr>
 map <leader>ls. :NERDTreeFind<cr>
-let NERDTreeChDirMode=1
+let NERDTreeChDirMode=2
 let NERDTreeWinPos='Right'
 let NERDTreeStatusline=-1
 let NERDTreeQuitOnOpen=1
@@ -320,6 +320,18 @@ hi GitGutterChangeDelete cterm=none ctermfg=160 ctermbg=233
 " Tabular
 map <leader>aa :Tabularize
 map <leader>a :Tabularize<cr>
+
+" fzf
+" Mapping selecting mappings
+nmap <leader><tab> <plug>(fzf-maps-n)
+xmap <leader><tab> <plug>(fzf-maps-x)
+omap <leader><tab> <plug>(fzf-maps-o)
+
+" Insert mode completion
+imap <c-x><c-k> <plug>(fzf-complete-word)
+imap <c-x><c-f> <plug>(fzf-complete-path)
+imap <c-x><c-j> <plug>(fzf-complete-file-ag)
+imap <c-x><c-l> <plug>(fzf-complete-line)
 
 try
     source $HOME/.vimrc.local
