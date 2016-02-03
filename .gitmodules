@@ -79,3 +79,6 @@
 [submodule "links/.vim/bundle/vim-extradite"]
 	path = links/.vim/bundle/vim-extradite
 	url = https://github.com/int3/vim-extradite.git
+[submodule "links/.fzf"]
+	path = links/.fzf
+	url = git@github.com:junegunn/fzf.git

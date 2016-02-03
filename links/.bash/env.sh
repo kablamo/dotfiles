@@ -19,3 +19,15 @@ complete -C perldoc-complete -o nospace -o default perldoc
 
 # make it easier to Perl
 export PERL5LIB=./lib:./local/lib/perl5:$PERL5LIB
+
+# https://github.com/junegunn/fzf
+# command line fuzzy finder written in go
+if [[ ! "$PATH" == *$HOME/.fzf/bin* ]]; then
+  export PATH="$PATH:$HOME/.fzf/bin"
+fi
+if [[ ! "$MANPATH" == *$HOME/.fzf/man* && -d "$HOME/.fzf/man" ]]; then
+  export MANPATH="$MANPATH:$HOME/.fzf/man"
+fi
+[[ $- == *i* ]] && source "$HOME/.fzf/shell/completion.bash" 2> /dev/null
+source "$HOME/.fzf/shell/key-bindings.bash"
+
